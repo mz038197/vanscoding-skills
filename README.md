@@ -15,53 +15,104 @@
 ### 專案架構
 
 ```
-vanscoding-skills/
+vanscoding-skills/                     # Monorepo 根目錄
 │
-├── README.md                   # 專案說明（此檔案）
-├── LICENSE                     # 專案授權條款
+├── README.md                          # 專案說明（此檔案）
+├── LICENSE                            # MIT 授權條款
+├── CONTRIBUTING.md                    # 貢獻指南
+├── .gitignore                         # Git 忽略規則
 │
-├── Documents/                  # 文檔處理技能分類
-│   ├── word/                   # Word 文檔處理
-│   │   ├── SKILL.md
-│   │   ├── scripts/            # 輔助腳本
-│   │   ├── ooxml/              # OOXML 標準定義
-│   │   └── LICENSE.txt
+├── Documents/                         # 📄 文檔處理技能分類
 │   │
-│   ├── pdf/                    # PDF 檔案操作
-│   │   ├── SKILL.md
-│   │   ├── forms.md            # 表單填充指南
-│   │   ├── reference.md        # 進階參考
-│   │   ├── scripts/            # PDF 處理工具
-│   │   └── LICENSE.txt
+│   ├── word/                          # Word 文檔處理技能
+│   │   ├── SKILL.md                  # 技能定義和使用指南
+│   │   ├── LICENSE.txt               # Anthropic 授權條款
+│   │   ├── docx-js.md                # JavaScript DOCX 文件
+│   │   ├── ooxml.md                  # OOXML 參考文件
+│   │   ├── scripts/                  # Python 輔助腳本
+│   │   │   ├── __init__.py
+│   │   │   ├── document.py           # 文檔操作函式
+│   │   │   ├── utilities.py          # 工具函式
+│   │   │   └── templates/            # XML 模板
+│   │   └── ooxml/                    # OOXML 標準定義和驗証
+│   │       ├── schemas/              # XSD 架構檔案
+│   │       │   ├── ISO-IEC29500-4_2016/
+│   │       │   ├── ecma/fouth-edition/
+│   │       │   ├── microsoft/
+│   │       │   └── mce/
+│   │       └── scripts/              # OOXML 工具腳本
 │   │
-│   ├── pptx/                   # PowerPoint 簡報
-│   │   ├── SKILL.md
-│   │   ├── scripts/            # 投影片操作
-│   │   ├── ooxml/              # OOXML 架構
-│   │   └── LICENSE.txt
+│   ├── pdf/                           # PDF 檔案操作技能
+│   │   ├── SKILL.md                  # 技能定義和使用指南
+│   │   ├── LICENSE.txt               # 授權條款
+│   │   ├── forms.md                  # 表單填充完整指南
+│   │   ├── reference.md              # 進階功能參考
+│   │   └── scripts/                  # Python PDF 工具
+│   │       ├── extract_form_field_info.py
+│   │       ├── check_fillable_fields.py
+│   │       ├── fill_fillable_fields.py
+│   │       ├── convert_pdf_to_images.py
+│   │       └── 其他工具...
 │   │
-│   ├── xlsx/                   # Excel 試算表
-│   │   ├── SKILL.md
-│   │   ├── recalc.py           # 公式重新計算
-│   │   └── LICENSE.txt
+│   ├── pptx/                          # PowerPoint 簡報技能
+│   │   ├── SKILL.md                  # 技能定義和使用指南
+│   │   ├── LICENSE.txt               # 授權條款
+│   │   ├── html2pptx.md              # HTML 轉 PPTX 指南
+│   │   ├── ooxml.md                  # OOXML 參考文件
+│   │   ├── scripts/                  # Python 和 JavaScript 工具
+│   │   │   ├── thumbnail.py
+│   │   │   ├── replace.py
+│   │   │   ├── rearrange.py
+│   │   │   ├── inventory.py
+│   │   │   └── html2pptx.js
+│   │   └── ooxml/                    # OOXML 標準和驗証工具
 │   │
-│   ├── google-sheets/          # Google 試算表
-│   │   ├── SKILL.md
+│   ├── xlsx/                          # Excel 試算表技能
+│   │   ├── SKILL.md                  # 技能定義和使用指南
+│   │   ├── LICENSE.txt               # 授權條款
+│   │   └── recalc.py                 # 公式重新計算工具
+│   │
+│   ├── google-sheets/                 # Google 試算表整合技能
+│   │   ├── SKILL.md                  # 技能定義和使用指南
 │   │   └── scripts/
+│   │       └── cli.py                # Google Sheets CLI 工具
 │   │
-│   └── agent-soul-crafter/     # AI 代理人格設計
-│       ├── SKILL.md
-│       └── _meta.json
+│   └── agent-soul-crafter/            # AI 代理人格設計技能
+│       ├── SKILL.md                  # 技能定義和使用指南
+│       └── _meta.json                # 元資料
 │
-└── Productivity/               # 生產力工具整合分類
-    ├── google-email/           # Gmail 電子郵件管理
-    │   ├── SKILL.md
-    │   └── scripts/            # OAuth、附件處理
+└── Productivity/                      # 🚀 生產力工具整合分類
     │
-    └── google-calendar/        # Google 日曆整合
-        ├── SKILL.md
+    ├── google-email/                  # Gmail 電子郵件管理技能
+    │   ├── SKILL.md                  # 技能定義和使用指南
+    │   └── scripts/
+    │       ├── oauth_cli.py           # OAuth 認証工具
+    │       ├── list_messages.py       # 列出郵件訊息
+    │       ├── download_attachments.py # 下載附件
+    │       └── send_test.py           # 發送測試郵件
+    │
+    └── google-calendar/               # Google 日曆整合技能
+        ├── SKILL.md                  # 技能定義和使用指南
         └── scripts/
+            └── oauth_cli.py           # OAuth 認証工具
 ```
+
+#### 架構說明
+
+**目錄分類邏輯：**
+- **Documents/** - 文檔和檔案處理相關的 6 個技能模組
+- **Productivity/** - 雲端工具和生產力軟體的 2 個技能模組
+
+**每個技能的標準結構：**
+- `SKILL.md` - 必要檔案，包含技能定義、使用指南和範例
+- `scripts/` - 實用工具和輔助程式
+- `LICENSE.txt` - 授權條款（如適用）
+- 其他文件 - 參考資料、指南、架構定義等
+
+**共計：**
+- 8 個可獨立安裝的技能模組
+- 141 個檔案（涵蓋腳本、文件、架構定義）
+- 54,644+ 行程式碼和文件
 
 ### 技能概覽
 
@@ -85,13 +136,52 @@ vanscoding-skills/
 
 ### 使用方式
 
-#### 安裝特定技能
+#### 🚀 快速開始
 
-每個技能都可以獨立使用。選擇你需要的技能資料夾位置：
+1. **查看可用技能**
+   
+   瀏覽 [Documents](./Documents/) 和 [Productivity](./Productivity/) 資料夾，查看所有可用的技能。
+
+2. **安裝特定技能**
+   
+   每個技能都可以獨立使用。選擇你需要的技能，使用該技能資料夾的完整 GitHub URL：
+
+3. **查看技能說明**
+   
+   安裝後，閱讀技能中的 `SKILL.md` 檔案以了解使用方式。
+
+#### 📦 完整安裝命令
+
+**文檔處理技能：**
 
 ```bash
-# 例如：安裝 Word 文檔處理技能
+# Word 文檔處理
 npx skills add https://github.com/mz038197/vanscoding-skills/tree/main/Documents/word
+
+# PDF 檔案操作
+npx skills add https://github.com/mz038197/vanscoding-skills/tree/main/Documents/pdf
+
+# PowerPoint 簡報
+npx skills add https://github.com/mz038197/vanscoding-skills/tree/main/Documents/pptx
+
+# Excel 試算表
+npx skills add https://github.com/mz038197/vanscoding-skills/tree/main/Documents/xlsx
+
+# Google 試算表
+npx skills add https://github.com/mz038197/vanscoding-skills/tree/main/Documents/google-sheets
+
+# AI 代理人格設計
+npx skills add https://github.com/mz038197/vanscoding-skills/tree/main/Documents/agent-soul-crafter
+```
+
+**生產力工具技能：**
+
+```bash
+# Gmail 電子郵件管理
+npx skills add https://github.com/mz038197/vanscoding-skills/tree/main/Productivity/google-email
+
+# Google 日曆整合
+npx skills add https://github.com/mz038197/vanscoding-skills/tree/main/Productivity/google-calendar
 ```
 
 #### 技能檔案結構
@@ -101,7 +191,7 @@ npx skills add https://github.com/mz038197/vanscoding-skills/tree/main/Documents
 - **SKILL.md** - 技能定義和使用指南
 - **scripts/** - 相關的輔助程式和工具
 - **LICENSE.txt** - 授權條款（如適用）
-- **參考文件** - 詳細的技術文件
+- **參考文件** - 詳細的技術文件（如 reference.md、forms.md 等）
 
 ### 技能特性
 
@@ -139,11 +229,88 @@ npx skills add https://github.com/mz038197/vanscoding-skills/tree/main/Documents
 
 ### 貢獻
 
-歡迎提交 Issue 和 Pull Request 來改進這個專案！
+歡迎提交 Issue 和 Pull Request 來改進這個專案！詳見 [CONTRIBUTING.md](./CONTRIBUTING.md)。
+
+### 常見問題（FAQ）
+
+**Q: 我可以同時安裝多個技能嗎？**
+
+A: 可以！每個技能都是獨立的，你可以根據需要安裝多個技能。它們不會互相衝突。
+
+**Q: 這些技能需要付費嗎？**
+
+A: 不需要。所有技能都是基於開源或 Anthropic 授權的材料，可以免費使用。具體授權詳見各技能資料夾內的 LICENSE.txt。
+
+**Q: 如何更新已安裝的技能？**
+
+A: 技能的更新通常需要重新安裝。建議定期檢查本倉庫的更新。
+
+**Q: Word 和 PDF 技能支援哪些功能？**
+
+A: 
+- **Word** 技能支援：建立、編輯、追蹤變更、評論、格式化、OOXML 處理
+- **PDF** 技能支援：表單填充、文字提取、圖像轉換、欄位檢查、元資料提取
+
+**Q: Google 工具技能需要認証嗎？**
+
+A: 需要。Google 相關技能需要 OAuth 認証。每個技能的 scripts/ 資料夾中都有 `oauth_cli.py` 工具來處理認証流程。
+
+**Q: 技能文件在哪裡找？**
+
+A: 每個技能都有：
+- `SKILL.md` - 基本使用指南
+- `reference.md` 或類似的檔案 - 進階參考
+- `forms.md` 或類似的檔案 - 特定功能的詳細指南
+
+**Q: 如何報告錯誤或提出功能建議？**
+
+A: 請在本倉庫開啟 Issue。我們歡迎所有的反饋和建議！
+
+### 進階用法
+
+#### 在本地開發技能
+
+如果你想修改或擴展某個技能：
+
+1. Fork 本倉庫
+2. 在你的 fork 中修改技能
+3. 在本地測試
+4. 提交 Pull Request
+
+#### 技能目錄結構最佳實踐
+
+建立新技能時，遵循以下結構：
+
+```
+your-skill/
+├── SKILL.md                # 必要：技能定義
+├── LICENSE.txt             # 授權條款
+├── README.md              # 可選：額外說明
+├── scripts/               # Python/JavaScript 工具
+│   ├── __init__.py
+│   └── tool.py
+└── docs/                  # 可選：詳細文件
+    ├── reference.md
+    ├── examples.md
+    └── api.md
+```
+
+#### 版本控制和標籤
+
+本倉庫使用語義化版本控制。主要版本標籤用於課堂版本：
+
+```bash
+git tag v1.0.0  # 第一個穩定版本
+git tag v2.0.0  # 重大更新
+```
 
 ### 聯絡方式
 
-有任何問題或建議，請通過 GitHub Issues 聯絡我們。
+有任何問題或建議，請通過以下方式聯絡我們：
+
+- 📧 GitHub Issues - 報告錯誤或提出功能建議
+- 💬 GitHub Discussions - 一般性問題和討論
+- 📝 Pull Requests - 提交改進
 
 ---
 
@@ -157,8 +324,17 @@ npx skills add https://github.com/mz038197/vanscoding-skills/tree/main/Documents
 
 The repository is organized into two main categories:
 
-- **Documents/** - Document processing skills (Word, PDF, PowerPoint, Excel, Google Sheets)
-- **Productivity/** - Productivity tool integration (Gmail, Google Calendar)
+- **Documents/** - Document processing skills (6 modules)
+  - word: Word document processing
+  - pdf: PDF file manipulation
+  - pptx: PowerPoint presentations
+  - xlsx: Excel spreadsheets
+  - google-sheets: Google Sheets integration
+  - agent-soul-crafter: AI agent personality design
+
+- **Productivity/** - Productivity tool integration (2 modules)
+  - google-email: Gmail management
+  - google-calendar: Google Calendar integration
 
 Each skill is self-contained with its own SKILL.md, scripts, and documentation.
 
@@ -166,24 +342,35 @@ Each skill is self-contained with its own SKILL.md, scripts, and documentation.
 
 #### 📄 Document Processing
 
-- **word** - Word document processing with change tracking and comments
-- **pdf** - PDF manipulation including form filling and text extraction
-- **pptx** - PowerPoint presentation handling with OOXML support
-- **xlsx** - Excel spreadsheet with formulas and data analysis
-- **google-sheets** - Google Sheets integration
-- **agent-soul-crafter** - AI agent personality design
+| Skill | Description | Features |
+|-------|-------------|----------|
+| **word** | Word document processing | Create, edit, track changes, comments, formatting |
+| **pdf** | PDF file manipulation | Form filling, text extraction, image conversion |
+| **pptx** | PowerPoint presentations | Slide operations, OOXML processing, HTML conversion |
+| **xlsx** | Excel spreadsheets | Formulas, formatting, data analysis |
+| **google-sheets** | Google Sheets integration | Spreadsheet management, data handling |
+| **agent-soul-crafter** | AI agent personality | Design agent personality and behavior |
 
 #### 🚀 Productivity Tools
 
-- **google-email** - Gmail integration with OAuth and attachment handling
-- **google-calendar** - Google Calendar management
+| Skill | Description | Features |
+|-------|-------------|----------|
+| **google-email** | Gmail management | OAuth authentication, attachment handling, message management |
+| **google-calendar** | Google Calendar integration | Calendar operations, schedule management |
 
 ### Installation
 
-Install a specific skill from the repository:
+Install a specific skill from the repository using its GitHub URL:
 
 ```bash
+# Example: Install Word document processing skill
 npx skills add https://github.com/mz038197/vanscoding-skills/tree/main/Documents/word
+
+# Install all document processing skills:
+# pdf, pptx, xlsx, google-sheets, agent-soul-crafter
+
+# Install all productivity tools:
+# google-email, google-calendar
 ```
 
 ### License
@@ -191,3 +378,61 @@ npx skills add https://github.com/mz038197/vanscoding-skills/tree/main/Documents
 This project follows Anthropic's licensing terms. See the [LICENSE](./LICENSE) file for details.
 
 Individual skills may have their own license terms. Check the LICENSE.txt file in each skill's folder.
+
+### Key Features
+
+✨ **Complete Document Support**
+- Support for all major office document formats (Word, PDF, PowerPoint, Excel)
+- Includes OOXML standard definitions and validation tools
+
+🔧 **Rich Toolset**
+- Python scripts for automation tasks
+- JavaScript tools for frontend processing
+- Complete API references
+
+☁️ **Cloud Integration**
+- Google Suite integration (Gmail, Google Calendar, Google Sheets)
+- OAuth authentication support
+
+📚 **Detailed Documentation**
+- Each skill has comprehensive SKILL.md documentation
+- Advanced references and code examples
+- Usage guides and best practices
+
+### Project Advantages
+
+✅ **Centralized Management** - All skills in one repository for easy maintenance  
+✅ **Clear Organization** - Categorized by document processing and productivity tools  
+✅ **Independent Installation** - Install only the skills you need  
+✅ **Version Control** - Complete Git history and tag support  
+✅ **Education-Friendly** - Suitable for classroom and learning environments  
+
+### Contributing
+
+Contributions are welcome! See [CONTRIBUTING.md](./CONTRIBUTING.md) for guidelines.
+
+### Frequently Asked Questions
+
+**Q: Can I install multiple skills?**
+
+A: Yes! Each skill is independent and can be installed without conflicts.
+
+**Q: Are these skills free?**
+
+A: Yes! All skills are based on open-source or Anthropic-licensed materials and are free to use.
+
+**Q: How do I update installed skills?**
+
+A: Check this repository regularly for updates and reinstall skills as needed.
+
+**Q: Do Google tools require authentication?**
+
+A: Yes. Google-related skills require OAuth authentication. Each skill includes an oauth_cli.py tool in its scripts/ folder.
+
+### Contact
+
+For questions or suggestions, please:
+
+- 📧 Open an Issue - Report bugs or request features
+- 💬 Start a Discussion - General questions and discussions
+- 📝 Submit a Pull Request - Contribute improvements
