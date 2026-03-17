@@ -10,7 +10,7 @@
 
 ### 簡介
 
-**Vanscoding Skills** 是一個專業的 AI 技能庫，為文檔處理和生產力工具集成提供完整的支援。這個 monorepo 包含了多個精心設計的技能模組，可以獨立安裝和使用。
+**Vanscoding Skills** 是一個專業的 AI 技能庫，涵蓋文檔處理、瀏覽器與網頁自動化、媒體創作、Agent 設定引導、Nanobot 整合與生產力工具。本 monorepo 包含 13 個可獨立安裝的技能模組。
 
 ### 專案架構
 
@@ -22,101 +22,50 @@ vanscoding-skills/                     # Monorepo 根目錄
 ├── CONTRIBUTING.md                    # 貢獻指南
 ├── .gitignore                         # Git 忽略規則
 │
-├── Documents/                         # 📄 文檔處理技能分類
-│   │
-│   ├── word/                          # Word 文檔處理技能
-│   │   ├── SKILL.md                  # 技能定義和使用指南
-│   │   ├── LICENSE.txt               # Anthropic 授權條款
-│   │   ├── docx-js.md                # JavaScript DOCX 文件
-│   │   ├── ooxml.md                  # OOXML 參考文件
-│   │   ├── scripts/                  # Python 輔助腳本
-│   │   │   ├── __init__.py
-│   │   │   ├── document.py           # 文檔操作函式
-│   │   │   ├── utilities.py          # 工具函式
-│   │   │   └── templates/            # XML 模板
-│   │   └── ooxml/                    # OOXML 標準定義和驗証
-│   │       ├── schemas/              # XSD 架構檔案
-│   │       │   ├── ISO-IEC29500-4_2016/
-│   │       │   ├── ecma/fouth-edition/
-│   │       │   ├── microsoft/
-│   │       │   └── mce/
-│   │       └── scripts/              # OOXML 工具腳本
-│   │
-│   ├── pdf/                           # PDF 檔案操作技能
-│   │   ├── SKILL.md                  # 技能定義和使用指南
-│   │   ├── LICENSE.txt               # 授權條款
-│   │   ├── forms.md                  # 表單填充完整指南
-│   │   ├── reference.md              # 進階功能參考
-│   │   └── scripts/                  # Python PDF 工具
-│   │       ├── extract_form_field_info.py
-│   │       ├── check_fillable_fields.py
-│   │       ├── fill_fillable_fields.py
-│   │       ├── convert_pdf_to_images.py
-│   │       └── 其他工具...
-│   │
-│   ├── pptx/                          # PowerPoint 簡報技能
-│   │   ├── SKILL.md                  # 技能定義和使用指南
-│   │   ├── LICENSE.txt               # 授權條款
-│   │   ├── html2pptx.md              # HTML 轉 PPTX 指南
-│   │   ├── ooxml.md                  # OOXML 參考文件
-│   │   ├── scripts/                  # Python 和 JavaScript 工具
-│   │   │   ├── thumbnail.py
-│   │   │   ├── replace.py
-│   │   │   ├── rearrange.py
-│   │   │   ├── inventory.py
-│   │   │   └── html2pptx.js
-│   │   └── ooxml/                    # OOXML 標準和驗証工具
-│   │
-│   ├── xlsx/                          # Excel 試算表技能
-│   │   ├── SKILL.md                  # 技能定義和使用指南
-│   │   ├── LICENSE.txt               # 授權條款
-│   │   └── recalc.py                 # 公式重新計算工具
-│   │
-│   ├── google-sheets/                 # Google 試算表整合技能
-│   │   ├── SKILL.md                  # 技能定義和使用指南
-│   │   └── scripts/
-│   │       └── cli.py                # Google Sheets CLI 工具
-│   │
-│   └── agent-soul-crafter/            # AI 代理人格設計技能
-│       ├── SKILL.md                  # 技能定義和使用指南
-│       └── _meta.json                # 元資料
+├── Documents/                         # 📄 文檔與 Agent 引導技能
+│   ├── word/                          # Word 文檔處理
+│   ├── pdf/                           # PDF 檔案操作
+│   ├── pptx/                          # PowerPoint 簡報
+│   ├── xlsx/                          # Excel 試算表
+│   ├── google-sheets/                 # Google 試算表整合
+│   ├── agent-soul-crafter/            # AI 代理人格設計
+│   ├── agents-md-guide/               # AGENTS.md 建構引導
+│   └── user-md-guide/                 # USER.md 建構引導
 │
-└── Productivity/                      # 🚀 生產力工具整合分類
-    │
-    ├── google-email/                  # Gmail 電子郵件管理技能
-    │   ├── SKILL.md                  # 技能定義和使用指南
-    │   └── scripts/
-    │       ├── oauth_cli.py           # OAuth 認証工具
-    │       ├── list_messages.py       # 列出郵件訊息
-    │       ├── download_attachments.py # 下載附件
-    │       └── send_test.py           # 發送測試郵件
-    │
-    └── google-calendar/               # Google 日曆整合技能
-        ├── SKILL.md                  # 技能定義和使用指南
-        └── scripts/
-            └── oauth_cli.py           # OAuth 認証工具
+├── Browser/                           # 🌐 瀏覽器與網頁自動化
+│   └── browser-use/                   # Browser Use Cloud SDK（操作瀏覽器、爬取、自動化）
+│
+├── Media/                             # 🎵 媒體與創作
+│   └── ace-music/                     # ACE Music AI 音樂生成
+│
+├── nanobot/                           # 🤖 Nanobot 整合
+│   └── setup-line-channel/            # LINE Messaging API channel 設定
+│
+└── Productivity/                      # 🚀 生產力工具整合
+    ├── google-email/                  # Gmail 電子郵件管理
+    └── google-calendar/               # Google 日曆整合
 ```
 
 #### 架構說明
 
 **目錄分類邏輯：**
-- **Documents/** - 文檔和檔案處理相關的 6 個技能模組
-- **Productivity/** - 雲端工具和生產力軟體的 2 個技能模組
+- **Documents/** - 文檔處理與 Agent 設定引導（8 個技能）
+- **Browser/** - 瀏覽器操作與網頁自動化（1 個技能）
+- **Media/** - 媒體生成與創作（1 個技能）
+- **nanobot/** - Nanobot 專案相關整合（1 個技能）
+- **Productivity/** - 雲端工具與生產力（2 個技能）
 
 **每個技能的標準結構：**
 - `SKILL.md` - 必要檔案，包含技能定義、使用指南和範例
-- `scripts/` - 實用工具和輔助程式
+- `scripts/` - 實用工具和輔助程式（如適用）
 - `LICENSE.txt` - 授權條款（如適用）
 - 其他文件 - 參考資料、指南、架構定義等
 
-**共計：**
-- 8 個可獨立安裝的技能模組
-- 141 個檔案（涵蓋腳本、文件、架構定義）
-- 54,644+ 行程式碼和文件
+**共計：** 13 個可獨立安裝的技能模組
 
 ### 技能概覽
 
-#### 📄 文檔處理（Documents）
+#### 📄 文檔與 Agent 引導（Documents）
 
 | 技能 | 描述 | 功能 |
 |------|------|------|
@@ -126,6 +75,26 @@ vanscoding-skills/                     # Monorepo 根目錄
 | **xlsx** | Excel 試算表 | 公式、格式、資料分析、重新計算 |
 | **google-sheets** | Google 試算表 | 試算表整合、資料管理 |
 | **agent-soul-crafter** | AI 代理人格 | 設計 AI 代理的個性和行為 |
+| **agents-md-guide** | AGENTS.md 引導 | 階段式建構 AGENTS.md（核心、記憶、心跳） |
+| **user-md-guide** | USER.md 引導 | 建構給 agent 用的個人設定檔（人本＋結構化） |
+
+#### 🌐 瀏覽器與網頁自動化（Browser）
+
+| 技能 | 描述 | 功能 |
+|------|------|------|
+| **browser-use** | Browser Use | 操作瀏覽器、爬取網頁、網頁自動化（Cloud / Open Source） |
+
+#### 🎵 媒體與創作（Media）
+
+| 技能 | 描述 | 功能 |
+|------|------|------|
+| **ace-music** | ACE Music | AI 音樂生成（歌詞、風格、cover、repaint） |
+
+#### 🤖 Nanobot 整合（nanobot）
+
+| 技能 | 描述 | 功能 |
+|------|------|------|
+| **setup-line-channel** | LINE Channel | 為 nanobot 新增 LINE Messaging API、Webhook、Cloudflare Tunnel |
 
 #### 🚀 生產力工具（Productivity）
 
@@ -140,47 +109,53 @@ vanscoding-skills/                     # Monorepo 根目錄
 
 1. **查看可用技能**
    
-   瀏覽 [Documents](./Documents/) 和 [Productivity](./Productivity/) 資料夾，查看所有可用的技能。
+   瀏覽 [Documents](./Documents/)、[Browser](./Browser/)、[Media](./Media/)、[nanobot](./nanobot/)、[Productivity](./Productivity/) 資料夾，查看所有可用的技能。
 
 2. **安裝特定技能**
    
-   每個技能都可以獨立使用。選擇你需要的技能，使用該技能資料夾的完整 GitHub URL：
+   每個技能都可以獨立使用。選擇你需要的技能，使用該技能資料夾的完整 GitHub URL。
 
 3. **查看技能說明**
    
    安裝後，閱讀技能中的 `SKILL.md` 檔案以了解使用方式。
 
-#### 📦 完整安裝命令
+#### 📦 安裝命令範例
 
-**文檔處理技能：**
+**文檔與 Agent 引導（Documents）：**
 
 ```bash
-# Word 文檔處理
 npx skills add https://github.com/mz038197/vanscoding-skills/tree/main/Documents/word
-
-# PDF 檔案操作
 npx skills add https://github.com/mz038197/vanscoding-skills/tree/main/Documents/pdf
-
-# PowerPoint 簡報
 npx skills add https://github.com/mz038197/vanscoding-skills/tree/main/Documents/pptx
-
-# Excel 試算表
 npx skills add https://github.com/mz038197/vanscoding-skills/tree/main/Documents/xlsx
-
-# Google 試算表
 npx skills add https://github.com/mz038197/vanscoding-skills/tree/main/Documents/google-sheets
-
-# AI 代理人格設計
 npx skills add https://github.com/mz038197/vanscoding-skills/tree/main/Documents/agent-soul-crafter
+npx skills add https://github.com/mz038197/vanscoding-skills/tree/main/Documents/agents-md-guide
+npx skills add https://github.com/mz038197/vanscoding-skills/tree/main/Documents/user-md-guide
 ```
 
-**生產力工具技能：**
+**瀏覽器與網頁自動化（Browser）：**
 
 ```bash
-# Gmail 電子郵件管理
-npx skills add https://github.com/mz038197/vanscoding-skills/tree/main/Productivity/google-email
+npx skills add https://github.com/mz038197/vanscoding-skills/tree/main/Browser/browser-use
+```
 
-# Google 日曆整合
+**媒體與創作（Media）：**
+
+```bash
+npx skills add https://github.com/mz038197/vanscoding-skills/tree/main/Media/ace-music
+```
+
+**Nanobot 整合：**
+
+```bash
+npx skills add https://github.com/mz038197/vanscoding-skills/tree/main/nanobot/setup-line-channel
+```
+
+**生產力工具（Productivity）：**
+
+```bash
+npx skills add https://github.com/mz038197/vanscoding-skills/tree/main/Productivity/google-email
 npx skills add https://github.com/mz038197/vanscoding-skills/tree/main/Productivity/google-calendar
 ```
 
@@ -195,23 +170,27 @@ npx skills add https://github.com/mz038197/vanscoding-skills/tree/main/Productiv
 
 ### 技能特性
 
-✨ **完整的文檔支援**
-- 支援所有主要辦公文檔格式（Word、PDF、PowerPoint、Excel）
-- 包含 OOXML 標準定義和驗証工具
+✨ **文檔與 Agent 設定**
+- 支援主要辦公文檔格式（Word、PDF、PowerPoint、Excel）與 OOXML
+- AGENTS.md / USER.md 建構引導，讓 agent 更懂工作區與使用者
+
+🌐 **瀏覽器與網頁**
+- Browser Use 雲端或開源模式：操作瀏覽器、爬取、自動化
+
+🎵 **媒體與創作**
+- ACE Music：AI 音樂生成（歌詞、風格、cover、repaint）
+
+🤖 **Nanobot 整合**
+- LINE Messaging API channel、Webhook、Cloudflare Tunnel
 
 🔧 **豐富的工具集**
-- Python 腳本用於自動化任務
-- JavaScript 工具用於前端處理
-- 完整的 API 參考
+- Python / JavaScript 腳本、完整 API 參考
 
 ☁️ **雲端整合**
-- Google 套件集成（Gmail、Google 日曆、Google 試算表）
-- OAuth 認證支援
+- Google 套件（Gmail、日曆、試算表）、OAuth 認證
 
 📚 **詳細文件**
-- 每個技能都有完整的 SKILL.md 說明
-- 進階參考和範例代碼
-- 使用指南和最佳實踐
+- 每個技能都有 SKILL.md、進階參考與使用指南
 
 ### 授權
 
@@ -222,7 +201,7 @@ npx skills add https://github.com/mz038197/vanscoding-skills/tree/main/Productiv
 ### 專案優勢
 
 ✅ **集中管理** - 所有技能在一個倉庫中，易於維護  
-✅ **清晰分類** - 按用途分為文檔處理和生產力工具  
+✅ **清晰分類** - 按用途分為文檔／Agent 引導、瀏覽器、媒體、nanobot、生產力工具  
 ✅ **獨立安裝** - 只安裝你需要的技能  
 ✅ **版本控制** - 完整的 Git 歷史和標籤支援  
 ✅ **教育友好** - 適合教室和學習環境使用  
@@ -318,29 +297,32 @@ git tag v2.0.0  # 重大更新
 
 ### Introduction
 
-**Vanscoding Skills** is a comprehensive AI skill library providing complete support for document processing and productivity tool integration. This monorepo contains multiple carefully designed skill modules that can be installed and used independently.
+**Vanscoding Skills** is a comprehensive AI skill library for document processing, browser automation, media creation, agent configuration guides, and productivity tool integration. This monorepo contains 13 skill modules that can be installed and used independently.
 
 ### Project Structure
 
-The repository is organized into two main categories:
+The repository is organized into five categories:
 
-- **Documents/** - Document processing skills (6 modules)
-  - word: Word document processing
-  - pdf: PDF file manipulation
-  - pptx: PowerPoint presentations
-  - xlsx: Excel spreadsheets
-  - google-sheets: Google Sheets integration
-  - agent-soul-crafter: AI agent personality design
+- **Documents/** - Document processing and agent guides (8 modules)
+  - word, pdf, pptx, xlsx, google-sheets, agent-soul-crafter, agents-md-guide, user-md-guide
 
-- **Productivity/** - Productivity tool integration (2 modules)
-  - google-email: Gmail management
-  - google-calendar: Google Calendar integration
+- **Browser/** - Browser and web automation (1 module)
+  - browser-use: Browser Use Cloud SDK for browser control, scraping, automation
 
-Each skill is self-contained with its own SKILL.md, scripts, and documentation.
+- **Media/** - Media and creation (1 module)
+  - ace-music: ACE Music AI music generation
+
+- **nanobot/** - Nanobot integration (1 module)
+  - setup-line-channel: LINE Messaging API channel, webhook, Cloudflare Tunnel
+
+- **Productivity/** - Productivity tools (2 modules)
+  - google-email, google-calendar
+
+Each skill is self-contained with its own SKILL.md, scripts (where applicable), and documentation.
 
 ### Available Skills
 
-#### 📄 Document Processing
+#### 📄 Documents
 
 | Skill | Description | Features |
 |-------|-------------|----------|
@@ -350,6 +332,26 @@ Each skill is self-contained with its own SKILL.md, scripts, and documentation.
 | **xlsx** | Excel spreadsheets | Formulas, formatting, data analysis |
 | **google-sheets** | Google Sheets integration | Spreadsheet management, data handling |
 | **agent-soul-crafter** | AI agent personality | Design agent personality and behavior |
+| **agents-md-guide** | AGENTS.md guide | Stage-based AGENTS.md construction |
+| **user-md-guide** | USER.md guide | Build personal profile for agents |
+
+#### 🌐 Browser
+
+| Skill | Description | Features |
+|-------|-------------|----------|
+| **browser-use** | Browser Use | Browser control, web scraping, automation (Cloud / Open Source) |
+
+#### 🎵 Media
+
+| Skill | Description | Features |
+|-------|-------------|----------|
+| **ace-music** | ACE Music | AI music generation (lyrics, style, cover, repaint) |
+
+#### 🤖 Nanobot
+
+| Skill | Description | Features |
+|-------|-------------|----------|
+| **setup-line-channel** | LINE Channel | LINE Messaging API, webhook, Cloudflare Tunnel for nanobot |
 
 #### 🚀 Productivity Tools
 
@@ -360,17 +362,26 @@ Each skill is self-contained with its own SKILL.md, scripts, and documentation.
 
 ### Installation
 
-Install a specific skill from the repository using its GitHub URL:
+Install a specific skill using its GitHub URL:
 
 ```bash
-# Example: Install Word document processing skill
+# Documents
 npx skills add https://github.com/mz038197/vanscoding-skills/tree/main/Documents/word
+npx skills add https://github.com/mz038197/vanscoding-skills/tree/main/Documents/agents-md-guide
+npx skills add https://github.com/mz038197/vanscoding-skills/tree/main/Documents/user-md-guide
 
-# Install all document processing skills:
-# pdf, pptx, xlsx, google-sheets, agent-soul-crafter
+# Browser
+npx skills add https://github.com/mz038197/vanscoding-skills/tree/main/Browser/browser-use
 
-# Install all productivity tools:
-# google-email, google-calendar
+# Media
+npx skills add https://github.com/mz038197/vanscoding-skills/tree/main/Media/ace-music
+
+# Nanobot
+npx skills add https://github.com/mz038197/vanscoding-skills/tree/main/nanobot/setup-line-channel
+
+# Productivity
+npx skills add https://github.com/mz038197/vanscoding-skills/tree/main/Productivity/google-email
+npx skills add https://github.com/mz038197/vanscoding-skills/tree/main/Productivity/google-calendar
 ```
 
 ### License
@@ -381,31 +392,21 @@ Individual skills may have their own license terms. Check the LICENSE.txt file i
 
 ### Key Features
 
-✨ **Complete Document Support**
-- Support for all major office document formats (Word, PDF, PowerPoint, Excel)
-- Includes OOXML standard definitions and validation tools
-
-🔧 **Rich Toolset**
-- Python scripts for automation tasks
-- JavaScript tools for frontend processing
-- Complete API references
-
-☁️ **Cloud Integration**
-- Google Suite integration (Gmail, Google Calendar, Google Sheets)
-- OAuth authentication support
-
-📚 **Detailed Documentation**
-- Each skill has comprehensive SKILL.md documentation
-- Advanced references and code examples
-- Usage guides and best practices
+✨ **Documents & Agent Guides** - Office formats (Word, PDF, PowerPoint, Excel), OOXML, AGENTS.md / USER.md construction guides  
+🌐 **Browser & Web** - Browser Use for browser control, scraping, automation (Cloud / Open Source)  
+🎵 **Media & Creation** - ACE Music for AI music generation  
+🤖 **Nanobot** - LINE Messaging API channel, webhook, Cloudflare Tunnel  
+🔧 **Rich Toolset** - Python / JavaScript scripts, API references  
+☁️ **Cloud Integration** - Google (Gmail, Calendar, Sheets), OAuth  
+📚 **Documentation** - SKILL.md per skill, references, usage guides  
 
 ### Project Advantages
 
-✅ **Centralized Management** - All skills in one repository for easy maintenance  
-✅ **Clear Organization** - Categorized by document processing and productivity tools  
+✅ **Centralized Management** - All skills in one repository  
+✅ **Clear Organization** - Documents, Browser, Media, nanobot, Productivity  
 ✅ **Independent Installation** - Install only the skills you need  
-✅ **Version Control** - Complete Git history and tag support  
-✅ **Education-Friendly** - Suitable for classroom and learning environments  
+✅ **Version Control** - Git history and tag support  
+✅ **Education-Friendly** - Suitable for classroom and learning  
 
 ### Contributing
 
