@@ -28,7 +28,7 @@ vanscoding-skills/                     # Monorepo 根目錄
 │   ├── pptx/                          # PowerPoint 簡報
 │   ├── xlsx/                          # Excel 試算表
 │   ├── google-sheets/                 # Google 試算表整合
-│   ├── agent-soul-crafter/            # AI 代理人格設計
+│   ├── agent-soul-crafter/            # SOUL.md 人格設計引導
 │   ├── agents-md-guide/               # AGENTS.md 建構引導
 │   └── user-md-guide/                 # USER.md 建構引導
 │
