@@ -10,7 +10,7 @@
 
 ### 簡介
 
-**Vanscoding Skills** 是一個專業的 AI 技能庫，涵蓋文檔處理、瀏覽器與網頁自動化、媒體創作、Agent 設定引導、Nanobot 整合與生產力工具。本 monorepo 包含 13 個可獨立安裝的技能模組。
+**Vanscoding Skills** 是一個專業的 AI 技能庫，涵蓋文檔處理、瀏覽器與網頁自動化、媒體創作、Agent 設定引導、開發與 Git 工作流程、Nanobot 整合與生產力工具。本 monorepo 包含 16 個可獨立安裝的技能模組。
 
 ### 專案架構
 
@@ -33,7 +33,12 @@ vanscoding-skills/                     # Monorepo 根目錄
 │   └── user-md-guide/                 # USER.md 建構引導
 │
 ├── Browser/                           # 🌐 瀏覽器與網頁自動化
-│   └── browser-use/                   # Browser Use Cloud SDK（操作瀏覽器、爬取、自動化）
+│   ├── browser-use/                   # Browser Use Cloud SDK（操作瀏覽器、爬取、自動化）
+│   └── chrome-devtools/               # Chrome DevTools MCP（除錯、自動化、效能與網路）
+│
+├── Developer/                         # 🛠️ 開發與 Git 工作流程
+│   ├── git-pr-description/            # 依 branch 差異產生 PR Title／Description
+│   └── git-smart-commit/              # 依邏輯拆分 conventional commit
 │
 ├── Media/                             # 🎵 媒體與創作
 │   └── ace-music/                     # ACE Music AI 音樂生成
@@ -50,7 +55,8 @@ vanscoding-skills/                     # Monorepo 根目錄
 
 **目錄分類邏輯：**
 - **Documents/** - 文檔處理與 Agent 設定引導（8 個技能）
-- **Browser/** - 瀏覽器操作與網頁自動化（1 個技能）
+- **Browser/** - 瀏覽器操作與網頁自動化（2 個技能）
+- **Developer/** - 開發與 Git 工作流程（2 個技能）
 - **Media/** - 媒體生成與創作（1 個技能）
 - **nanobot/** - Nanobot 專案相關整合（1 個技能）
 - **Productivity/** - 雲端工具與生產力（2 個技能）
@@ -61,7 +67,7 @@ vanscoding-skills/                     # Monorepo 根目錄
 - `LICENSE.txt` - 授權條款（如適用）
 - 其他文件 - 參考資料、指南、架構定義等
 
-**共計：** 13 個可獨立安裝的技能模組
+**共計：** 16 個可獨立安裝的技能模組
 
 ### 技能概覽
 
@@ -83,6 +89,14 @@ vanscoding-skills/                     # Monorepo 根目錄
 | 技能 | 描述 | 功能 |
 |------|------|------|
 | **browser-use** | Browser Use | 操作瀏覽器、爬取網頁、網頁自動化（Cloud / Open Source） |
+| **chrome-devtools** | Chrome DevTools MCP | 透過 MCP 除錯網頁、自動化互動、分析效能、檢視網路請求 |
+
+#### 🛠️ 開發與 Git 工作流程（Developer）
+
+| 技能 | 描述 | 功能 |
+|------|------|------|
+| **git-pr-description** | PR 描述 | 依目前 branch 與目標 branch 差異產生 PR Title／Description |
+| **git-smart-commit** | 智慧提交 | 將變更依邏輯分群，產出多筆 conventional commit |
 
 #### 🎵 媒體與創作（Media）
 
@@ -109,7 +123,7 @@ vanscoding-skills/                     # Monorepo 根目錄
 
 1. **查看可用技能**
    
-   瀏覽 [Documents](./Documents/)、[Browser](./Browser/)、[Media](./Media/)、[nanobot](./nanobot/)、[Productivity](./Productivity/) 資料夾，查看所有可用的技能。
+   瀏覽 [Documents](./Documents/)、[Browser](./Browser/)、[Developer](./Developer/)、[Media](./Media/)、[nanobot](./nanobot/)、[Productivity](./Productivity/) 資料夾，查看所有可用的技能。
 
 2. **安裝特定技能**
    
@@ -138,6 +152,14 @@ npx skills add https://github.com/mz038197/vanscoding-skills/tree/main/Documents
 
 ```bash
 npx skills add https://github.com/mz038197/vanscoding-skills/tree/main/Browser/browser-use
+npx skills add https://github.com/mz038197/vanscoding-skills/tree/main/Browser/chrome-devtools
+```
+
+**開發與 Git 工作流程（Developer）：**
+
+```bash
+npx skills add https://github.com/mz038197/vanscoding-skills/tree/main/Developer/git-pr-description
+npx skills add https://github.com/mz038197/vanscoding-skills/tree/main/Developer/git-smart-commit
 ```
 
 **媒體與創作（Media）：**
@@ -176,6 +198,10 @@ npx skills add https://github.com/mz038197/vanscoding-skills/tree/main/Productiv
 
 🌐 **瀏覽器與網頁**
 - Browser Use 雲端或開源模式：操作瀏覽器、爬取、自動化
+- Chrome DevTools MCP：除錯、自動化互動、效能與網路分析
+
+🛠️ **開發與 Git**
+- PR 描述產生、依邏輯拆分 conventional commit
 
 🎵 **媒體與創作**
 - ACE Music：AI 音樂生成（歌詞、風格、cover、repaint）
@@ -201,7 +227,7 @@ npx skills add https://github.com/mz038197/vanscoding-skills/tree/main/Productiv
 ### 專案優勢
 
 ✅ **集中管理** - 所有技能在一個倉庫中，易於維護  
-✅ **清晰分類** - 按用途分為文檔／Agent 引導、瀏覽器、媒體、nanobot、生產力工具  
+✅ **清晰分類** - 按用途分為文檔／Agent 引導、瀏覽器、開發與 Git、媒體、nanobot、生產力工具  
 ✅ **獨立安裝** - 只安裝你需要的技能  
 ✅ **版本控制** - 完整的 Git 歷史和標籤支援  
 ✅ **教育友好** - 適合教室和學習環境使用  
@@ -297,17 +323,22 @@ git tag v2.0.0  # 重大更新
 
 ### Introduction
 
-**Vanscoding Skills** is a comprehensive AI skill library for document processing, browser automation, media creation, agent configuration guides, and productivity tool integration. This monorepo contains 13 skill modules that can be installed and used independently.
+**Vanscoding Skills** is a comprehensive AI skill library for document processing, browser automation, media creation, agent configuration guides, development and Git workflows, and productivity tool integration. This monorepo contains 16 skill modules that can be installed and used independently.
 
 ### Project Structure
 
-The repository is organized into five categories:
+The repository is organized into six categories:
 
 - **Documents/** - Document processing and agent guides (8 modules)
   - word, pdf, pptx, xlsx, google-sheets, agent-soul-crafter, agents-md-guide, user-md-guide
 
-- **Browser/** - Browser and web automation (1 module)
+- **Browser/** - Browser and web automation (2 modules)
   - browser-use: Browser Use Cloud SDK for browser control, scraping, automation
+  - chrome-devtools: Chrome DevTools MCP for debugging, automation, performance, and network inspection
+
+- **Developer/** - Development and Git workflows (2 modules)
+  - git-pr-description: Generate PR title and description from branch diffs
+  - git-smart-commit: Split changes into logical conventional commits
 
 - **Media/** - Media and creation (1 module)
   - ace-music: ACE Music AI music generation
@@ -340,6 +371,14 @@ Each skill is self-contained with its own SKILL.md, scripts (where applicable), 
 | Skill | Description | Features |
 |-------|-------------|----------|
 | **browser-use** | Browser Use | Browser control, web scraping, automation (Cloud / Open Source) |
+| **chrome-devtools** | Chrome DevTools MCP | Debug pages, automate interactions, analyze performance, inspect network requests via MCP |
+
+#### 🛠️ Developer
+
+| Skill | Description | Features |
+|-------|-------------|----------|
+| **git-pr-description** | PR description | Generate PR title and description from current vs target branch diffs |
+| **git-smart-commit** | Smart commits | Group changes and produce multiple conventional commits |
 
 #### 🎵 Media
 
@@ -372,6 +411,11 @@ npx skills add https://github.com/mz038197/vanscoding-skills/tree/main/Documents
 
 # Browser
 npx skills add https://github.com/mz038197/vanscoding-skills/tree/main/Browser/browser-use
+npx skills add https://github.com/mz038197/vanscoding-skills/tree/main/Browser/chrome-devtools
+
+# Developer
+npx skills add https://github.com/mz038197/vanscoding-skills/tree/main/Developer/git-pr-description
+npx skills add https://github.com/mz038197/vanscoding-skills/tree/main/Developer/git-smart-commit
 
 # Media
 npx skills add https://github.com/mz038197/vanscoding-skills/tree/main/Media/ace-music
@@ -393,7 +437,8 @@ Individual skills may have their own license terms. Check the LICENSE.txt file i
 ### Key Features
 
 ✨ **Documents & Agent Guides** - Office formats (Word, PDF, PowerPoint, Excel), OOXML, AGENTS.md / USER.md construction guides  
-🌐 **Browser & Web** - Browser Use for browser control, scraping, automation (Cloud / Open Source)  
+🌐 **Browser & Web** - Browser Use for browser control, scraping, automation (Cloud / Open Source); Chrome DevTools MCP for debugging, automation, performance, and network  
+🛠️ **Developer & Git** - PR description generation, logical conventional commit splits  
 🎵 **Media & Creation** - ACE Music for AI music generation  
 🤖 **Nanobot** - LINE Messaging API channel, webhook, Cloudflare Tunnel  
 🔧 **Rich Toolset** - Python / JavaScript scripts, API references  
@@ -403,7 +448,7 @@ Individual skills may have their own license terms. Check the LICENSE.txt file i
 ### Project Advantages
 
 ✅ **Centralized Management** - All skills in one repository  
-✅ **Clear Organization** - Documents, Browser, Media, nanobot, Productivity  
+✅ **Clear Organization** - Documents, Browser, Developer, Media, nanobot, Productivity  
 ✅ **Independent Installation** - Install only the skills you need  
 ✅ **Version Control** - Git history and tag support  
 ✅ **Education-Friendly** - Suitable for classroom and learning  
