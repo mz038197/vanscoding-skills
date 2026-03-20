@@ -10,7 +10,7 @@
 
 ### 簡介
 
-**Vanscoding Skills** 是一個專業的 AI 技能庫，涵蓋文檔處理、瀏覽器與網頁自動化、媒體創作、Agent 設定引導、開發與 Git 工作流程、Nanobot 整合與生產力工具。本 monorepo 包含 16 個可獨立安裝的技能模組。
+**Vanscoding Skills** 是一個專業的 AI 技能庫，涵蓋文檔處理、瀏覽器與網頁自動化、媒體創作、電腦視覺與人臉辨識、Agent 設定引導、開發與 Git 工作流程、Nanobot 整合與生產力工具。本 monorepo 包含 17 個可獨立安裝的技能模組。
 
 ### 專案架構
 
@@ -43,6 +43,9 @@ vanscoding-skills/                     # Monorepo 根目錄
 ├── Media/                             # 🎵 媒體與創作
 │   └── ace-music/                     # ACE Music AI 音樂生成
 │
+├── Vision/                            # 👁️ 電腦視覺與人臉
+│   └── facenet-cli/                   # facenet-pytorch CLI（`fnet`：embedding、比對、JSON）
+│
 ├── nanobot/                           # 🤖 Nanobot 整合
 │   └── setup-line-channel/            # LINE Messaging API channel 設定
 │
@@ -58,6 +61,7 @@ vanscoding-skills/                     # Monorepo 根目錄
 - **Browser/** - 瀏覽器操作與網頁自動化（2 個技能）
 - **Developer/** - 開發與 Git 工作流程（2 個技能）
 - **Media/** - 媒體生成與創作（1 個技能）
+- **Vision/** - 電腦視覺與人臉辨識（1 個技能）
 - **nanobot/** - Nanobot 專案相關整合（1 個技能）
 - **Productivity/** - 雲端工具與生產力（2 個技能）
 
@@ -67,7 +71,7 @@ vanscoding-skills/                     # Monorepo 根目錄
 - `LICENSE.txt` - 授權條款（如適用）
 - 其他文件 - 參考資料、指南、架構定義等
 
-**共計：** 16 個可獨立安裝的技能模組
+**共計：** 17 個可獨立安裝的技能模組
 
 ### 技能概覽
 
@@ -104,6 +108,12 @@ vanscoding-skills/                     # Monorepo 根目錄
 |------|------|------|
 | **ace-music** | ACE Music | AI 音樂生成（歌詞、風格、cover、repaint） |
 
+#### 👁️ 電腦視覺與人臉（Vision）
+
+| 技能 | 描述 | 功能 |
+|------|------|------|
+| **facenet-cli** | facenet CLI（`fnet`） | facenet-pytorch 命令列：人臉 embedding、建庫、1:1／1:N 比對、可選 JSON 輸出 |
+
 #### 🤖 Nanobot 整合（nanobot）
 
 | 技能 | 描述 | 功能 |
@@ -123,7 +133,7 @@ vanscoding-skills/                     # Monorepo 根目錄
 
 1. **查看可用技能**
    
-   瀏覽 [Documents](./Documents/)、[Browser](./Browser/)、[Developer](./Developer/)、[Media](./Media/)、[nanobot](./nanobot/)、[Productivity](./Productivity/) 資料夾，查看所有可用的技能。
+   瀏覽 [Documents](./Documents/)、[Browser](./Browser/)、[Developer](./Developer/)、[Media](./Media/)、[Vision](./Vision/)、[nanobot](./nanobot/)、[Productivity](./Productivity/) 資料夾，查看所有可用的技能。
 
 2. **安裝特定技能**
    
@@ -168,6 +178,12 @@ npx skills add https://github.com/mz038197/vanscoding-skills/tree/main/Developer
 npx skills add https://github.com/mz038197/vanscoding-skills/tree/main/Media/ace-music
 ```
 
+**電腦視覺與人臉（Vision）：**
+
+```bash
+npx skills add https://github.com/mz038197/vanscoding-skills/tree/main/Vision/facenet-cli
+```
+
 **Nanobot 整合：**
 
 ```bash
@@ -206,6 +222,9 @@ npx skills add https://github.com/mz038197/vanscoding-skills/tree/main/Productiv
 🎵 **媒體與創作**
 - ACE Music：AI 音樂生成（歌詞、風格、cover、repaint）
 
+👁️ **電腦視覺與人臉**
+- facenet-cli（`fnet`）：人臉 embedding、建庫、比對、可選 JSON 輸出
+
 🤖 **Nanobot 整合**
 - LINE Messaging API channel、Webhook、Cloudflare Tunnel
 
@@ -227,7 +246,7 @@ npx skills add https://github.com/mz038197/vanscoding-skills/tree/main/Productiv
 ### 專案優勢
 
 ✅ **集中管理** - 所有技能在一個倉庫中，易於維護  
-✅ **清晰分類** - 按用途分為文檔／Agent 引導、瀏覽器、開發與 Git、媒體、nanobot、生產力工具  
+✅ **清晰分類** - 按用途分為文檔／Agent 引導、瀏覽器、開發與 Git、媒體、電腦視覺、nanobot、生產力工具  
 ✅ **獨立安裝** - 只安裝你需要的技能  
 ✅ **版本控制** - 完整的 Git 歷史和標籤支援  
 ✅ **教育友好** - 適合教室和學習環境使用  
@@ -323,11 +342,11 @@ git tag v2.0.0  # 重大更新
 
 ### Introduction
 
-**Vanscoding Skills** is a comprehensive AI skill library for document processing, browser automation, media creation, agent configuration guides, development and Git workflows, and productivity tool integration. This monorepo contains 16 skill modules that can be installed and used independently.
+**Vanscoding Skills** is a comprehensive AI skill library for document processing, browser automation, media creation, computer vision and face recognition, agent configuration guides, development and Git workflows, and productivity tool integration. This monorepo contains 17 skill modules that can be installed and used independently.
 
 ### Project Structure
 
-The repository is organized into six categories:
+The repository is organized into seven categories:
 
 - **Documents/** - Document processing and agent guides (8 modules)
   - word, pdf, pptx, xlsx, google-sheets, agent-soul-crafter, agents-md-guide, user-md-guide
@@ -342,6 +361,9 @@ The repository is organized into six categories:
 
 - **Media/** - Media and creation (1 module)
   - ace-music: ACE Music AI music generation
+
+- **Vision/** - Computer vision and face recognition (1 module)
+  - facenet-cli: facenet-pytorch CLI (`fnet`) for embeddings, face DB, 1:1 / 1:N matching, optional JSON
 
 - **nanobot/** - Nanobot integration (1 module)
   - setup-line-channel: LINE Messaging API channel, webhook, Cloudflare Tunnel
@@ -386,6 +408,12 @@ Each skill is self-contained with its own SKILL.md, scripts (where applicable), 
 |-------|-------------|----------|
 | **ace-music** | ACE Music | AI music generation (lyrics, style, cover, repaint) |
 
+#### 👁️ Vision
+
+| Skill | Description | Features |
+|-------|-------------|----------|
+| **facenet-cli** | facenet CLI (`fnet`) | Face embeddings, face DB, 1:1 / 1:N matching via facenet-pytorch; optional JSON for automation |
+
 #### 🤖 Nanobot
 
 | Skill | Description | Features |
@@ -420,6 +448,9 @@ npx skills add https://github.com/mz038197/vanscoding-skills/tree/main/Developer
 # Media
 npx skills add https://github.com/mz038197/vanscoding-skills/tree/main/Media/ace-music
 
+# Vision
+npx skills add https://github.com/mz038197/vanscoding-skills/tree/main/Vision/facenet-cli
+
 # Nanobot
 npx skills add https://github.com/mz038197/vanscoding-skills/tree/main/nanobot/setup-line-channel
 
@@ -440,6 +471,7 @@ Individual skills may have their own license terms. Check the LICENSE.txt file i
 🌐 **Browser & Web** - Browser Use for browser control, scraping, automation (Cloud / Open Source); Chrome DevTools MCP for debugging, automation, performance, and network  
 🛠️ **Developer & Git** - PR description generation, logical conventional commit splits  
 🎵 **Media & Creation** - ACE Music for AI music generation  
+👁️ **Vision** - facenet-cli (`fnet`) for face embeddings, matching, optional JSON output  
 🤖 **Nanobot** - LINE Messaging API channel, webhook, Cloudflare Tunnel  
 🔧 **Rich Toolset** - Python / JavaScript scripts, API references  
 ☁️ **Cloud Integration** - Google (Gmail, Calendar, Sheets), OAuth  
@@ -448,7 +480,7 @@ Individual skills may have their own license terms. Check the LICENSE.txt file i
 ### Project Advantages
 
 ✅ **Centralized Management** - All skills in one repository  
-✅ **Clear Organization** - Documents, Browser, Developer, Media, nanobot, Productivity  
+✅ **Clear Organization** - Documents, Browser, Developer, Media, Vision, nanobot, Productivity  
 ✅ **Independent Installation** - Install only the skills you need  
 ✅ **Version Control** - Git history and tag support  
 ✅ **Education-Friendly** - Suitable for classroom and learning  
