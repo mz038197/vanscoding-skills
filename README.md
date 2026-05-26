@@ -10,7 +10,7 @@
 
 ### 簡介
 
-**Vanscoding Skills** 是一個專業的 AI 技能庫，涵蓋文檔處理、Microsoft MarkItDown 轉 Markdown、Obsidian 整合、進階技能工程化、瀏覽器與網頁自動化（含 Playwright CLI）、媒體創作、電腦視覺與人臉辨識、教學課務流程（含凡思 PEAS 陪練、挑戰教練與 Workshop 教練）、Agent 設定引導、開發與 Git 工作流程、Nanobot 整合、Readmoo 階段一匯出與生產力工具。本 monorepo 包含 27 個可獨立安裝的技能模組。
+**Vanscoding Skills** 是一個專業的 AI 技能庫，涵蓋文檔處理、Microsoft MarkItDown 轉 Markdown、Obsidian 整合、進階技能工程化、瀏覽器與網頁自動化（含 Playwright CLI）、網路搜尋與查證（Felo CLI）、媒體創作、電腦視覺與人臉辨識、教學課務流程（含凡思 PEAS 陪練／教練／Workshop 基礎與進階）、Agent 設定引導、開發與 Git 工作流程、Nanobot 整合、Readmoo 階段一匯出與生產力工具。本 monorepo 包含 29 個可獨立安裝的技能模組。
 
 ### 專案架構
 
@@ -52,11 +52,15 @@ vanscoding-skills/                     # Monorepo 根目錄
 ├── Vision/                            # 👁️ 電腦視覺與人臉
 │   └── facenet-cli/                   # facenet-pytorch CLI（`fnet`：embedding、比對、JSON）
 │
+├── Search/                            # 🔍 搜尋與資訊檢索
+│   └── felo-cli/                      # Felo CLI／API（`@willh/felo-cli --json`、FELO_API_KEY）
+│
 ├── Teacher/                           # 📚 教學與課務
 │   ├── orangeapple-class-report/      # 橘子蘋果課後學習表現報告流程
 │   ├── peas-example-coach/            # 凡思陪練（清單、思考格、PEAS 開場、理解評估摘要）
 │   ├── peas-challenge-coach/          # 凡思教練（challenges、六欄 prompt、程式＋理解驗收）
-│   └── peas-workshop-coach/           # 凡思 Workshop 教練（WG-13～16、同對話 handoff 實作 main.py）
+│   ├── peas-workshop-coach/           # 凡思 Workshop 教練（WG-13～16、同對話 handoff 實作 main.py）
+│   └── peas-workshop-advanced-coach/  # 凡思 Workshop 進階教練（WG-22 拆檔 agent_core + main）
 │
 ├── nanobot/                           # 🤖 Nanobot 整合
 │   └── setup-line-channel/            # LINE Messaging API channel 設定
@@ -76,7 +80,8 @@ vanscoding-skills/                     # Monorepo 根目錄
 - **Developer/** - 開發與 Git 工作流程（2 個技能）
 - **Media/** - 媒體生成與創作（1 個技能）
 - **Vision/** - 電腦視覺與人臉辨識（1 個技能）
-- **Teacher/** - 教學與課務流程（4 個技能）
+- **Search/** - 搜尋、查證與即時資訊（1 個技能）
+- **Teacher/** - 教學與課務流程（5 個技能）
 - **nanobot/** - Nanobot 專案相關整合（1 個技能）
 - **Productivity/** - 雲端工具與生產力（3 個技能）
 
@@ -87,7 +92,7 @@ vanscoding-skills/                     # Monorepo 根目錄
 - `LICENSE.txt` - 授權條款（如適用）
 - 其他文件 - 參考資料、指南、架構定義等
 
-**共計：** 27 個可獨立安裝的技能模組
+**共計：** 29 個可獨立安裝的技能模組
 
 ### 技能概覽
 
@@ -145,6 +150,14 @@ vanscoding-skills/                     # Monorepo 根目錄
 | **facenet-cli** | facenet CLI（`fnet`） | facenet-pytorch 命令列：人臉 embedding、建庫、1:1／1:N 比對、可選 JSON 輸出 |
 
 
+#### 🔍 搜尋與資訊檢索（Search）
+
+
+| 技能 | 描述 | 功能 |
+|------|------|------|
+| **felo-cli** | Felo 搜尋 | 搜尋／查證／即時資訊：優先 `npx -y @willh/felo-cli --json`、SDK 或 `FELO_API_KEY` + OpenAPI |
+
+
 #### 📚 教學與課務（Teacher）
 
 
@@ -154,6 +167,7 @@ vanscoding-skills/                     # Monorepo 根目錄
 | **peas-example-coach**       | 凡思陪練     | 依 `example-learning-checklist.md` **必做**條目陪練；開場 `PEAS · 凡思陪練` 品牌畫面、進度 M／N、思考格；落檔 `session-records/peas-example-log.md`；**理解評估摘要**（五軸 + Sigmoid 總分，選修另列挑戰加分） |
 | **peas-challenge-coach**     | 凡思挑戰教練   | 陪練後依 `challenges.md` 逐題釐清規格、對齊條列、六欄提示詞交 coding agent；**程式行為驗收**後**理解驗收**（`uv run`）；落檔 `session-records/peas-challenge-log.md`；評分格式與陪練對齊                     |
 | **peas-workshop-coach**      | 凡思 Workshop 教練 | 完成 **WG-12** 後 **WG-13～16**：2d′ Spec 對齊、六欄契約、**同對話 handoff** 實作 `main.py`（可自 `starter_main_wg12.py` 起點）；對照 `reference_agent.py`／`challenges-agent.md` 驗收 |
+| **peas-workshop-advanced-coach** | 凡思 Workshop 進階教練 | **WG-12～21** 完成後 **WG-22**：拆檔 `agent_core.py` + `main.py`；可自 `project_assets` 補 `prompts/`、`templates/`；同對話 handoff 實作 |
 
 
 #### 🤖 Nanobot 整合（nanobot）
@@ -179,7 +193,7 @@ vanscoding-skills/                     # Monorepo 根目錄
 #### 🚀 快速開始
 
 1. **查看可用技能**
-  瀏覽 [Documents](./Documents/)、[Browser](./Browser/)、[Developer](./Developer/)、[Media](./Media/)、[Vision](./Vision/)、[Teacher](./Teacher/)、[nanobot](./nanobot/)、[Productivity](./Productivity/) 資料夾，查看所有可用的技能。
+  瀏覽 [Documents](./Documents/)、[Browser](./Browser/)、[Developer](./Developer/)、[Media](./Media/)、[Vision](./Vision/)、[Search](./Search/)、[Teacher](./Teacher/)、[nanobot](./nanobot/)、[Productivity](./Productivity/) 資料夾，查看所有可用的技能。
 2. **安裝特定技能**
   每個技能都可以獨立使用。選擇你需要的技能後，以 `owner/repo/倉庫內路徑` 安裝，例如 `mz038197/vanscoding-skills/Documents/word`。
 3. **查看技能說明**
@@ -231,6 +245,12 @@ npx skills add mz038197/vanscoding-skills/Media/ace-music
 npx skills add mz038197/vanscoding-skills/Vision/facenet-cli
 ```
 
+**搜尋與資訊檢索（Search）：**
+
+```bash
+npx skills add mz038197/vanscoding-skills/Search/felo-cli
+```
+
 **教學與課務（Teacher）：**
 
 ```bash
@@ -238,6 +258,7 @@ npx skills add mz038197/vanscoding-skills/Teacher/orangeapple-class-report
 npx skills add mz038197/vanscoding-skills/Teacher/peas-example-coach
 npx skills add mz038197/vanscoding-skills/Teacher/peas-challenge-coach
 npx skills add mz038197/vanscoding-skills/Teacher/peas-workshop-coach
+npx skills add mz038197/vanscoding-skills/Teacher/peas-workshop-advanced-coach
 ```
 
 **Nanobot 整合：**
@@ -292,13 +313,18 @@ npx skills add mz038197/vanscoding-skills/Productivity/readmoo-capture
 
 - facenet-cli（`fnet`）：人臉 embedding、建庫、比對、可選 JSON 輸出
 
+🔍 **搜尋與資訊**
+
+- felo-cli：搜尋、查證、即時資訊（CLI `--json`、SDK、`FELO_API_KEY`）
+
 📚 **教學與課務**
 
 - 橘子蘋果課後報告：梯次、逐字稿、測驗成績到家長回饋的一條龍流程
-- **凡思 PEAS 教學技能**：`peas-example-coach`（概念陪練）→ `peas-challenge-coach`（`challenges.md` 進階教練）→ `peas-workshop-coach`（完成 WG-12 後 **WG-13～16** Agent Workshop，同對話 handoff 實作）；共用 `session-records/`，陪練／挑戰教練產出「理解評估摘要」（五軸 + Sigmoid）
+- **凡思 PEAS 教學技能**：`peas-example-coach` → `peas-challenge-coach` → `peas-workshop-coach`（**WG-13～16**）→ `peas-workshop-advanced-coach`（**WG-22** 拆檔）；陪練／挑戰共用 `session-records/` 與理解評估摘要（五軸 + Sigmoid）
 - 凡思陪練：清單必做進度、不暴露後台、一次一問、思考格落檔
 - 凡思挑戰教練：對齊條列 → Persona～Example 六欄完整提示詞 → coding agent 改 `main.py` → 雙段驗收後落實作紀錄
 - 凡思 Workshop 教練：WG-13～16 規格對齊與六欄契約後，於**同一對話**引導改寫專案根目錄 `main.py`（不強制另開 agent）
+- 凡思 Workshop 進階教練：**WG-22** 拆檔 `agent_core.py` + `main.py`，缺資產時自 `references/project_assets/` 補齊
 
 🤖 **Nanobot 整合**
 
@@ -326,7 +352,7 @@ npx skills add mz038197/vanscoding-skills/Productivity/readmoo-capture
 ### 專案優勢
 
 ✅ **集中管理** - 所有技能在一個倉庫中，易於維護  
-✅ **清晰分類** - 按用途分為文檔／Agent／Obsidian／skill 工程、瀏覽器、開發與 Git、媒體、電腦視覺、教學課務、nanobot、生產力工具  
+✅ **清晰分類** - 按用途分為文檔／Agent／Obsidian／skill 工程、瀏覽器、開發與 Git、媒體、電腦視覺、搜尋、教學課務、nanobot、生產力工具  
 ✅ **獨立安裝** - 只安裝你需要的技能  
 ✅ **版本控制** - 完整的 Git 歷史和標籤支援  
 ✅ **教育友好** - 適合教室和學習環境使用  
@@ -368,9 +394,9 @@ A: 每個技能都有：
 - `reference.md` 或類似的檔案 - 進階參考
 - `forms.md` 或類似的檔案 - 特定功能的詳細指南
 
-**Q: 三個 PEAS 教學技能（example／challenge／workshop）如何搭配？**
+**Q: PEAS 教學技能（example／challenge／workshop）如何搭配？**
 
-A: 建議依序：**陪練**（`peas-example-coach`）處理 `example-learning-checklist.md` 的概念與思考格；**挑戰教練**（`peas-challenge-coach`）處理 `challenges.md` 的進階實作；**Workshop 教練**（`peas-workshop-coach`）在學生**已完成 WG-12** 後帶 **WG-13～16**，於同對話 handoff 實作專案根目錄 `main.py`。前兩者共用 `session-records/`（檔名如 `peas-example-log.md`、`peas-challenge-log.md`），評分五軸與 Sigmoid 公式一致；Workshop 以規格對齊與程式驗收為主，題目見 skill 內 `references/challenges-agent.md`。
+A: 建議依序：**陪練**（`peas-example-coach`）→ **挑戰教練**（`peas-challenge-coach`）→ **Workshop 教練**（`peas-workshop-coach`，**WG-13～16**）→ **Workshop 進階教練**（`peas-workshop-advanced-coach`，**WG-22** 拆檔）。前兩者共用 `session-records/` 與五軸 + Sigmoid 評分；Workshop 段以規格對齊、同對話 handoff 實作與驗收為主（基礎段見 `challenges-agent.md`，進階段拆 `agent_core.py` + `main.py`）。
 
 **Q: 如何報告錯誤或提出功能建議？**
 
@@ -428,11 +454,11 @@ git tag v2.0.0  # 重大更新
 
 ### Introduction
 
-**Vanscoding Skills** is a comprehensive AI skill library for document processing, Microsoft MarkItDown-to-Markdown workflows, Obsidian integration, advanced skill engineering, browser automation (including Playwright CLI), media creation, computer vision and face recognition, teaching workflows (including Fansi PEAS example coach, challenge coach, and workshop coach), agent configuration guides, development and Git workflows, Nanobot integration, Readmoo stage-1 export workflows, and productivity tools. This monorepo contains 27 skill modules that can be installed and used independently.
+**Vanscoding Skills** is a comprehensive AI skill library for document processing, Microsoft MarkItDown-to-Markdown workflows, Obsidian integration, advanced skill engineering, browser automation (including Playwright CLI), web search and fact-finding (Felo CLI), media creation, computer vision and face recognition, teaching workflows (including Fansi PEAS coaches and workshop basic/advanced tracks), agent configuration guides, development and Git workflows, Nanobot integration, Readmoo stage-1 export workflows, and productivity tools. This monorepo contains 29 skill modules that can be installed and used independently.
 
 ### Project Structure
 
-The repository is organized into eight categories:
+The repository is organized into nine categories:
 
 - **Documents/** - Documents, agent guides, MarkItDown, Obsidian, and skill engineering (12 modules)
   - word, pdf, pptx, xlsx, google-sheets, markitdown-guide, agent-soul-crafter, agents-md-guide, user-md-guide, obsidian-cli, skill-creator, skill-creator-advanced
@@ -447,11 +473,14 @@ The repository is organized into eight categories:
   - ace-music: ACE Music AI music generation
 - **Vision/** - Computer vision and face recognition (1 module)
   - facenet-cli: facenet-pytorch CLI (`fnet`) for embeddings, face DB, 1:1 / 1:N matching, optional JSON
-- **Teacher/** - Teaching and class operations (4 modules)
+- **Search/** - Search, lookup, and current information (1 module)
+  - felo-cli: Prefer `@willh/felo-cli --json`, SDK, or `FELO_API_KEY` + Felo OpenAPI for search and fact-finding
+- **Teacher/** - Teaching and class operations (5 modules)
   - orangeapple-class-report: Orange Apple post-class parent report workflow (Chrome DevTools + Obsidian)
   - peas-example-coach: Fansi checklist coaching — required items only, PEAS splash, thinking grid, `session-records/`, Understanding Assessment Summary (five axes + Sigmoid)
   - peas-challenge-coach: Fansi challenge coach after checklist — `challenges.md`, aligned specs, six-column prompts, program then understanding acceptance (`uv run`), shared scoring format
   - peas-workshop-coach: Fansi workshop coach after WG-12 — WG-13–16 spec alignment, six-column contract, in-thread handoff to `main.py`, acceptance vs. `reference_agent.py` / `challenges-agent.md`
+  - peas-workshop-advanced-coach: Fansi workshop advanced coach after WG-12–21 — WG-22 split `agent_core.py` + `main.py`, optional `project_assets` copy for `prompts/` / `templates/`
 - **nanobot/** - Nanobot integration (1 module)
   - setup-line-channel: LINE Messaging API channel, webhook, Cloudflare Tunnel
 - **Productivity/** - Productivity tools (3 modules)
@@ -515,6 +544,14 @@ Each skill is self-contained with its own SKILL.md, scripts (where applicable), 
 | **facenet-cli** | facenet CLI (`fnet`) | Face embeddings, face DB, 1:1 / 1:N matching via facenet-pytorch; optional JSON for automation |
 
 
+#### 🔍 Search
+
+
+| Skill | Description | Features |
+|-------|-------------|----------|
+| **felo-cli** | Felo search | Search, lookup, current facts — prefer `npx -y @willh/felo-cli --json`, SDK, or `FELO_API_KEY` + OpenAPI |
+
+
 #### 📚 Teacher
 
 
@@ -524,6 +561,7 @@ Each skill is self-contained with its own SKILL.md, scripts (where applicable), 
 | **peas-example-coach**       | Fansi checklist coach     | Required items from `example-learning-checklist.md`; PEAS splash; M/N progress; thinking grid → `session-records/peas-example-log.md`; Understanding Assessment Summary (five axes + Sigmoid; optional items as bonus) |
 | **peas-challenge-coach**     | Fansi challenge coach     | After checklist: `challenges.md` per challenge — spec alignment, six-column prompt for coding agent; program acceptance then understanding acceptance; logs/scores under `session-records/`                            |
 | **peas-workshop-coach**      | Fansi workshop coach      | After **WG-12**: **WG-13–16** — 2d′ spec alignment, six-column contract, in-thread handoff to implement `main.py` (starter from `starter_main_wg12.py`); `references/reference_agent.py`, `challenges-agent.md`         |
+| **peas-workshop-advanced-coach** | Fansi workshop advanced coach | After **WG-12–21**: **WG-22** — split `agent_core.py` + `main.py`; copy missing `prompts/` / `templates/` from `project_assets`; in-thread handoff |
 
 
 #### 🤖 Nanobot
@@ -578,11 +616,15 @@ npx skills add mz038197/vanscoding-skills/Media/ace-music
 # Vision
 npx skills add mz038197/vanscoding-skills/Vision/facenet-cli
 
+# Search
+npx skills add mz038197/vanscoding-skills/Search/felo-cli
+
 # Teacher
 npx skills add mz038197/vanscoding-skills/Teacher/orangeapple-class-report
 npx skills add mz038197/vanscoding-skills/Teacher/peas-example-coach
 npx skills add mz038197/vanscoding-skills/Teacher/peas-challenge-coach
 npx skills add mz038197/vanscoding-skills/Teacher/peas-workshop-coach
+npx skills add mz038197/vanscoding-skills/Teacher/peas-workshop-advanced-coach
 
 # Nanobot
 npx skills add mz038197/vanscoding-skills/nanobot/setup-line-channel
@@ -606,7 +648,8 @@ Individual skills may have their own license terms. Check the LICENSE.txt file i
 🛠️ **Developer & Git** - PR description generation, logical conventional commit splits  
 🎵 **Media & Creation** - ACE Music for AI music generation  
 👁️ **Vision** - facenet-cli (`fnet`) for face embeddings, matching, optional JSON output  
-📚 **Teacher** - Orange Apple reports; **Fansi PEAS teaching skills** (`peas-example-coach` → `peas-challenge-coach` → `peas-workshop-coach` for WG-13–16) with shared `session-records/` and aligned scoring where applicable  
+🔍 **Search** - felo-cli for web search, lookup, and current information (CLI, SDK, API)  
+📚 **Teacher** - Orange Apple reports; **Fansi PEAS teaching skills** (example → challenge → workshop → workshop advanced for WG-22) with shared `session-records/` and aligned scoring where applicable  
 🤖 **Nanobot** - LINE Messaging API channel, webhook, Cloudflare Tunnel  
 🔧 **Rich Toolset** - Python / JavaScript scripts, API references  
 ☁️ **Cloud Integration** - Google (Gmail, Calendar, Sheets), OAuth; Readmoo web reader stage-1 capture workflow  
@@ -615,7 +658,7 @@ Individual skills may have their own license terms. Check the LICENSE.txt file i
 ### Project Advantages
 
 ✅ **Centralized Management** - All skills in one repository  
-✅ **Clear Organization** - Documents, Browser, Developer, Media, Vision, Teacher, nanobot, Productivity  
+✅ **Clear Organization** - Documents, Browser, Developer, Media, Vision, Search, Teacher, nanobot, Productivity  
 ✅ **Independent Installation** - Install only the skills you need  
 ✅ **Version Control** - Git history and tag support  
 ✅ **Education-Friendly** - Suitable for classroom and learning  
@@ -642,9 +685,9 @@ A: Check this repository regularly for updates and reinstall skills as needed.
 
 A: Yes. Google-related skills require OAuth authentication. Each skill includes an oauth_cli.py tool in its scripts/ folder.
 
-**Q: How do the three PEAS teaching skills (example / challenge / workshop) fit together?**
+**Q: How do the PEAS teaching skills (example / challenge / workshop) fit together?**
 
-A: Use them in order: **example coach** for concepts via `example-learning-checklist.md` and thinking grids; **challenge coach** for `challenges.md` hands-on work; **workshop coach** after **WG-12** is done for **WG-13–16**, with in-thread handoff to implement `main.py`. Example and challenge coaches share `session-records/` (different log filenames) and the same five-axis + Sigmoid scoring; workshop coach focuses on spec alignment and acceptance using bundled references such as `challenges-agent.md`.
+A: Use them in order: **example coach** → **challenge coach** → **workshop coach** (**WG-13–16**) → **workshop advanced coach** (**WG-22** split). Example and challenge coaches share `session-records/` and five-axis + Sigmoid scoring; workshop tracks use spec alignment, in-thread handoff, and acceptance (basic `main.py`, advanced `agent_core.py` + `main.py`).
 
 ### Contact
 
