@@ -10,7 +10,7 @@
 
 ### 簡介
 
-**Vanscoding Skills** 是一個專業的 AI 技能庫，涵蓋文檔處理、Microsoft MarkItDown 轉 Markdown、Obsidian 整合、進階技能工程化、瀏覽器與網頁自動化（含 Playwright CLI）、網路搜尋與查證（Felo CLI）、媒體創作、電腦視覺與人臉辨識、教學課務流程（含凡思 PEAS 陪練／教練／Workshop Bridge **WG-13～22**）、Agent 設定引導、開發與 Git 工作流程、Nanobot 整合、Readmoo 階段一匯出與生產力工具。本 monorepo 包含 28 個可獨立安裝的技能模組。
+**Vanscoding Skills** 是一個專業的 AI 技能庫，涵蓋文檔處理、Microsoft MarkItDown 轉 Markdown、Obsidian 整合、進階技能工程化、瀏覽器與網頁自動化（含 Webwright code-as-action、Playwright CLI）、網路搜尋與查證（Felo CLI）、媒體創作、電腦視覺與人臉辨識、教學課務流程（含凡思 PEAS 陪練／教練／Workshop Bridge **WG-13～22**）、Agent 設定引導、開發與 Git 工作流程、Nanobot 整合、Readmoo 階段一匯出與生產力工具。本 monorepo 包含 29 個可獨立安裝的技能模組。
 
 ### 專案架構
 
@@ -39,6 +39,7 @@ vanscoding-skills/                     # Monorepo 根目錄
 ├── Browser/                           # 🌐 瀏覽器與網頁自動化
 │   ├── browser-use/                   # Browser Use Cloud SDK（操作瀏覽器、爬取、自動化）
 │   ├── chrome-devtools/               # Chrome DevTools MCP（除錯、自動化、效能與網路）
+│   ├── webwright/                     # Webwright code-as-action（本機 Playwright、截圖與 action log 驗證）
 │   └── playwright-cli/
 │       └── playwright-cli/            # Playwright CLI（快照、互動、測試）
 │
@@ -75,7 +76,7 @@ vanscoding-skills/                     # Monorepo 根目錄
 **目錄分類邏輯：**
 
 - **Documents/** - 文檔處理、Agent 設定引導、MarkItDown、Obsidian 與 skill 工程（12 個技能）
-- **Browser/** - 瀏覽器操作與網頁自動化（3 個技能）
+- **Browser/** - 瀏覽器操作與網頁自動化（4 個技能）
 - **Developer/** - 開發與 Git 工作流程（2 個技能）
 - **Media/** - 媒體生成與創作（1 個技能）
 - **Vision/** - 電腦視覺與人臉辨識（1 個技能）
@@ -91,7 +92,7 @@ vanscoding-skills/                     # Monorepo 根目錄
 - `LICENSE.txt` - 授權條款（如適用）
 - 其他文件 - 參考資料、指南、架構定義等
 
-**共計：** 28 個可獨立安裝的技能模組
+**共計：** 29 個可獨立安裝的技能模組
 
 ### 技能概覽
 
@@ -121,6 +122,7 @@ vanscoding-skills/                     # Monorepo 根目錄
 | ------------------- | ------------------- | ------------------------------------------ |
 | **browser-use**     | Browser Use         | 操作瀏覽器、爬取網頁、網頁自動化（Cloud / Open Source）      |
 | **chrome-devtools** | Chrome DevTools MCP | 透過 MCP 除錯網頁、自動化互動、分析效能、檢視網路請求              |
+| **webwright**       | Webwright           | code-as-action：本機 Playwright 逐步執行、`final_runs/run_<id>/` 截圖與 action log、CP 自我驗證 |
 | **playwright-cli**  | Playwright CLI      | `playwright-cli` 指令：開啟頁面、快照、點擊輸入、測試與 trace |
 
 
@@ -221,6 +223,7 @@ npx skills add mz038197/vanscoding-skills/Documents/skill-creator-advanced
 ```bash
 npx skills add mz038197/vanscoding-skills/Browser/browser-use
 npx skills add mz038197/vanscoding-skills/Browser/chrome-devtools
+npx skills add mz038197/vanscoding-skills/Browser/webwright
 npx skills add mz038197/vanscoding-skills/Browser/playwright-cli/playwright-cli
 ```
 
@@ -296,6 +299,7 @@ npx skills add mz038197/vanscoding-skills/Productivity/readmoo-capture
 
 - Browser Use 雲端或開源模式：操作瀏覽器、爬取、自動化
 - Chrome DevTools MCP：除錯、自動化互動、效能與網路分析
+- Webwright：本機 Playwright code-as-action、`plan.md` 與 `final_runs/` 工作區契約、截圖證據驗證
 - Playwright CLI：終端機驅動瀏覽器、快照與 E2E 測試流程
 
 🛠️ **開發與 Git**
@@ -450,7 +454,7 @@ git tag v2.0.0  # 重大更新
 
 ### Introduction
 
-**Vanscoding Skills** is a comprehensive AI skill library for document processing, Microsoft MarkItDown-to-Markdown workflows, Obsidian integration, advanced skill engineering, browser automation (including Playwright CLI), web search and fact-finding (Felo CLI), media creation, computer vision and face recognition, teaching workflows (including Fansi PEAS coaches and Workshop Bridge WG-13–22), agent configuration guides, development and Git workflows, Nanobot integration, Readmoo stage-1 export workflows, and productivity tools. This monorepo contains 28 skill modules that can be installed and used independently.
+**Vanscoding Skills** is a comprehensive AI skill library for document processing, Microsoft MarkItDown-to-Markdown workflows, Obsidian integration, advanced skill engineering, browser automation (including Webwright code-as-action and Playwright CLI), web search and fact-finding (Felo CLI), media creation, computer vision and face recognition, teaching workflows (including Fansi PEAS coaches and Workshop Bridge WG-13–22), agent configuration guides, development and Git workflows, Nanobot integration, Readmoo stage-1 export workflows, and productivity tools. This monorepo contains 29 skill modules that can be installed and used independently.
 
 ### Project Structure
 
@@ -458,9 +462,10 @@ The repository is organized into nine categories:
 
 - **Documents/** - Documents, agent guides, MarkItDown, Obsidian, and skill engineering (12 modules)
   - word, pdf, pptx, xlsx, google-sheets, markitdown-guide, agent-soul-crafter, agents-md-guide, user-md-guide, obsidian-cli, skill-creator, skill-creator-advanced
-- **Browser/** - Browser and web automation (3 modules)
+- **Browser/** - Browser and web automation (4 modules)
   - browser-use: Browser Use Cloud SDK for browser control, scraping, automation
   - chrome-devtools: Chrome DevTools MCP for debugging, automation, performance, and network inspection
+  - webwright: Local Playwright code-as-action — `plan.md`, `final_runs/run_<id>/`, screenshots, action logs, CP self-verify
   - playwright-cli (under `Browser/playwright-cli/playwright-cli/`): Terminal-driven Playwright CLI — snapshots, interaction, tests
 - **Developer/** - Development and Git workflows (2 modules)
   - git-pr-description: Generate PR title and description from branch diffs
@@ -511,6 +516,7 @@ Each skill is self-contained with its own SKILL.md, scripts (where applicable), 
 | ------------------- | ------------------- | ----------------------------------------------------------------------------------------- |
 | **browser-use**     | Browser Use         | Browser control, web scraping, automation (Cloud / Open Source)                           |
 | **chrome-devtools** | Chrome DevTools MCP | Debug pages, automate interactions, analyze performance, inspect network requests via MCP |
+| **webwright**       | Webwright           | Code-as-action local Playwright — `final_runs/run_<id>/` screenshots, action logs, CP self-verify |
 | **playwright-cli**  | Playwright CLI      | `playwright-cli` commands: open pages, snapshots, clicks/types, tests and tracing         |
 
 
@@ -598,6 +604,7 @@ npx skills add mz038197/vanscoding-skills/Documents/skill-creator-advanced
 # Browser
 npx skills add mz038197/vanscoding-skills/Browser/browser-use
 npx skills add mz038197/vanscoding-skills/Browser/chrome-devtools
+npx skills add mz038197/vanscoding-skills/Browser/webwright
 npx skills add mz038197/vanscoding-skills/Browser/playwright-cli/playwright-cli
 
 # Developer
@@ -637,7 +644,7 @@ Individual skills may have their own license terms. Check the LICENSE.txt file i
 ### Key Features
 
 ✨ **Documents & Agent Guides** - Office formats (Word, PDF, PowerPoint, Excel), OOXML; MarkItDown guide for LLM-ready Markdown; AGENTS.md / USER.md construction guides; Obsidian CLI; skill-creator (core workflow + scripts) and skill-creator-advanced (evals, benchmarks, packaging)  
-🌐 **Browser & Web** - Browser Use for browser control, scraping, automation (Cloud / Open Source); Chrome DevTools MCP; Playwright CLI for snapshots, interaction, and tests  
+🌐 **Browser & Web** - Browser Use for browser control, scraping, automation (Cloud / Open Source); Chrome DevTools MCP; Webwright code-as-action with screenshot evidence; Playwright CLI for snapshots, interaction, and tests  
 🛠️ **Developer & Git** - PR description generation, logical conventional commit splits  
 🎵 **Media & Creation** - ACE Music for AI music generation  
 👁️ **Vision** - facenet-cli (`fnet`) for face embeddings, matching, optional JSON output  
