@@ -10,7 +10,7 @@
 
 ### 簡介
 
-**Vanscoding Skills** 是一個專業的 AI 技能庫，涵蓋文檔處理、Microsoft MarkItDown 轉 Markdown、Obsidian 整合、進階技能工程化、瀏覽器與網頁自動化（含 Webwright code-as-action、Playwright CLI）、網路搜尋與查證（Felo CLI）、媒體創作、電腦視覺與人臉辨識、教學課務流程（含凡思 PEAS 陪練／教練／Workshop Bridge **WG-13～22**）、Agent 設定引導、開發與 Git 工作流程、Nanobot 整合、Readmoo 階段一匯出與生產力工具。本 monorepo 包含 29 個可獨立安裝的技能模組。
+**Vanscoding Skills** 是一個專業的 AI 技能庫，涵蓋文檔處理、Microsoft MarkItDown 轉 Markdown、Obsidian 整合、進階技能工程化、瀏覽器與網頁自動化（含 Webwright code-as-action、Playwright CLI）、網路搜尋與查證（Felo CLI）、媒體創作、電腦視覺與人臉辨識、教學課務流程（含凡思 PEAS 陪練／教練／VTuber MVP 陪練／Workshop Bridge **WG-13～22**）、Agent 設定引導、開發與 Git 工作流程、Nanobot 整合、Readmoo 階段一匯出與生產力工具。本 monorepo 包含 30 個可獨立安裝的技能模組。
 
 ### 專案架構
 
@@ -60,6 +60,7 @@ vanscoding-skills/                     # Monorepo 根目錄
 │   ├── orangeapple-class-report/      # 橘子蘋果課後學習表現報告流程
 │   ├── peas-example-coach/            # 凡思陪練（清單、思考格、PEAS 開場、理解評估摘要）
 │   ├── peas-challenge-coach/          # 凡思教練（challenges、六欄 prompt、程式＋理解驗收）
+│   ├── peas-vtuber-coach/             # 凡思 VTuber 陪練（Agent Studio PNGtuber 四狀態 GIF + TTS MVP）
 │   └── peas-workshop-advanced-coach/  # 凡思 Workshop Bridge 教練（WG-13～22 路由、bridge 卡、WG-22 拆檔）
 │
 ├── nanobot/                           # 🤖 Nanobot 整合
@@ -81,7 +82,7 @@ vanscoding-skills/                     # Monorepo 根目錄
 - **Media/** - 媒體生成與創作（1 個技能）
 - **Vision/** - 電腦視覺與人臉辨識（1 個技能）
 - **Search/** - 搜尋、查證與即時資訊（1 個技能）
-- **Teacher/** - 教學與課務流程（4 個技能）
+- **Teacher/** - 教學與課務流程（5 個技能）
 - **nanobot/** - Nanobot 專案相關整合（1 個技能）
 - **Productivity/** - 雲端工具與生產力（3 個技能）
 
@@ -92,7 +93,7 @@ vanscoding-skills/                     # Monorepo 根目錄
 - `LICENSE.txt` - 授權條款（如適用）
 - 其他文件 - 參考資料、指南、架構定義等
 
-**共計：** 29 個可獨立安裝的技能模組
+**共計：** 30 個可獨立安裝的技能模組
 
 ### 技能概覽
 
@@ -167,6 +168,7 @@ vanscoding-skills/                     # Monorepo 根目錄
 | **orangeapple-class-report** | 橘子蘋果課堂報告 | 梯次名單、逐字稿修復、測驗成績、家長三明治回饋報告（Chrome DevTools + Obsidian）                                                                                                       |
 | **peas-example-coach**       | 凡思陪練     | 依 `example-learning-checklist.md` **必做**條目陪練；開場 `PEAS · 凡思陪練` 品牌畫面、進度 M／N、思考格；落檔 `session-records/peas-example-log.md`；**理解評估摘要**（五軸 + Sigmoid 總分，選修另列挑戰加分） |
 | **peas-challenge-coach**     | 凡思挑戰教練   | 陪練後依 `challenges.md` 逐題釐清規格、對齊條列、六欄提示詞交 coding agent；**程式行為驗收**後**理解驗收**（`uv run`）；落檔 `session-records/peas-challenge-log.md`；評分格式與陪練對齊                     |
+| **peas-vtuber-coach**        | 凡思 VTuber 陪練 | Agent Studio 右欄 **PNGtuber MVP**（idle／thinking／talking 四狀態 GIF + 模板內建 TTS）；依 `references/step-scripts.md` 一次一步、完成句前進；生圖用 ChatGPT／Gemini 網頁；Prompt A 改 `studio_shell/agent_panel.py` |
 | **peas-workshop-advanced-coach** | 凡思 Workshop Bridge 教練 | **WG-13～22** 路由／狀態機：依 `references/bridge/` 逐關卡 handoff；WG-13～21 可選直接實作或引導釐清；**WG-22** 契約優先拆檔 `agent_core.py` + `main.py` |
 
 
@@ -258,6 +260,7 @@ npx skills add mz038197/vanscoding-skills/Search/felo-cli
 npx skills add mz038197/vanscoding-skills/Teacher/orangeapple-class-report
 npx skills add mz038197/vanscoding-skills/Teacher/peas-example-coach
 npx skills add mz038197/vanscoding-skills/Teacher/peas-challenge-coach
+npx skills add mz038197/vanscoding-skills/Teacher/peas-vtuber-coach
 npx skills add mz038197/vanscoding-skills/Teacher/peas-workshop-advanced-coach
 ```
 
@@ -324,6 +327,7 @@ npx skills add mz038197/vanscoding-skills/Productivity/readmoo-capture
 - **凡思 PEAS 教學技能**：`peas-example-coach` → `peas-challenge-coach` → `peas-workshop-advanced-coach`（**WG-13～22** Workshop Bridge）；陪練／挑戰共用 `session-records/` 與理解評估摘要（五軸 + Sigmoid）
 - 凡思陪練：清單必做進度、不暴露後台、一次一問、思考格落檔
 - 凡思挑戰教練：對齊條列 → Persona～Example 六欄完整提示詞 → coding agent 改 `main.py` → 雙段驗收後落實作紀錄
+- 凡思 VTuber 陪練：Agent Studio 右欄 PNGtuber 四狀態 GIF MVP；`step-scripts.md` 劇本、一次一步、完成句前進；生圖 ChatGPT／Gemini、Prompt A／B 交 coding agent
 - 凡思 Workshop Bridge 教練：掃描 `wg_milestone_checklist.md` 決定 `next_wg`，依 `references/bridge/` 單卡 handoff；WG-22 走契約優先拆檔流程
 
 🤖 **Nanobot 整合**
@@ -394,9 +398,9 @@ A: 每個技能都有：
 - `reference.md` 或類似的檔案 - 進階參考
 - `forms.md` 或類似的檔案 - 特定功能的詳細指南
 
-**Q: PEAS 教學技能（example／challenge／workshop）如何搭配？**
+**Q: PEAS 教學技能（example／challenge／vtuber／workshop）如何搭配？**
 
-A: 建議依序：**陪練**（`peas-example-coach`）→ **挑戰教練**（`peas-challenge-coach`）→ **Workshop Bridge 教練**（`peas-workshop-advanced-coach`，**WG-13～22**）。前兩者共用 `session-records/` 與五軸 + Sigmoid 評分；Workshop Bridge 以 `wg_milestone_checklist.md` 掃描進度、路由至 `references/bridge/` 單一關卡 handoff，WG-22 另走契約優先拆檔（`agent_core.py` + `main.py`）。
+A: 建議依序：**陪練**（`peas-example-coach`）→ **挑戰教練**（`peas-challenge-coach`）→ **Workshop Bridge 教練**（`peas-workshop-advanced-coach`，**WG-13～22**）。前兩者共用 `session-records/` 與五軸 + Sigmoid 評分；Workshop Bridge 以 `wg_milestone_checklist.md` 掃描進度、路由至 `references/bridge/` 單一關卡 handoff，WG-22 另走契約優先拆檔（`agent_core.py` + `main.py`）。**VTuber 陪練**（`peas-vtuber-coach`）可獨立使用：需已有 Agent Studio（`studio_shell/`），逐步完成右欄 PNGtuber GIF + TTS MVP，與 checklist／challenge 流程無硬性先後。
 
 **Q: 如何報告錯誤或提出功能建議？**
 
@@ -454,7 +458,7 @@ git tag v2.0.0  # 重大更新
 
 ### Introduction
 
-**Vanscoding Skills** is a comprehensive AI skill library for document processing, Microsoft MarkItDown-to-Markdown workflows, Obsidian integration, advanced skill engineering, browser automation (including Webwright code-as-action and Playwright CLI), web search and fact-finding (Felo CLI), media creation, computer vision and face recognition, teaching workflows (including Fansi PEAS coaches and Workshop Bridge WG-13–22), agent configuration guides, development and Git workflows, Nanobot integration, Readmoo stage-1 export workflows, and productivity tools. This monorepo contains 29 skill modules that can be installed and used independently.
+**Vanscoding Skills** is a comprehensive AI skill library for document processing, Microsoft MarkItDown-to-Markdown workflows, Obsidian integration, advanced skill engineering, browser automation (including Webwright code-as-action and Playwright CLI), web search and fact-finding (Felo CLI), media creation, computer vision and face recognition, teaching workflows (including Fansi PEAS coaches, VTuber MVP coaching, and Workshop Bridge WG-13–22), agent configuration guides, development and Git workflows, Nanobot integration, Readmoo stage-1 export workflows, and productivity tools. This monorepo contains 30 skill modules that can be installed and used independently.
 
 ### Project Structure
 
@@ -476,10 +480,11 @@ The repository is organized into nine categories:
   - facenet-cli: facenet-pytorch CLI (`fnet`) for embeddings, face DB, 1:1 / 1:N matching, optional JSON
 - **Search/** - Search, lookup, and current information (1 module)
   - felo-cli: Prefer `@willh/felo-cli --json`, SDK, or `FELO_API_KEY` + Felo OpenAPI for search and fact-finding
-- **Teacher/** - Teaching and class operations (4 modules)
+- **Teacher/** - Teaching and class operations (5 modules)
   - orangeapple-class-report: Orange Apple post-class parent report workflow (Chrome DevTools + Obsidian)
   - peas-example-coach: Fansi checklist coaching — required items only, PEAS splash, thinking grid, `session-records/`, Understanding Assessment Summary (five axes + Sigmoid)
   - peas-challenge-coach: Fansi challenge coach after checklist — `challenges.md`, aligned specs, six-column prompts, program then understanding acceptance (`uv run`), shared scoring format
+  - peas-vtuber-coach: Fansi VTuber MVP coach — Agent Studio right-panel PNGtuber (idle/thinking/talking GIF + built-in TTS); step-scripts, one step at a time, ChatGPT/Gemini for assets, Prompt A/B via coding agent
   - peas-workshop-advanced-coach: Fansi Workshop Bridge coach — WG-13–22 router/state machine via `references/bridge/` cards; WG-22 contract-first split of `agent_core.py` + `main.py`
 - **nanobot/** - Nanobot integration (1 module)
   - setup-line-channel: LINE Messaging API channel, webhook, Cloudflare Tunnel
@@ -561,6 +566,7 @@ Each skill is self-contained with its own SKILL.md, scripts (where applicable), 
 | **orangeapple-class-report** | Orange Apple class report | Rosters, transcript cleanup, quiz scores, sandwich-style parent feedback                                                                                                                                               |
 | **peas-example-coach**       | Fansi checklist coach     | Required items from `example-learning-checklist.md`; PEAS splash; M/N progress; thinking grid → `session-records/peas-example-log.md`; Understanding Assessment Summary (five axes + Sigmoid; optional items as bonus) |
 | **peas-challenge-coach**     | Fansi challenge coach     | After checklist: `challenges.md` per challenge — spec alignment, six-column prompt for coding agent; program acceptance then understanding acceptance; logs/scores under `session-records/`                            |
+| **peas-vtuber-coach**        | Fansi VTuber coach        | Agent Studio right-panel **PNGtuber MVP** — four-state GIF (idle/thinking/talking) + built-in TTS; `references/step-scripts.md`, one step at a time; ChatGPT/Gemini for assets; Prompt A updates `studio_shell/agent_panel.py` |
 | **peas-workshop-advanced-coach** | Fansi Workshop Bridge coach | **WG-13–22** — progress scan via `wg_milestone_checklist.md`, route to one `references/bridge/` card; WG-22 contract-first split of `agent_core.py` + `main.py` |
 
 
@@ -624,6 +630,7 @@ npx skills add mz038197/vanscoding-skills/Search/felo-cli
 npx skills add mz038197/vanscoding-skills/Teacher/orangeapple-class-report
 npx skills add mz038197/vanscoding-skills/Teacher/peas-example-coach
 npx skills add mz038197/vanscoding-skills/Teacher/peas-challenge-coach
+npx skills add mz038197/vanscoding-skills/Teacher/peas-vtuber-coach
 npx skills add mz038197/vanscoding-skills/Teacher/peas-workshop-advanced-coach
 
 # Nanobot
@@ -649,7 +656,7 @@ Individual skills may have their own license terms. Check the LICENSE.txt file i
 🎵 **Media & Creation** - ACE Music for AI music generation  
 👁️ **Vision** - facenet-cli (`fnet`) for face embeddings, matching, optional JSON output  
 🔍 **Search** - felo-cli for web search, lookup, and current information (CLI, SDK, API)  
-📚 **Teacher** - Orange Apple reports; **Fansi PEAS teaching skills** (example → challenge → Workshop Bridge `peas-workshop-advanced-coach` for WG-13–22) with shared `session-records/` and aligned scoring where applicable  
+📚 **Teacher** - Orange Apple reports; **Fansi PEAS teaching skills** (example → challenge → Workshop Bridge `peas-workshop-advanced-coach` for WG-13–22) with shared `session-records/` and aligned scoring where applicable; **VTuber MVP coach** (`peas-vtuber-coach`) for Agent Studio PNGtuber GIF + TTS workflow  
 🤖 **Nanobot** - LINE Messaging API channel, webhook, Cloudflare Tunnel  
 🔧 **Rich Toolset** - Python / JavaScript scripts, API references  
 ☁️ **Cloud Integration** - Google (Gmail, Calendar, Sheets), OAuth; Readmoo web reader stage-1 capture workflow  
@@ -685,9 +692,9 @@ A: Check this repository regularly for updates and reinstall skills as needed.
 
 A: Yes. Google-related skills require OAuth authentication. Each skill includes an oauth_cli.py tool in its scripts/ folder.
 
-**Q: How do the PEAS teaching skills (example / challenge / workshop) fit together?**
+**Q: How do the PEAS teaching skills (example / challenge / vtuber / workshop) fit together?**
 
-A: Use them in order: **example coach** → **challenge coach** → **Workshop Bridge coach** (`peas-workshop-advanced-coach`, **WG-13–22**). Example and challenge coaches share `session-records/` and five-axis + Sigmoid scoring; Workshop Bridge scans progress, routes to one bridge card under `references/bridge/`, and uses a contract-first split flow for WG-22.
+A: Use them in order: **example coach** → **challenge coach** → **Workshop Bridge coach** (`peas-workshop-advanced-coach`, **WG-13–22**). Example and challenge coaches share `session-records/` and five-axis + Sigmoid scoring; Workshop Bridge scans progress, routes to one bridge card under `references/bridge/`, and uses a contract-first split flow for WG-22. **VTuber coach** (`peas-vtuber-coach`) stands alone: requires an existing Agent Studio project (`studio_shell/`) and walks through the right-panel PNGtuber GIF + TTS MVP step by step — no strict prerequisite to the checklist/challenge flow.
 
 ### Contact
 
