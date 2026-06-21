@@ -1,5 +1,7 @@
 ---
 name: agents-md-guide
+version: "1.0.0"
+updated: "2026-06-21"
 description: >-
   引導初次使用者建立自己的 AGENTS.md，採階段式引導（先核心、再記憶、再心跳），
   產出單一檔案即可從第一天用到進階。當使用者要建立 AGENTS.md、撰寫 agent 指令、或問「怎麼寫 AGENTS.md」時使用此 skill。

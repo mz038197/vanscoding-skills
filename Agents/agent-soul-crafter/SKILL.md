@@ -1,6 +1,7 @@
 ---
 name: agent-soul-crafter
-version: 1.1.0
+version: "1.1.0"
+updated: "2026-06-21"
 description: Design compelling AI agent personalities with structured SOUL.md templates — tone, rules, expertise, and response behavior
 emoji: 🧬
 tags:

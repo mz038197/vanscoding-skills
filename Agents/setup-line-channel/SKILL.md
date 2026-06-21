@@ -1,5 +1,7 @@
 ---
-name: add-line-channel
+name: setup-line-channel
+version: "1.0.0"
+updated: "2026-06-21"
 description: 為 nanobot 專案新增 LINE Messaging API channel。使用 aiohttp webhook server 接收訊息，httpx 回覆訊息，Cloudflare Tunnel 暴露公網端點。當用戶想整合 LINE Bot、設定 LINE Webhook、或詢問 nanobot LINE channel 相關問題時使用此 skill。
 ---
 

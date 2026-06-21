@@ -23,7 +23,7 @@ alwaysApply: true
 | Cursor | `%USERPROFILE%\.cursor\skills\{relative}\` |
 | Codex | `%USERPROFILE%\.codex\skills\{relative}\` |
 
-**relative** = repo 內 skill 路徑去掉第一層 Category（`Documents/`、`Browser/`、`Developer/`、`Media/`、`Vision/`、`Search/`、`Teacher/`、`nanobot/`、`Productivity/`）。
+**relative** = repo 內 skill 路徑去掉第一層 Category（`Agents/`、`Documents/`、`Browser/`、`Developer/`、`Media/`、`Vision/`、`Search/`、`Teacher/`、`Productivity/`）。
 
 範例：`Productivity/readmoo-capture` → `readmoo-capture`；`Browser/playwright-cli/playwright-cli` → `playwright-cli/playwright-cli`。
 

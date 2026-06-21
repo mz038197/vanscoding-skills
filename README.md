@@ -10,7 +10,7 @@
 
 ### 簡介
 
-**Vanscoding Skills** 是一個專業的 AI 技能庫，涵蓋文檔處理、Microsoft MarkItDown 轉 Markdown、Obsidian 整合、進階技能工程化、瀏覽器與網頁自動化（含 Webwright code-as-action、Playwright CLI）、網路搜尋與查證（Felo CLI）、媒體創作、電腦視覺與人臉辨識、教學課務流程（含凡思 PEAS 陪練／教練／VTuber MVP 陪練／LLM Wiki 建置陪練／Agent Studio 專題報告／Workshop Bridge **WG-13～22**）、Agent 設定引導、開發與 Git 工作流程、Nanobot 整合、Readmoo 階段一匯出與生產力工具。本 monorepo 包含 32 個可獨立安裝的技能模組。
+**Vanscoding Skills** 是一個專業的 AI 技能庫，涵蓋文檔處理、Microsoft MarkItDown 轉 Markdown、Obsidian 整合、進階技能工程化、瀏覽器與網頁自動化（含 Webwright code-as-action、Playwright CLI）、網路搜尋與查證（Felo CLI）、媒體創作（含 Codex／Gemini 生圖）、電腦視覺與人臉辨識、教學課務流程（含凡思 PEAS 陪練／教練／VTuber MVP 陪練／LLM Wiki 建置陪練／Agent Studio 專題報告／Workshop Bridge **WG-13～22**）、Agent 設定與記憶、開發與 Git 工作流程、Readmoo 階段一匯出、前端設計與生產力工具。本 monorepo 包含 36 個可獨立安裝的技能模組。
 
 ### 專案架構
 
@@ -22,19 +22,23 @@ vanscoding-skills/                     # Monorepo 根目錄
 ├── CONTRIBUTING.md                    # 貢獻指南
 ├── .gitignore                         # Git 忽略規則
 │
-├── Documents/                         # 📄 文檔與 Agent 引導技能
+├── Documents/                         # 📄 文檔處理與 skill 工程
 │   ├── word/                          # Word 文檔處理
 │   ├── pdf/                           # PDF 檔案操作
 │   ├── pptx/                          # PowerPoint 簡報
 │   ├── xlsx/                          # Excel 試算表
 │   ├── google-sheets/                 # Google 試算表整合
 │   ├── markitdown-guide/              # Microsoft MarkItDown（多格式轉 Markdown）
-│   ├── agent-soul-crafter/            # SOUL.md 人格設計引導
-│   ├── agents-md-guide/               # AGENTS.md 建構引導
 │   ├── user-md-guide/                 # USER.md 建構引導
 │   ├── obsidian-cli/                  # Obsidian vault 讀寫與自動化（obsidian CLI）
 │   ├── skill-creator/                 # Skill 建立基礎指南（init／package／驗證腳本）
 │   └── skill-creator-advanced/        # Skill 建立進階：evals、benchmark 與打包迭代
+│
+├── Agents/                            # 🤖 Agent 設定、記憶與整合
+│   ├── agent-soul-crafter/            # SOUL.md 人格設計引導
+│   ├── agents-md-guide/               # AGENTS.md 建構引導
+│   ├── agent-memory/                  # Agent Memory 跨 session 記憶管理
+│   └── setup-line-channel/            # nanobot LINE Messaging API channel 設定
 │
 ├── Browser/                           # 🌐 瀏覽器與網頁自動化
 │   ├── browser-use/                   # Browser Use Cloud SDK（操作瀏覽器、爬取、自動化）
@@ -48,7 +52,9 @@ vanscoding-skills/                     # Monorepo 根目錄
 │   └── git-smart-commit/              # 依邏輯拆分 conventional commit
 │
 ├── Media/                             # 🎵 媒體與創作
-│   └── ace-music/                     # ACE Music AI 音樂生成
+│   ├── ace-music/                     # ACE Music AI 音樂生成
+│   ├── codex-imagegen/                # Codex CLI 終端機生圖
+│   └── gemini-imagegen/               # Gemini CLI 終端機生圖
 │
 ├── Vision/                            # 👁️ 電腦視覺與人臉
 │   └── facenet-cli/                   # facenet-pytorch CLI（`fnet`：embedding、比對、JSON）
@@ -65,28 +71,26 @@ vanscoding-skills/                     # Monorepo 根目錄
 │   ├── peas-capstone-report/          # 凡思 Agent Studio 專題報告（MD／PPT／Word、架構圖、server 拓撲）
 │   └── peas-workshop-advanced-coach/  # 凡思 Workshop Bridge 教練（WG-13～22 路由、bridge 卡、WG-22 拆檔）
 │
-├── nanobot/                           # 🤖 Nanobot 整合
-│   └── setup-line-channel/            # LINE Messaging API channel 設定
-│
 └── Productivity/                      # 🚀 生產力工具整合
     ├── google-email/                  # Gmail 電子郵件管理
     ├── google-calendar/               # Google 日曆整合
-    └── readmoo-capture/               # Readmoo 網頁版階段一截圖匯出（Playwright）
+    ├── readmoo-capture/               # Readmoo 網頁版階段一截圖匯出（Playwright）
+    └── frontend-design/               # 前端 UI 設計風格引導（排版、視覺方向）
 ```
 
 #### 架構說明
 
 **目錄分類邏輯：**
 
-- **Documents/** - 文檔處理、Agent 設定引導、MarkItDown、Obsidian 與 skill 工程（12 個技能）
+- **Documents/** - 文檔處理、MarkItDown、Obsidian 與 skill 工程（10 個技能）
+- **Agents/** - Agent 人格／AGENTS.md／Memory／nanobot LINE 整合（4 個技能）
 - **Browser/** - 瀏覽器操作與網頁自動化（4 個技能）
 - **Developer/** - 開發與 Git 工作流程（2 個技能）
-- **Media/** - 媒體生成與創作（1 個技能）
+- **Media/** - 媒體生成、音樂與 CLI 生圖（3 個技能）
 - **Vision/** - 電腦視覺與人臉辨識（1 個技能）
 - **Search/** - 搜尋、查證與即時資訊（1 個技能）
 - **Teacher/** - 教學與課務流程（7 個技能）
-- **nanobot/** - Nanobot 專案相關整合（1 個技能）
-- **Productivity/** - 雲端工具與生產力（3 個技能）
+- **Productivity/** - 雲端工具、Readmoo 與前端設計（4 個技能）
 
 **每個技能的標準結構：**
 
@@ -95,11 +99,11 @@ vanscoding-skills/                     # Monorepo 根目錄
 - `LICENSE.txt` - 授權條款（如適用）
 - 其他文件 - 參考資料、指南、架構定義等
 
-**共計：** 32 個可獨立安裝的技能模組
+**共計：** 36 個可獨立安裝的技能模組
 
 ### 技能概覽
 
-#### 📄 文檔與 Agent 引導（Documents）
+#### 📄 文檔處理與 skill 工程（Documents）
 
 
 | 技能                         | 描述            | 功能                                                                                                 |
@@ -110,12 +114,21 @@ vanscoding-skills/                     # Monorepo 根目錄
 | **xlsx**                   | Excel 試算表     | 公式、格式、資料分析、重新計算                                                                                    |
 | **google-sheets**          | Google 試算表    | 試算表整合、資料管理                                                                                         |
 | **markitdown-guide**       | MarkItDown 指南 | microsoft/markitdown：多格式轉 Markdown、CLI／API、外掛與 Office／圖像流程                                         |
-| **agent-soul-crafter**     | AI 代理人格       | 設計 AI 代理的個性和行為                                                                                     |
-| **agents-md-guide**        | AGENTS.md 引導  | 階段式建構 AGENTS.md（核心、記憶、心跳）                                                                          |
 | **user-md-guide**          | USER.md 引導    | 建構給 agent 用的個人設定檔（人本＋結構化）                                                                          |
 | **obsidian-cli**           | Obsidian CLI  | 讀寫 vault、搜尋、任務、搬移／更名、斷鏈與孤立筆記                                                                       |
 | **skill-creator**          | Skill 建立指南    | SKILL.md 結構、scripts／references／assets、漸進式揭露；`init_skill.py`、`package_skill.py`、`quick_validate.py` |
 | **skill-creator-advanced** | 進階 Skill 建立   | 命名、邊界、evals、benchmark、驗證與打包迭代流程（可與 skill-creator 搭配）                                               |
+
+
+#### 🤖 Agent 設定與整合（Agents）
+
+
+| 技能                     | 描述              | 功能                                                        |
+| ---------------------- | --------------- | --------------------------------------------------------- |
+| **agent-soul-crafter** | AI 代理人格         | 設計 AI 代理的個性和行為（SOUL.md）                                   |
+| **agents-md-guide**    | AGENTS.md 引導    | 階段式建構 AGENTS.md（核心、記憶、心跳）                                |
+| **agent-memory**       | Agent Memory    | 跨 session 記憶註冊、快照合併、引用與歸檔                                   |
+| **setup-line-channel** | LINE Channel    | 為 nanobot 新增 LINE Messaging API、Webhook、Cloudflare Tunnel |
 
 
 #### 🌐 瀏覽器與網頁自動化（Browser）
@@ -141,9 +154,11 @@ vanscoding-skills/                     # Monorepo 根目錄
 #### 🎵 媒體與創作（Media）
 
 
-| 技能            | 描述        | 功能                           |
-| ------------- | --------- | ---------------------------- |
-| **ace-music** | ACE Music | AI 音樂生成（歌詞、風格、cover、repaint） |
+| 技能                  | 描述              | 功能                                              |
+| ------------------- | --------------- | ----------------------------------------------- |
+| **ace-music**       | ACE Music       | AI 音樂生成（歌詞、風格、cover、repaint）                   |
+| **codex-imagegen**  | Codex 生圖        | Codex CLI 終端機生圖，輸出 PNG／JPEG 至專案路徑              |
+| **gemini-imagegen** | Gemini 生圖       | Gemini CLI 終端機生圖，輸出 PNG／JPEG 至專案路徑             |
 
 
 #### 👁️ 電腦視覺與人臉（Vision）
@@ -176,13 +191,9 @@ vanscoding-skills/                     # Monorepo 根目錄
 | **peas-workshop-advanced-coach** | 凡思 Workshop Bridge 教練 | **WG-13～22** 路由／狀態機：依 `references/bridge/` 逐關卡 handoff；WG-13～21 可選直接實作或引導釐清；**WG-22** 契約優先拆檔 `agent_core.py` + `main.py` |
 
 
-#### 🤖 Nanobot 整合（nanobot）
+#### 🤖 Nanobot 整合（Agents）
 
-
-| 技能                     | 描述           | 功能                                                        |
-| ---------------------- | ------------ | --------------------------------------------------------- |
-| **setup-line-channel** | LINE Channel | 為 nanobot 新增 LINE Messaging API、Webhook、Cloudflare Tunnel |
-
+已併入 **Agents/setup-line-channel**（見上表）。
 
 #### 🚀 生產力工具（Productivity）
 
@@ -191,7 +202,8 @@ vanscoding-skills/                     # Monorepo 根目錄
 | ------------------- | ---------- | ----------------------------------------------------------------------------- |
 | **google-email**    | Gmail 電子郵件 | OAuth 認證、附件下載、訊息管理                                                            |
 | **google-calendar** | Google 日曆  | 日曆操作、行程管理                                                                     |
-| **readmoo-capture** | Readmoo 匯出 | Readmoo 階段一 viewport 截圖、`readmoo-auth.json`、同捆 `readmoo_capture_snapshots.py` |
+| **readmoo-capture** | Readmoo 匯出     | Readmoo 階段一 viewport 截圖、`readmoo-auth.json`、同捆 `readmoo_capture_snapshots.py` |
+| **frontend-design** | 前端設計引導       | 建立有辨識度的 UI 視覺方向、排版與字體選擇，避免模板感預設                                       |
 
 
 ### 使用方式
@@ -199,7 +211,7 @@ vanscoding-skills/                     # Monorepo 根目錄
 #### 🚀 快速開始
 
 1. **查看可用技能**
-  瀏覽 [Documents](./Documents/)、[Browser](./Browser/)、[Developer](./Developer/)、[Media](./Media/)、[Vision](./Vision/)、[Search](./Search/)、[Teacher](./Teacher/)、[nanobot](./nanobot/)、[Productivity](./Productivity/) 資料夾，查看所有可用的技能。
+  瀏覽 [Documents](./Documents/)、[Agents](./Agents/)、[Browser](./Browser/)、[Developer](./Developer/)、[Media](./Media/)、[Vision](./Vision/)、[Search](./Search/)、[Teacher](./Teacher/)、[Productivity](./Productivity/) 資料夾，查看所有可用的技能。
 2. **安裝特定技能**
   每個技能都可以獨立使用。選擇你需要的技能後，以 `owner/repo/倉庫內路徑` 安裝，例如 `mz038197/vanscoding-skills/Documents/word`。
 3. **查看技能說明**
@@ -207,7 +219,7 @@ vanscoding-skills/                     # Monorepo 根目錄
 
 #### 📦 安裝命令範例
 
-**文檔與 Agent 引導（Documents）：**
+**文檔與 skill 工程（Documents）：**
 
 ```bash
 npx skills add mz038197/vanscoding-skills/Documents/word
@@ -216,12 +228,19 @@ npx skills add mz038197/vanscoding-skills/Documents/pptx
 npx skills add mz038197/vanscoding-skills/Documents/xlsx
 npx skills add mz038197/vanscoding-skills/Documents/google-sheets
 npx skills add mz038197/vanscoding-skills/Documents/markitdown-guide
-npx skills add mz038197/vanscoding-skills/Documents/agent-soul-crafter
-npx skills add mz038197/vanscoding-skills/Documents/agents-md-guide
 npx skills add mz038197/vanscoding-skills/Documents/user-md-guide
 npx skills add mz038197/vanscoding-skills/Documents/obsidian-cli
 npx skills add mz038197/vanscoding-skills/Documents/skill-creator
 npx skills add mz038197/vanscoding-skills/Documents/skill-creator-advanced
+```
+
+**Agent 設定與整合（Agents）：**
+
+```bash
+npx skills add mz038197/vanscoding-skills/Agents/agent-soul-crafter
+npx skills add mz038197/vanscoding-skills/Agents/agents-md-guide
+npx skills add mz038197/vanscoding-skills/Agents/agent-memory
+npx skills add mz038197/vanscoding-skills/Agents/setup-line-channel
 ```
 
 **瀏覽器與網頁自動化（Browser）：**
@@ -244,6 +263,8 @@ npx skills add mz038197/vanscoding-skills/Developer/git-smart-commit
 
 ```bash
 npx skills add mz038197/vanscoding-skills/Media/ace-music
+npx skills add mz038197/vanscoding-skills/Media/codex-imagegen
+npx skills add mz038197/vanscoding-skills/Media/gemini-imagegen
 ```
 
 **電腦視覺與人臉（Vision）：**
@@ -270,18 +291,13 @@ npx skills add mz038197/vanscoding-skills/Teacher/peas-capstone-report
 npx skills add mz038197/vanscoding-skills/Teacher/peas-workshop-advanced-coach
 ```
 
-**Nanobot 整合：**
-
-```bash
-npx skills add mz038197/vanscoding-skills/nanobot/setup-line-channel
-```
-
 **生產力工具（Productivity）：**
 
 ```bash
 npx skills add mz038197/vanscoding-skills/Productivity/google-email
 npx skills add mz038197/vanscoding-skills/Productivity/google-calendar
 npx skills add mz038197/vanscoding-skills/Productivity/readmoo-capture
+npx skills add mz038197/vanscoding-skills/Productivity/frontend-design
 ```
 
 #### 技能檔案結構
@@ -363,7 +379,7 @@ npx skills add mz038197/vanscoding-skills/Productivity/readmoo-capture
 ### 專案優勢
 
 ✅ **集中管理** - 所有技能在一個倉庫中，易於維護  
-✅ **清晰分類** - 按用途分為文檔／Agent／Obsidian／skill 工程、瀏覽器、開發與 Git、媒體、電腦視覺、搜尋、教學課務、nanobot、生產力工具  
+✅ **清晰分類** - 按用途分為文檔／skill 工程、Agents、瀏覽器、開發與 Git、媒體、電腦視覺、搜尋、教學課務、生產力工具  
 ✅ **獨立安裝** - 只安裝你需要的技能  
 ✅ **版本控制** - 完整的 Git 歷史和標籤支援  
 ✅ **教育友好** - 適合教室和學習環境使用  
@@ -465,14 +481,16 @@ git tag v2.0.0  # 重大更新
 
 ### Introduction
 
-**Vanscoding Skills** is a comprehensive AI skill library for document processing, Microsoft MarkItDown-to-Markdown workflows, Obsidian integration, advanced skill engineering, browser automation (including Webwright code-as-action and Playwright CLI), web search and fact-finding (Felo CLI), media creation, computer vision and face recognition, teaching workflows (including Fansi PEAS coaches, LLM Wiki setup coaching, VTuber MVP coaching, Agent Studio capstone report coaching, and Workshop Bridge WG-13–22), agent configuration guides, development and Git workflows, Nanobot integration, Readmoo stage-1 export workflows, and productivity tools. This monorepo contains 32 skill modules that can be installed and used independently.
+**Vanscoding Skills** is a comprehensive AI skill library for document processing, Microsoft MarkItDown-to-Markdown workflows, Obsidian integration, advanced skill engineering, browser automation (including Webwright code-as-action and Playwright CLI), web search and fact-finding (Felo CLI), media creation (including Codex/Gemini CLI image generation), computer vision and face recognition, teaching workflows (including Fansi PEAS coaches, LLM Wiki setup coaching, VTuber MVP coaching, Agent Studio capstone report coaching, and Workshop Bridge WG-13–22), agent configuration and memory, development and Git workflows, Readmoo stage-1 export workflows, frontend design guidance, and productivity tools. This monorepo contains 36 skill modules that can be installed and used independently.
 
 ### Project Structure
 
 The repository is organized into nine categories:
 
-- **Documents/** - Documents, agent guides, MarkItDown, Obsidian, and skill engineering (12 modules)
-  - word, pdf, pptx, xlsx, google-sheets, markitdown-guide, agent-soul-crafter, agents-md-guide, user-md-guide, obsidian-cli, skill-creator, skill-creator-advanced
+- **Documents/** - Documents, MarkItDown, Obsidian, and skill engineering (10 modules)
+  - word, pdf, pptx, xlsx, google-sheets, markitdown-guide, user-md-guide, obsidian-cli, skill-creator, skill-creator-advanced
+- **Agents/** - Agent personality, AGENTS.md, memory, and nanobot LINE integration (4 modules)
+  - agent-soul-crafter, agents-md-guide, agent-memory, setup-line-channel
 - **Browser/** - Browser and web automation (4 modules)
   - browser-use: Browser Use Cloud SDK for browser control, scraping, automation
   - chrome-devtools: Chrome DevTools MCP for debugging, automation, performance, and network inspection
@@ -481,23 +499,24 @@ The repository is organized into nine categories:
 - **Developer/** - Development and Git workflows (2 modules)
   - git-pr-description: Generate PR title and description from branch diffs
   - git-smart-commit: Split changes into logical conventional commits
-- **Media/** - Media and creation (1 module)
+- **Media/** - Media and creation (3 modules)
   - ace-music: ACE Music AI music generation
+  - codex-imagegen: Codex CLI terminal image generation
+  - gemini-imagegen: Gemini CLI terminal image generation
 - **Vision/** - Computer vision and face recognition (1 module)
   - facenet-cli: facenet-pytorch CLI (`fnet`) for embeddings, face DB, 1:1 / 1:N matching, optional JSON
 - **Search/** - Search, lookup, and current information (1 module)
   - felo-cli: Prefer `@willh/felo-cli --json`, SDK, or `FELO_API_KEY` + Felo OpenAPI for search and fact-finding
-- **Teacher/** - Teaching and class operations (6 modules)
+- **Teacher/** - Teaching and class operations (7 modules)
   - orangeapple-class-report: Orange Apple post-class parent report workflow (Chrome DevTools + Obsidian)
   - peas-example-coach: Fansi checklist coaching — required items only, PEAS splash, thinking grid, `session-records/`, Understanding Assessment Summary (five axes + Sigmoid)
   - peas-challenge-coach: Fansi challenge coach after checklist — `challenges.md`, aligned specs, six-column prompts, program then understanding acceptance (`uv run`), shared scoring format
   - peas-llm-wiki-coach: Fansi LLM Wiki setup coach — project-root Karpathy-mode `raw/` + `wiki/`; step-scripts; Step 5 ingest via Agent Studio right panel (same script as core `llm-wiki-coach`)
   - peas-vtuber-coach: Fansi VTuber MVP coach — Agent Studio right-panel PNGtuber (idle/thinking/talking GIF + built-in TTS); step-scripts, one step at a time, ChatGPT/Gemini for assets, Prompt A/B via coding agent
+  - peas-capstone-report: Fansi Agent Studio capstone MD/PPT/DOCX deliverables with architecture diagrams
   - peas-workshop-advanced-coach: Fansi Workshop Bridge coach — WG-13–22 router/state machine via `references/bridge/` cards; WG-22 contract-first split of `agent_core.py` + `main.py`
-- **nanobot/** - Nanobot integration (1 module)
-  - setup-line-channel: LINE Messaging API channel, webhook, Cloudflare Tunnel
-- **Productivity/** - Productivity tools (3 modules)
-  - google-email, google-calendar, readmoo-capture (Readmoo stage-1 viewport capture via Playwright / bundled script)
+- **Productivity/** - Productivity tools (4 modules)
+  - google-email, google-calendar, readmoo-capture, frontend-design
 
 Each skill is self-contained with its own SKILL.md, scripts (where applicable), and documentation.
 
@@ -514,12 +533,21 @@ Each skill is self-contained with its own SKILL.md, scripts (where applicable), 
 | **xlsx**                   | Excel spreadsheets        | Formulas, formatting, data analysis                                                                                           |
 | **google-sheets**          | Google Sheets integration | Spreadsheet management, data handling                                                                                         |
 | **markitdown-guide**       | MarkItDown guide          | microsoft/markitdown: convert many formats to Markdown; CLI / API, plugins, PPTX images                                       |
-| **agent-soul-crafter**     | AI agent personality      | Design agent personality and behavior                                                                                         |
-| **agents-md-guide**        | AGENTS.md guide           | Stage-based AGENTS.md construction                                                                                            |
 | **user-md-guide**          | USER.md guide             | Build personal profile for agents                                                                                             |
 | **obsidian-cli**           | Obsidian CLI              | Read/write vault, search, tasks, move/rename, broken links and orphans                                                        |
 | **skill-creator**          | Skill creation guide      | SKILL.md anatomy, scripts/references/assets, progressive disclosure; `init_skill.py`, `package_skill.py`, `quick_validate.py` |
 | **skill-creator-advanced** | Advanced skill authoring  | Naming, boundaries, evals, benchmarks, validation, packaging (pairs with skill-creator)                                       |
+
+
+#### 🤖 Agents
+
+
+| Skill                  | Description        | Features                                                              |
+| ---------------------- | ------------------ | --------------------------------------------------------------------- |
+| **agent-soul-crafter** | AI agent personality | Design agent personality and behavior (SOUL.md)                       |
+| **agents-md-guide**    | AGENTS.md guide    | Stage-based AGENTS.md construction                                    |
+| **agent-memory**       | Agent Memory       | Cross-session memory registration, snapshots, references, archival    |
+| **setup-line-channel** | LINE Channel       | LINE Messaging API, webhook, Cloudflare Tunnel for nanobot            |
 
 
 #### 🌐 Browser
@@ -547,7 +575,9 @@ Each skill is self-contained with its own SKILL.md, scripts (where applicable), 
 
 | Skill         | Description | Features                                            |
 | ------------- | ----------- | --------------------------------------------------- |
-| **ace-music** | ACE Music   | AI music generation (lyrics, style, cover, repaint) |
+| **ace-music**       | ACE Music         | AI music generation (lyrics, style, cover, repaint) |
+| **codex-imagegen**  | Codex image gen   | Terminal image generation via Codex CLI               |
+| **gemini-imagegen** | Gemini image gen  | Terminal image generation via Gemini CLI              |
 
 
 #### 👁️ Vision
@@ -580,15 +610,9 @@ Each skill is self-contained with its own SKILL.md, scripts (where applicable), 
 | **peas-workshop-advanced-coach** | Fansi Workshop Bridge coach | **WG-13–22** — progress scan via `wg_milestone_checklist.md`, route to one `references/bridge/` card; WG-22 contract-first split of `agent_core.py` + `main.py` |
 
 
-#### 🤖 Nanobot
-
-
-| Skill                  | Description  | Features                                                   |
-| ---------------------- | ------------ | ---------------------------------------------------------- |
-| **setup-line-channel** | LINE Channel | LINE Messaging API, webhook, Cloudflare Tunnel for nanobot |
-
-
 #### 🚀 Productivity Tools
+
+Moved **setup-line-channel** to **Agents/** (see Agents table above).
 
 
 | Skill               | Description                 | Features                                                                                  |
@@ -596,6 +620,7 @@ Each skill is self-contained with its own SKILL.md, scripts (where applicable), 
 | **google-email**    | Gmail management            | OAuth authentication, attachment handling, message management                             |
 | **google-calendar** | Google Calendar integration | Calendar operations, schedule management                                                  |
 | **readmoo-capture** | Readmoo export              | Stage-1 viewport screenshots, `readmoo-auth.json`, bundled `readmoo_capture_snapshots.py` |
+| **frontend-design** | Frontend design guide       | Distinctive UI direction, typography, layout — avoid generic template aesthetics          |
 
 
 ### Installation
@@ -610,12 +635,16 @@ npx skills add mz038197/vanscoding-skills/Documents/pptx
 npx skills add mz038197/vanscoding-skills/Documents/xlsx
 npx skills add mz038197/vanscoding-skills/Documents/google-sheets
 npx skills add mz038197/vanscoding-skills/Documents/markitdown-guide
-npx skills add mz038197/vanscoding-skills/Documents/agent-soul-crafter
-npx skills add mz038197/vanscoding-skills/Documents/agents-md-guide
 npx skills add mz038197/vanscoding-skills/Documents/user-md-guide
 npx skills add mz038197/vanscoding-skills/Documents/obsidian-cli
 npx skills add mz038197/vanscoding-skills/Documents/skill-creator
 npx skills add mz038197/vanscoding-skills/Documents/skill-creator-advanced
+
+# Agents
+npx skills add mz038197/vanscoding-skills/Agents/agent-soul-crafter
+npx skills add mz038197/vanscoding-skills/Agents/agents-md-guide
+npx skills add mz038197/vanscoding-skills/Agents/agent-memory
+npx skills add mz038197/vanscoding-skills/Agents/setup-line-channel
 
 # Browser
 npx skills add mz038197/vanscoding-skills/Browser/browser-use
@@ -629,6 +658,8 @@ npx skills add mz038197/vanscoding-skills/Developer/git-smart-commit
 
 # Media
 npx skills add mz038197/vanscoding-skills/Media/ace-music
+npx skills add mz038197/vanscoding-skills/Media/codex-imagegen
+npx skills add mz038197/vanscoding-skills/Media/gemini-imagegen
 
 # Vision
 npx skills add mz038197/vanscoding-skills/Vision/facenet-cli
@@ -645,13 +676,11 @@ npx skills add mz038197/vanscoding-skills/Teacher/peas-vtuber-coach
 npx skills add mz038197/vanscoding-skills/Teacher/peas-capstone-report
 npx skills add mz038197/vanscoding-skills/Teacher/peas-workshop-advanced-coach
 
-# Nanobot
-npx skills add mz038197/vanscoding-skills/nanobot/setup-line-channel
-
 # Productivity
 npx skills add mz038197/vanscoding-skills/Productivity/google-email
 npx skills add mz038197/vanscoding-skills/Productivity/google-calendar
 npx skills add mz038197/vanscoding-skills/Productivity/readmoo-capture
+npx skills add mz038197/vanscoding-skills/Productivity/frontend-design
 ```
 
 ### License
@@ -665,11 +694,11 @@ Individual skills may have their own license terms. Check the LICENSE.txt file i
 ✨ **Documents & Agent Guides** - Office formats (Word, PDF, PowerPoint, Excel), OOXML; MarkItDown guide for LLM-ready Markdown; AGENTS.md / USER.md construction guides; Obsidian CLI; skill-creator (core workflow + scripts) and skill-creator-advanced (evals, benchmarks, packaging)  
 🌐 **Browser & Web** - Browser Use for browser control, scraping, automation (Cloud / Open Source); Chrome DevTools MCP; Webwright code-as-action with screenshot evidence; Playwright CLI for snapshots, interaction, and tests  
 🛠️ **Developer & Git** - PR description generation, logical conventional commit splits  
-🎵 **Media & Creation** - ACE Music for AI music generation  
+🎵 **Media & Creation** - ACE Music; Codex CLI and Gemini CLI image generation  
 👁️ **Vision** - facenet-cli (`fnet`) for face embeddings, matching, optional JSON output  
 🔍 **Search** - felo-cli for web search, lookup, and current information (CLI, SDK, API)  
 📚 **Teacher** - Orange Apple reports; **Fansi PEAS teaching skills** (example → challenge → Workshop Bridge `peas-workshop-advanced-coach` for WG-13–22) with shared `session-records/` and aligned scoring where applicable; **LLM Wiki coach** (`peas-llm-wiki-coach`) for Karpathy-mode project wiki setup; **VTuber MVP coach** (`peas-vtuber-coach`) for Agent Studio PNGtuber GIF + TTS workflow; **Capstone report coach** (`peas-capstone-report`) for MD/PPT/DOCX deliverables with architecture and server diagrams  
-🤖 **Nanobot** - LINE Messaging API channel, webhook, Cloudflare Tunnel  
+🤖 **Agents** - SOUL.md personality design, AGENTS.md construction, Agent Memory, nanobot LINE channel setup  
 🔧 **Rich Toolset** - Python / JavaScript scripts, API references  
 ☁️ **Cloud Integration** - Google (Gmail, Calendar, Sheets), OAuth; Readmoo web reader stage-1 capture workflow  
 📚 **Documentation** - SKILL.md per skill, references, usage guides  
@@ -677,7 +706,7 @@ Individual skills may have their own license terms. Check the LICENSE.txt file i
 ### Project Advantages
 
 ✅ **Centralized Management** - All skills in one repository  
-✅ **Clear Organization** - Documents, Browser, Developer, Media, Vision, Search, Teacher, nanobot, Productivity  
+✅ **Clear Organization** - Documents, Agents, Browser, Developer, Media, Vision, Search, Teacher, Productivity  
 ✅ **Independent Installation** - Install only the skills you need  
 ✅ **Version Control** - Git history and tag support  
 ✅ **Education-Friendly** - Suitable for classroom and learning  

@@ -10,11 +10,11 @@ from pathlib import Path, PurePosixPath
 
 SKILL_CATEGORIES = frozenset(
     {
+        "Agents",
         "Browser",
         "Developer",
         "Documents",
         "Media",
-        "nanobot",
         "Productivity",
         "Search",
         "Teacher",
