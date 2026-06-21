@@ -1,0 +1,14 @@
+#!/bin/sh
+ROOT="$(git rev-parse --show-toplevel)" || exit 1
+SCRIPT="$ROOT/scripts/check_skill_version_bump.py"
+
+if command -v py >/dev/null 2>&1; then
+  py -3 "$SCRIPT" || exit 1
+elif command -v python3 >/dev/null 2>&1; then
+  python3 "$SCRIPT" || exit 1
+elif command -v python >/dev/null 2>&1; then
+  python "$SCRIPT" || exit 1
+else
+  echo "pre-commit: python not found; install Python or fix PATH" >&2
+  exit 1
+fi

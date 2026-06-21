@@ -1,0 +1,30 @@
+---
+description: 將 Agent 本機 Skill hotfix 回寫 vanscoding-skills repo
+alwaysApply: true
+---
+
+# Skill Reverse Sync（Agent → Repo）
+
+## 觸發
+
+「回寫到 repo / 收編 hotfix / reverse sync」
+
+## 來源（預設 Cursor）
+
+1. 讀 `%USERPROFILE%\.cursor\skills\{relative}\.skill-sync.json` 的 `source_path`
+2. 若無 meta：用 leaf 名稱 `glob **/{name}/SKILL.md` 找 repo 路徑
+3. 使用者指定 Codex 時改讀 `.codex\skills\`
+
+Cursor 與 Codex 內容不同且未指定時：**以 Cursor 為準**。
+
+## 步驟
+
+1. 確認 Agent 本機 `$agentSrc` 與 repo `$repoDst`（`d:\Work\Python\vanscoding-skills\{source_path}`）
+2. Mirror 反向：`Remove-Item -Recurse -Force $repoDst`（若存在）→ `Copy-Item -Recurse -Force $agentSrc $repoDst`
+3. **刪除** `$repoDst\.skill-sync.json`（若被複製進來）
+4. 提醒：bump `version` + `updated` in `SKILL.md`，再 commit（走 version-on-commit + hook）
+5. commit 成功後自動 forward sync（兩邊一致）
+
+## 注意
+
+回寫會覆蓋 repo 該 skill 目錄；衝突時先 diff，除非使用者確認以 Agent 本機為準。

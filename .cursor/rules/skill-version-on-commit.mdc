@@ -1,0 +1,50 @@
+---
+description: Skill 變更須 bump SemVer；pre-commit 被擋時 Agent 自動升版重試
+alwaysApply: true
+---
+
+# Skill Version on Commit
+
+## 適用範圍
+
+staged 檔案在 `{Category}/{skill}/**`（Category 見 sync rule）且含 `SKILL.md` 的 skill 目錄。
+
+## Frontmatter（漸進補齊）
+
+```yaml
+version: "1.2.0"   # SemVer 字串 x.y.z
+updated: "2026-06-21"
+```
+
+- 新 skill：從 `"1.0.0"` 起
+- 既有 skill 被改到時若缺 `version`：補上並視為需 bump
+
+## Bump 規則
+
+| 變更 | Bump |
+|------|------|
+| 錯字、澄清、小步驟 | PATCH |
+| 新增 references、非破壞性流程 | MINOR |
+| 破壞相容、契約變更 | MAJOR（不確定時先問使用者） |
+| 不確定 | 預設 PATCH |
+
+## Commit message
+
+`skill(name): v1.2.0 → v1.2.1 — 簡述`
+
+## Pre-commit hook
+
+clone 後執行：`.\scripts\install-git-hooks.ps1`
+
+若 commit 失敗且輸出含 `SKILL_VERSION_BUMP_REQUIRED`：
+
+1. 解析 `skill_path`、`skill_md`、`current_version`、`changed_files`
+2. bump `version` + `updated` in `SKILL.md`
+3. `git add` 該 `SKILL.md`（與其他 skill 變更）
+4. 重試 commit
+
+**禁止** `--no-verify`，除非使用者明確要求。
+
+## Commit 成功後
+
+依 skill-sync-to-agents rule，自動 forward sync 到 Cursor + Codex。

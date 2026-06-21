@@ -1,0 +1,72 @@
+---
+description: Mirror vanscoding-skills 到 Cursor/Codex 本機 skills，並寫入 .skill-sync.json
+alwaysApply: true
+---
+
+# Skill Forward Sync
+
+本 repo 為 Skill **唯一來源**。Agent 本機副本在 Cursor / Codex skills 目錄。
+
+## 觸發（直接執行，勿再確認）
+
+- 「更新到 Agent / 同步到每一個 / deploy skill / push skill to agent」
+- 「把 {skill-name} 更新到 Cursor / Codex」
+- **Skill 相關 commit 成功後**：自動對該 commit 內每個被改到的 skill forward sync
+
+例外：使用者明說「只更新 Cursor」或「只更新 Codex」才只 sync 一邊。
+
+## 路徑
+
+| 角色 | 路徑 |
+|------|------|
+| Repo 根 | `d:\Work\Python\vanscoding-skills` |
+| Cursor | `%USERPROFILE%\.cursor\skills\{relative}\` |
+| Codex | `%USERPROFILE%\.codex\skills\{relative}\` |
+
+**relative** = repo 內 skill 路徑去掉第一層 Category（`Documents/`、`Browser/`、`Developer/`、`Media/`、`Vision/`、`Search/`、`Teacher/`、`nanobot/`、`Productivity/`）。
+
+範例：`Productivity/readmoo-capture` → `readmoo-capture`；`Browser/playwright-cli/playwright-cli` → `playwright-cli/playwright-cli`。
+
+## 查找 skill
+
+`glob **/{skill-name}/SKILL.md`：0 個→回報；>1 個→請使用者選；1 個→繼續。
+
+## Mirror 步驟（PowerShell）
+
+可執行 [`scripts/sync-skill-to-agents.ps1`](scripts/sync-skill-to-agents.ps1)：
+
+```powershell
+.\scripts\sync-skill-to-agents.ps1 -SourcePath "Productivity/readmoo-capture"
+```
+
+或手動對 Cursor、Codex 各做一次：
+
+```powershell
+$src = "<repo>\<Category>\...\skill-folder>"
+$dst = Join-Path $env:USERPROFILE ".cursor\skills\<relative>"
+if (Test-Path $dst) { Remove-Item -Recurse -Force $dst }
+Copy-Item -Recurse -Force $src $dst
+```
+
+## .skill-sync.json（mirror 後寫入 Agent 本機，不進 repo）
+
+在 `$dst` 寫入：
+
+```json
+{
+  "skill": "<leaf-name>",
+  "version": "<from SKILL.md frontmatter or null>",
+  "source_repo": "vanscoding-skills",
+  "source_path": "<Category>/.../skill-folder>",
+  "source_commit": "<git rev-parse HEAD>",
+  "synced_at": "<ISO8601 local>"
+}
+```
+
+## 安全
+
+永不修改 `.codex\skills\.system\`、`.cursor\skills-cursor\`。
+
+## 完成回報
+
+來源路徑、Cursor/Codex 目標、version、source_commit。
