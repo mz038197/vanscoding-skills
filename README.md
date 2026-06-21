@@ -10,7 +10,7 @@
 
 ### 簡介
 
-**Vanscoding Skills** 是一個專業的 AI 技能庫，涵蓋文檔處理、Microsoft MarkItDown 轉 Markdown、Obsidian 整合、進階技能工程化、瀏覽器與網頁自動化（含 Webwright code-as-action、Playwright CLI）、網路搜尋與查證（Felo CLI）、媒體創作、電腦視覺與人臉辨識、教學課務流程（含凡思 PEAS 陪練／教練／VTuber MVP 陪練／LLM Wiki 建置陪練／Workshop Bridge **WG-13～22**）、Agent 設定引導、開發與 Git 工作流程、Nanobot 整合、Readmoo 階段一匯出與生產力工具。本 monorepo 包含 31 個可獨立安裝的技能模組。
+**Vanscoding Skills** 是一個專業的 AI 技能庫，涵蓋文檔處理、Microsoft MarkItDown 轉 Markdown、Obsidian 整合、進階技能工程化、瀏覽器與網頁自動化（含 Webwright code-as-action、Playwright CLI）、網路搜尋與查證（Felo CLI）、媒體創作、電腦視覺與人臉辨識、教學課務流程（含凡思 PEAS 陪練／教練／VTuber MVP 陪練／LLM Wiki 建置陪練／Agent Studio 專題報告／Workshop Bridge **WG-13～22**）、Agent 設定引導、開發與 Git 工作流程、Nanobot 整合、Readmoo 階段一匯出與生產力工具。本 monorepo 包含 32 個可獨立安裝的技能模組。
 
 ### 專案架構
 
@@ -62,6 +62,7 @@ vanscoding-skills/                     # Monorepo 根目錄
 │   ├── peas-challenge-coach/          # 凡思教練（challenges、六欄 prompt、程式＋理解驗收）
 │   ├── peas-llm-wiki-coach/           # 凡思 LLM Wiki 陪練（專案根 raw/ + wiki/、Karpathy 模式、Step 5 右欄 ingest）
 │   ├── peas-vtuber-coach/             # 凡思 VTuber 陪練（Agent Studio PNGtuber 四狀態 GIF + TTS MVP）
+│   ├── peas-capstone-report/          # 凡思 Agent Studio 專題報告（MD／PPT／Word、架構圖、server 拓撲）
 │   └── peas-workshop-advanced-coach/  # 凡思 Workshop Bridge 教練（WG-13～22 路由、bridge 卡、WG-22 拆檔）
 │
 ├── nanobot/                           # 🤖 Nanobot 整合
@@ -83,7 +84,7 @@ vanscoding-skills/                     # Monorepo 根目錄
 - **Media/** - 媒體生成與創作（1 個技能）
 - **Vision/** - 電腦視覺與人臉辨識（1 個技能）
 - **Search/** - 搜尋、查證與即時資訊（1 個技能）
-- **Teacher/** - 教學與課務流程（6 個技能）
+- **Teacher/** - 教學與課務流程（7 個技能）
 - **nanobot/** - Nanobot 專案相關整合（1 個技能）
 - **Productivity/** - 雲端工具與生產力（3 個技能）
 
@@ -94,7 +95,7 @@ vanscoding-skills/                     # Monorepo 根目錄
 - `LICENSE.txt` - 授權條款（如適用）
 - 其他文件 - 參考資料、指南、架構定義等
 
-**共計：** 31 個可獨立安裝的技能模組
+**共計：** 32 個可獨立安裝的技能模組
 
 ### 技能概覽
 
@@ -171,6 +172,7 @@ vanscoding-skills/                     # Monorepo 根目錄
 | **peas-challenge-coach**     | 凡思挑戰教練   | 陪練後依 `challenges.md` 逐題釐清規格、對齊條列、六欄提示詞交 coding agent；**程式行為驗收**後**理解驗收**（`uv run`）；落檔 `session-records/peas-challenge-log.md`；評分格式與陪練對齊                     |
 | **peas-llm-wiki-coach**      | 凡思 LLM Wiki 陪練 | 專案根建 **Karpathy 模式** LLM Wiki（`raw/` + `wiki/`）；依 `references/step-scripts.md` 一次一步；**Step 5** 須在 Agent Studio 右欄執行 llm-wiki ingest（Cursor 不代寫 wiki） |
 | **peas-vtuber-coach**        | 凡思 VTuber 陪練 | Agent Studio 右欄 **PNGtuber MVP**（idle／thinking／talking 四狀態 GIF + 模板內建 TTS）；依 `references/step-scripts.md` 一次一步、完成句前進；生圖用 ChatGPT／Gemini 網頁；Prompt A 改 `studio_shell/agent_panel.py` |
+| **peas-capstone-report**     | 凡思專題報告陪練 | Agent Studio 專題繳交 **MD／PPTX／DOCX**；學生主筆 §1–3，Agent 產平易近人架構 Mermaid、全班 server 拓撲圖、demo 截圖與三份交付物；Word **必須嵌入**全部 PNG |
 | **peas-workshop-advanced-coach** | 凡思 Workshop Bridge 教練 | **WG-13～22** 路由／狀態機：依 `references/bridge/` 逐關卡 handoff；WG-13～21 可選直接實作或引導釐清；**WG-22** 契約優先拆檔 `agent_core.py` + `main.py` |
 
 
@@ -264,6 +266,7 @@ npx skills add mz038197/vanscoding-skills/Teacher/peas-example-coach
 npx skills add mz038197/vanscoding-skills/Teacher/peas-challenge-coach
 npx skills add mz038197/vanscoding-skills/Teacher/peas-llm-wiki-coach
 npx skills add mz038197/vanscoding-skills/Teacher/peas-vtuber-coach
+npx skills add mz038197/vanscoding-skills/Teacher/peas-capstone-report
 npx skills add mz038197/vanscoding-skills/Teacher/peas-workshop-advanced-coach
 ```
 
@@ -402,9 +405,9 @@ A: 每個技能都有：
 - `reference.md` 或類似的檔案 - 進階參考
 - `forms.md` 或類似的檔案 - 特定功能的詳細指南
 
-**Q: PEAS 教學技能（example／challenge／llm-wiki／vtuber／workshop）如何搭配？**
+**Q: PEAS 教學技能（example／challenge／llm-wiki／vtuber／capstone／workshop）如何搭配？**
 
-A: 建議依序：**陪練**（`peas-example-coach`）→ **挑戰教練**（`peas-challenge-coach`）→ **Workshop Bridge 教練**（`peas-workshop-advanced-coach`，**WG-13～22**）。前兩者共用 `session-records/` 與五軸 + Sigmoid 評分；Workshop Bridge 以 `wg_milestone_checklist.md` 掃描進度、路由至 `references/bridge/` 單一關卡 handoff，WG-22 另走契約優先拆檔（`agent_core.py` + `main.py`）。**LLM Wiki 陪練**（`peas-llm-wiki-coach`）與 **VTuber 陪練**（`peas-vtuber-coach`）可獨立使用：前者在 Agent Studio 專案根建 `raw/` + `wiki/`（Step 5 須右欄 ingest）；後者需已有 `studio_shell/`，逐步完成 PNGtuber GIF + TTS MVP。兩者與 checklist／challenge 流程無硬性先後。
+A: 建議依序：**陪練**（`peas-example-coach`）→ **挑戰教練**（`peas-challenge-coach`）→ **Workshop Bridge 教練**（`peas-workshop-advanced-coach`，**WG-13～22**）。前兩者共用 `session-records/` 與五軸 + Sigmoid 評分；Workshop Bridge 以 `wg_milestone_checklist.md` 掃描進度、路由至 `references/bridge/` 單一關卡 handoff，WG-22 另走契約優先拆檔（`agent_core.py` + `main.py`）。**LLM Wiki 陪練**（`peas-llm-wiki-coach`）、**VTuber 陪練**（`peas-vtuber-coach`）、**專題報告陪練**（`peas-capstone-report`）可獨立使用：LLM Wiki 在 Agent Studio 專案根建 `raw/` + `wiki/`（Step 5 須右欄 ingest）；VTuber 需已有 `studio_shell/`，完成 PNGtuber GIF + TTS MVP；專題報告在專題收尾產 MD／PPT／Word 與架構圖。三者與 checklist／challenge 流程無硬性先後。
 
 **Q: 如何報告錯誤或提出功能建議？**
 
@@ -462,7 +465,7 @@ git tag v2.0.0  # 重大更新
 
 ### Introduction
 
-**Vanscoding Skills** is a comprehensive AI skill library for document processing, Microsoft MarkItDown-to-Markdown workflows, Obsidian integration, advanced skill engineering, browser automation (including Webwright code-as-action and Playwright CLI), web search and fact-finding (Felo CLI), media creation, computer vision and face recognition, teaching workflows (including Fansi PEAS coaches, LLM Wiki setup coaching, VTuber MVP coaching, and Workshop Bridge WG-13–22), agent configuration guides, development and Git workflows, Nanobot integration, Readmoo stage-1 export workflows, and productivity tools. This monorepo contains 31 skill modules that can be installed and used independently.
+**Vanscoding Skills** is a comprehensive AI skill library for document processing, Microsoft MarkItDown-to-Markdown workflows, Obsidian integration, advanced skill engineering, browser automation (including Webwright code-as-action and Playwright CLI), web search and fact-finding (Felo CLI), media creation, computer vision and face recognition, teaching workflows (including Fansi PEAS coaches, LLM Wiki setup coaching, VTuber MVP coaching, Agent Studio capstone report coaching, and Workshop Bridge WG-13–22), agent configuration guides, development and Git workflows, Nanobot integration, Readmoo stage-1 export workflows, and productivity tools. This monorepo contains 32 skill modules that can be installed and used independently.
 
 ### Project Structure
 
@@ -573,6 +576,7 @@ Each skill is self-contained with its own SKILL.md, scripts (where applicable), 
 | **peas-challenge-coach**     | Fansi challenge coach     | After checklist: `challenges.md` per challenge — spec alignment, six-column prompt for coding agent; program acceptance then understanding acceptance; logs/scores under `session-records/`                            |
 | **peas-llm-wiki-coach**      | Fansi LLM Wiki coach      | Project-root **Karpathy-mode** LLM Wiki (`raw/` + `wiki/`); `references/step-scripts.md`, one step at a time; **Step 5** ingest via Agent Studio right panel (Cursor does not write wiki) |
 | **peas-vtuber-coach**        | Fansi VTuber coach        | Agent Studio right-panel **PNGtuber MVP** — four-state GIF (idle/thinking/talking) + built-in TTS; `references/step-scripts.md`, one step at a time; ChatGPT/Gemini for assets; Prompt A updates `studio_shell/agent_panel.py` |
+| **peas-capstone-report**     | Fansi capstone report coach | Agent Studio capstone deliverables **MD / PPTX / DOCX**; student-authored §1–3, agent builds friendly Mermaid architecture, shared server topology, demo screenshots; Word **must embed** all PNGs |
 | **peas-workshop-advanced-coach** | Fansi Workshop Bridge coach | **WG-13–22** — progress scan via `wg_milestone_checklist.md`, route to one `references/bridge/` card; WG-22 contract-first split of `agent_core.py` + `main.py` |
 
 
@@ -638,6 +642,7 @@ npx skills add mz038197/vanscoding-skills/Teacher/peas-example-coach
 npx skills add mz038197/vanscoding-skills/Teacher/peas-challenge-coach
 npx skills add mz038197/vanscoding-skills/Teacher/peas-llm-wiki-coach
 npx skills add mz038197/vanscoding-skills/Teacher/peas-vtuber-coach
+npx skills add mz038197/vanscoding-skills/Teacher/peas-capstone-report
 npx skills add mz038197/vanscoding-skills/Teacher/peas-workshop-advanced-coach
 
 # Nanobot
@@ -663,7 +668,7 @@ Individual skills may have their own license terms. Check the LICENSE.txt file i
 🎵 **Media & Creation** - ACE Music for AI music generation  
 👁️ **Vision** - facenet-cli (`fnet`) for face embeddings, matching, optional JSON output  
 🔍 **Search** - felo-cli for web search, lookup, and current information (CLI, SDK, API)  
-📚 **Teacher** - Orange Apple reports; **Fansi PEAS teaching skills** (example → challenge → Workshop Bridge `peas-workshop-advanced-coach` for WG-13–22) with shared `session-records/` and aligned scoring where applicable; **LLM Wiki coach** (`peas-llm-wiki-coach`) for Karpathy-mode project wiki setup; **VTuber MVP coach** (`peas-vtuber-coach`) for Agent Studio PNGtuber GIF + TTS workflow  
+📚 **Teacher** - Orange Apple reports; **Fansi PEAS teaching skills** (example → challenge → Workshop Bridge `peas-workshop-advanced-coach` for WG-13–22) with shared `session-records/` and aligned scoring where applicable; **LLM Wiki coach** (`peas-llm-wiki-coach`) for Karpathy-mode project wiki setup; **VTuber MVP coach** (`peas-vtuber-coach`) for Agent Studio PNGtuber GIF + TTS workflow; **Capstone report coach** (`peas-capstone-report`) for MD/PPT/DOCX deliverables with architecture and server diagrams  
 🤖 **Nanobot** - LINE Messaging API channel, webhook, Cloudflare Tunnel  
 🔧 **Rich Toolset** - Python / JavaScript scripts, API references  
 ☁️ **Cloud Integration** - Google (Gmail, Calendar, Sheets), OAuth; Readmoo web reader stage-1 capture workflow  
@@ -701,7 +706,7 @@ A: Yes. Google-related skills require OAuth authentication. Each skill includes 
 
 **Q: How do the PEAS teaching skills (example / challenge / llm-wiki / vtuber / workshop) fit together?**
 
-A: Use them in order: **example coach** → **challenge coach** → **Workshop Bridge coach** (`peas-workshop-advanced-coach`, **WG-13–22**). Example and challenge coaches share `session-records/` and five-axis + Sigmoid scoring; Workshop Bridge scans progress, routes to one bridge card under `references/bridge/`, and uses a contract-first split flow for WG-22. **LLM Wiki coach** (`peas-llm-wiki-coach`) and **VTuber coach** (`peas-vtuber-coach`) stand alone: LLM Wiki walks through project-root `raw/` + `wiki/` setup (Step 5 ingest in the right panel); VTuber requires `studio_shell/` and walks through the PNGtuber GIF + TTS MVP — no strict prerequisite to the checklist/challenge flow.
+A: Use them in order: **example coach** → **challenge coach** → **Workshop Bridge coach** (`peas-workshop-advanced-coach`, **WG-13–22**). Example and challenge coaches share `session-records/` and five-axis + Sigmoid scoring; Workshop Bridge scans progress, routes to one bridge card under `references/bridge/`, and uses a contract-first split flow for WG-22. **LLM Wiki coach** (`peas-llm-wiki-coach`), **VTuber coach** (`peas-vtuber-coach`), and **Capstone report coach** (`peas-capstone-report`) stand alone: LLM Wiki walks through project-root `raw/` + `wiki/` setup (Step 5 ingest in the right panel); VTuber requires `studio_shell/` and walks through the PNGtuber GIF + TTS MVP; Capstone report produces MD/PPT/DOCX with diagrams at project wrap-up — no strict prerequisite to the checklist/challenge flow.
 
 ### Contact
 
