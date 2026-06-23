@@ -10,7 +10,7 @@
 
 ### 簡介
 
-**Vanscoding Skills** 是一個專業的 AI 技能庫，涵蓋文檔處理、Microsoft MarkItDown 轉 Markdown、Obsidian 整合、進階技能工程化、瀏覽器與網頁自動化（含 Webwright code-as-action、Playwright CLI）、網路搜尋與查證（Felo CLI）、媒體創作（含 Codex／Gemini 生圖）、電腦視覺與人臉辨識、教學課務流程（含凡思 PEAS 陪練／教練／VTuber MVP 陪練／LLM Wiki 建置陪練／Agent Studio 專題報告／Workshop Bridge **WG-13～22**）、Agent 設定與記憶、開發與 Git 工作流程、Readmoo 階段一匯出、前端設計與生產力工具。本 monorepo 包含 36 個可獨立安裝的技能模組。
+**Vanscoding Skills** 是一個專業的 AI 技能庫，涵蓋文檔處理、Microsoft MarkItDown 轉 Markdown、Obsidian 整合、進階技能工程化、瀏覽器與網頁自動化（含 Webwright code-as-action、Playwright CLI）、網路搜尋與查證（Felo CLI）、媒體創作（含 VCR／Codex／Gemini 生圖）、電腦視覺與人臉辨識、教學課務流程（含凡思 PEAS 陪練／教練／VTuber MVP 陪練／LLM Wiki 建置陪練／Agent Studio 專題報告／Workshop Bridge **WG-13～22**）、Agent 設定與記憶、開發與 Git 工作流程、Readmoo 階段一匯出、前端設計與生產力工具。本 monorepo 包含 37 個可獨立安裝的技能模組。
 
 ### 專案架構
 
@@ -53,6 +53,7 @@ vanscoding-skills/                     # Monorepo 根目錄
 │
 ├── Media/                             # 🎵 媒體與創作
 │   ├── ace-music/                     # ACE Music AI 音樂生成
+│   ├── vcr-imagegen/                  # Vans Coding Router OpenRouter 生圖
 │   ├── codex-imagegen/                # Codex CLI 終端機生圖
 │   └── gemini-imagegen/               # Gemini CLI 終端機生圖
 │
@@ -86,7 +87,7 @@ vanscoding-skills/                     # Monorepo 根目錄
 - **Agents/** - Agent 人格／AGENTS.md／Memory／nanobot LINE 整合（4 個技能）
 - **Browser/** - 瀏覽器操作與網頁自動化（4 個技能）
 - **Developer/** - 開發與 Git 工作流程（2 個技能）
-- **Media/** - 媒體生成、音樂與 CLI 生圖（3 個技能）
+- **Media/** - 媒體生成、音樂與 CLI 生圖（4 個技能）
 - **Vision/** - 電腦視覺與人臉辨識（1 個技能）
 - **Search/** - 搜尋、查證與即時資訊（1 個技能）
 - **Teacher/** - 教學與課務流程（7 個技能）
@@ -99,7 +100,7 @@ vanscoding-skills/                     # Monorepo 根目錄
 - `LICENSE.txt` - 授權條款（如適用）
 - 其他文件 - 參考資料、指南、架構定義等
 
-**共計：** 36 個可獨立安裝的技能模組
+**共計：** 37 個可獨立安裝的技能模組
 
 ### 技能概覽
 
@@ -157,6 +158,7 @@ vanscoding-skills/                     # Monorepo 根目錄
 | 技能                  | 描述              | 功能                                              |
 | ------------------- | --------------- | ----------------------------------------------- |
 | **ace-music**       | ACE Music       | AI 音樂生成（歌詞、風格、cover、repaint）                   |
+| **vcr-imagegen**    | VCR 生圖          | Vans Coding Router OpenRouter 生圖；Portal key、preset、參考圖改圖 |
 | **codex-imagegen**  | Codex 生圖        | Codex CLI 終端機生圖，輸出 PNG／JPEG 至專案路徑              |
 | **gemini-imagegen** | Gemini 生圖       | Gemini CLI 終端機生圖，輸出 PNG／JPEG 至專案路徑             |
 
@@ -263,6 +265,7 @@ npx skills add mz038197/vanscoding-skills/Developer/git-smart-commit
 
 ```bash
 npx skills add mz038197/vanscoding-skills/Media/ace-music
+npx skills add mz038197/vanscoding-skills/Media/vcr-imagegen
 npx skills add mz038197/vanscoding-skills/Media/codex-imagegen
 npx skills add mz038197/vanscoding-skills/Media/gemini-imagegen
 ```
@@ -481,7 +484,7 @@ git tag v2.0.0  # 重大更新
 
 ### Introduction
 
-**Vanscoding Skills** is a comprehensive AI skill library for document processing, Microsoft MarkItDown-to-Markdown workflows, Obsidian integration, advanced skill engineering, browser automation (including Webwright code-as-action and Playwright CLI), web search and fact-finding (Felo CLI), media creation (including Codex/Gemini CLI image generation), computer vision and face recognition, teaching workflows (including Fansi PEAS coaches, LLM Wiki setup coaching, VTuber MVP coaching, Agent Studio capstone report coaching, and Workshop Bridge WG-13–22), agent configuration and memory, development and Git workflows, Readmoo stage-1 export workflows, frontend design guidance, and productivity tools. This monorepo contains 36 skill modules that can be installed and used independently.
+**Vanscoding Skills** is a comprehensive AI skill library for document processing, Microsoft MarkItDown-to-Markdown workflows, Obsidian integration, advanced skill engineering, browser automation (including Webwright code-as-action and Playwright CLI), web search and fact-finding (Felo CLI), media creation (including VCR/Codex/Gemini CLI image generation), computer vision and face recognition, teaching workflows (including Fansi PEAS coaches, LLM Wiki setup coaching, VTuber MVP coaching, Agent Studio capstone report coaching, and Workshop Bridge WG-13–22), agent configuration and memory, development and Git workflows, Readmoo stage-1 export workflows, frontend design guidance, and productivity tools. This monorepo contains 37 skill modules that can be installed and used independently.
 
 ### Project Structure
 
@@ -499,7 +502,8 @@ The repository is organized into nine categories:
 - **Developer/** - Development and Git workflows (2 modules)
   - git-pr-description: Generate PR title and description from branch diffs
   - git-smart-commit: Split changes into logical conventional commits
-- **Media/** - Media and creation (3 modules)
+- **Media/** - Media and creation (4 modules)
+  - vcr-imagegen: Vans Coding Router OpenRouter image generation via Portal keys
   - ace-music: ACE Music AI music generation
   - codex-imagegen: Codex CLI terminal image generation
   - gemini-imagegen: Gemini CLI terminal image generation
@@ -576,6 +580,7 @@ Each skill is self-contained with its own SKILL.md, scripts (where applicable), 
 | Skill         | Description | Features                                            |
 | ------------- | ----------- | --------------------------------------------------- |
 | **ace-music**       | ACE Music         | AI music generation (lyrics, style, cover, repaint) |
+| **vcr-imagegen**    | VCR image gen     | OpenRouter image gen via Vans Coding Router; presets and reference editing |
 | **codex-imagegen**  | Codex image gen   | Terminal image generation via Codex CLI               |
 | **gemini-imagegen** | Gemini image gen  | Terminal image generation via Gemini CLI              |
 
@@ -658,6 +663,7 @@ npx skills add mz038197/vanscoding-skills/Developer/git-smart-commit
 
 # Media
 npx skills add mz038197/vanscoding-skills/Media/ace-music
+npx skills add mz038197/vanscoding-skills/Media/vcr-imagegen
 npx skills add mz038197/vanscoding-skills/Media/codex-imagegen
 npx skills add mz038197/vanscoding-skills/Media/gemini-imagegen
 
