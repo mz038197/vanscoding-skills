@@ -1,6 +1,6 @@
 # Step Scripts（專題報告陪練主檔）
 
-**用法**：每則回覆學生前，讀取 **當前 `step_id` 整段**，只輸出「學生可見模板」。A 段（1–3、3c）學生主筆；B 段（0、4–6）Agent 可寫檔與跑腳本。
+**用法**：每則回覆學生前，讀取 **當前 `step_id` 整段**，只輸出「學生可見模板」。A 段（1–3、3c）學生主筆；B 段（0、4–7）Agent 可寫檔與跑腳本。
 
 **學生可見格式**（A 段）：
 
@@ -334,7 +334,7 @@
 
 **title**：PPT、Word 與交件驗收
 
-**purpose**：產 `專題報告.pptx`、`專題報告.docx`；**docx 必須嵌入全部 PNG**；依 verification 交件。
+**purpose**：產 `專題報告.pptx`、`專題報告.docx`；**docx 必須嵌入全部 PNG**；依 verification § Step 6 檢查；通過後進 Step 7。
 
 **agent_action**：
 
@@ -343,16 +343,18 @@ python <skill>/scripts/build_capstone_ppt.py --report-dir report
 python <skill>/scripts/build_capstone_docx.py --report-dir report
 ```
 
-依 `references/verification.md` 檢查；失敗則 `docx-fallback.md`。
+依 `references/verification.md` § Step 6 檢查；失敗則 `docx-fallback.md`。
 
 **student_action**：確認三份檔案可開啟；Word 內看得到圖。
 
-**completion_phrases**：交件完成｜三份都有了｜專題報告完成
+**completion_phrases**：三份報告好了｜交件完成｜md ppt docx 都有了
 
 **if_stuck**：
 
-- **A docx 沒圖** → 重跑 docx 腳本或 fallback；**不得**交純文字 Word
+- **A docx 沒圖** → 重跑 docx 腳本或 fallback；**不得**進 Step 7
 - **B ppt 失敗** → 檢查 python-pptx；或依 slide-map 手動調整
+
+**agent_must_not**：Step 6 驗收未通過不得進 Step 7；不得在此步標記「全部完成」
 
 **學生可見模板**：
 
@@ -365,7 +367,53 @@ python <skill>/scripts/build_capstone_docx.py --report-dir report
 
 你要做的事：各開一次，確認 Word 裡看得到圖。
 
-完成後跟我說：「交件完成」
+完成後跟我說：「三份報告好了」（下一步會做專題海報）
+```
+
+---
+
+## Step 7 · step_id: 7
+
+**title**：專題海報（VCR 生圖）
+
+**purpose**：將報告全文與三類架構／demo 圖合成一張**直式 2:3**展覽海報 `report/assets/專題海報.png`，供繳交與展示。
+
+**agent_action**：
+
+1. 確認 Step 6 依 `references/verification.md` § Step 6 全數通過
+2. 讀 `report/專題報告.md`（或 Step 3c 對齊條列）
+3. 依 `references/poster-prompt-template.md` 寫入 `report/poster-prompt.txt`
+4. 組 `-ReferencePaths`：server-topology、project-architecture、全部 demo-*.png（超 16 張時依 template 截斷）
+5. 讀 **vcr-imagegen** skill，執行生圖 → `report/assets/專題海報.png`
+6. 若 403／缺 key → `references/poster-fallback.md`
+7. 更新 `report/.capstone-progress.md` 的 `step_id: 7`
+8. Step 7 依 `references/verification.md` § Step 7 檢查後才算完成
+
+**student_action**：開啟 `專題海報.png`；確認專題名、各區文字、server／架構／demo 可辨識；有錯指出區塊。
+
+**completion_phrases**：海報好了｜poster OK｜全部完成
+
+**if_stuck**：
+
+- **A 中文錯字** → edit 模式（`-ReferencePath` 現有海報 + 修正 prompt）→ `專題海報-v2.png`，確認後覆寫最終版
+- **B VCR 403** → `poster-fallback.md` 網頁後備；**不得**跳過
+- **C 架構圖失真** → 檢查 reference 順序與 prompt「不要改變拓撲」指示；必要時 fallback 重產
+
+**agent_must_not**：不得虛構海報文字；不得無 reference 純生圖；不得在未產海報前標記「全部完成」
+
+**學生可見模板**：
+
+```
+步驟 7 · 專題海報
+
+我已依你的報告內容，用 VCR 生圖合成展覽海報：
+- report/assets/專題海報.png
+
+海報包含：專題介紹、Server 拓撲、系統架構、成果／創新／技術、Demo 縮圖。
+
+你要做的事：打開 PNG，看文字與圖是否正確；有錯告訴我哪個區塊要改。
+
+完成後跟我說：「海報好了」
 ```
 
 ---
@@ -382,4 +430,5 @@ python <skill>/scripts/build_capstone_docx.py --report-dir report
 | 6 | 4 | Agent | 4b |
 | 7 | 4b | 學生 | 5 |
 | 8 | 5 | Agent | 6 |
-| 9 | 6 | Agent | （完成） |
+| 9 | 6 | Agent | 7 |
+| 10 | 7 | Agent | （完成） |

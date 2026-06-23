@@ -1,6 +1,6 @@
 # peas-capstone-report
 
-Agent Studio 專題報告陪練 skill — 引導學生產出 `report/專題報告.{md,pptx,docx}`。
+Agent Studio 專題報告陪練 skill — 引導學生產出 `report/專題報告.{md,pptx,docx}` 與 `report/assets/專題海報.png`。
 
 ## 老師端（vanscoding-skills 維護者）
 
@@ -33,6 +33,7 @@ Agent Studio 專題報告陪練 skill — 引導學生產出 `report/專題報�
 
 - 已安裝 Agent Studio（專案根有 `studio_shell/`）。
 - `~/.peas-agent/config.json` 已設定學校發放的 `api_key`（報告內**不要**寫 key 或 Router 位址）。
+- Step 7 需 **vcr-imagegen** skill（`%USERPROFILE%\.cursor\skills\vcr-imagegen\`）與 `VSROUTER_API_KEY`；無 key 時依 `references/poster-fallback.md` 用 ChatGPT／Gemini 網頁後備。
 
 ## 產出位置
 
@@ -41,6 +42,7 @@ Agent Studio 專題報告陪練 skill — 引導學生產出 `report/專題報�
 - `專題報告.md`、`專題報告.pptx`、`專題報告.docx`
 - `project-architecture.mmd`
 - `assets/server-topology.png`、`project-architecture.png`、`demo-*.png`
+- `assets/專題海報.png`（Step 7，直式 2:3 展覽海報）
 
 ## 腳本依賴（Agent 代跑時）
 
@@ -51,3 +53,5 @@ npx -y @mermaid-js/mermaid-cli ...
 # Python（課堂環境擇一安裝）
 uv pip install python-pptx python-docx
 ```
+
+Step 7 海報：vcr-imagegen `generate-image.ps1`（見 `references/poster-prompt-template.md`）。

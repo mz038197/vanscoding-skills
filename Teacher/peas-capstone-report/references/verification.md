@@ -1,8 +1,14 @@
-# Step 6 交件驗收
+# 交件驗收（Step 6 + Step 7）
 
-Agent 在標記「交件完成」前**逐項檢查**（可腳本 + 人工）。任一失敗 → 回到對應步驟。
+Agent 在標記完成前**逐項檢查**（可腳本 + 人工）。任一失敗 → 回到對應步驟。
 
-## 檔案存在
+---
+
+## Step 6 · 三份報告
+
+Step 6 通過後才可進 Step 7。標記「三份報告好了」前逐項檢查。
+
+### 檔案存在
 
 | 路徑 | 必要 |
 |------|------|
@@ -14,13 +20,13 @@ Agent 在標記「交件完成」前**逐項檢查**（可腳本 + 人工）。�
 | `report/assets/project-architecture.png` | ✓ |
 | `report/assets/demo-*.png` | ✓ 張數 ≥ 自訂頁數 |
 
-## 內容對齊
+### 內容對齊
 
 - [ ] MD §1–5 與 Step 3c 對齊條列一致（無擅自新增功能）
 - [ ] 報告**無** api_key、Router IP／URL
 - [ ] 個人架構 Mermaid 節點為白話中文（非 `format_extra_context` 作主標）
 
-## DOCX 圖片（硬性）
+### DOCX 圖片（硬性）
 
 執行：
 
@@ -31,15 +37,44 @@ python "<skill>/scripts/build_capstone_docx.py" --report-dir report --verify-onl
 或 Agent 用 python-docx 讀取 `專題報告.docx` 統計 `inline_shapes` / 圖片關係：
 
 - **至少** 2 + demo 張數（server + 架構 + 各 demo）
-- 若只有文字 → **失敗**，依 `docx-fallback.md` 處理，**不得**交件
+- 若只有文字 → **失敗**，依 `docx-fallback.md` 處理，**不得**進 Step 7
 
-## 學生可見驗收問句（一次一條）
+### 學生可見驗收問句（一次一條）
 
 1. 三份檔 `md / pptx / docx` 都打開了嗎？
 2. Word 裡看得到 server 圖、架構圖嗎？
 3. 每個自訂頁的 demo 圖都在 Word 附錄嗎？
 
-全部 OK → 「專題報告已完成，可以繳交 `report/` 資料夾。」
+全部 OK → 進 Step 7。
+
+---
+
+## Step 7 · 專題海報
+
+標記「全部完成」前逐項檢查。
+
+### 檔案存在
+
+| 路徑 | 必要 |
+|------|------|
+| `report/assets/專題海報.png` | ✓ 非空、可預覽 |
+
+### 內容（人工）
+
+- [ ] 海報可見**專題名稱**
+- [ ] 可辨識 server 拓撲與個人架構圖元素（非純文字重畫失真）
+- [ ] 海報文字與 Step 3c／MD 一致，**無**虛構功能
+- [ ] 海報**無** api_key、Router IP／URL
+
+### 學生可見驗收問句
+
+1. `專題海報.png` 打開了嗎？
+2. 標題與各區文字是否正確？
+3. Server 圖、架構圖、Demo 縮圖是否看得清楚？
+
+全部 OK → 「專題報告與海報已完成，可以繳交 `report/` 資料夾。」
+
+---
 
 ## Preflight 紀錄
 
@@ -47,4 +82,4 @@ python "<skill>/scripts/build_capstone_docx.py" --report-dir report --verify-onl
 
 - 自訂頁清單
 - demo 需求張數
-- 已完成 step_id
+- 已完成 step_id（完成時應為 `7`）
