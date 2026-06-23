@@ -1,6 +1,6 @@
 # peas-capstone-report
 
-Agent Studio 專題報告陪練 skill — 引導學生產出 `report/專題報告.{md,pptx,docx}` 與 `report/assets/專題海報.png`。
+Agent Studio 專題報告陪練 skill — 引導學生產出 `report/專題報告.{md,pptx,docx}`、`report/ppt-style.json` 與 `report/assets/專題海報.png`。
 
 ## 老師端（vanscoding-skills 維護者）
 
@@ -33,13 +33,22 @@ Agent Studio 專題報告陪練 skill — 引導學生產出 `report/專題報�
 
 - 已安裝 Agent Studio（專案根有 `studio_shell/`）。
 - `~/.peas-agent/config.json` 已設定學校發放的 `api_key`（報告內**不要**寫 key 或 Router 位址）。
-- Step 7 需 **vcr-imagegen** skill（`%USERPROFILE%\.cursor\skills\vcr-imagegen\`）與 `VSROUTER_API_KEY`；無 key 時依 `references/poster-fallback.md` 用 ChatGPT／Gemini 網頁後備。
+- **首次觸發 skill** 會自動 CompanionPreflight：專案 `.agents` 安裝 vcr-imagegen + pptx、Node 全域套件、**uv add** python-pptx／python-docx（見 `references/companion-skills.md`）。
+
+## PPT 流程（v1.2.0）
+
+| Step | 內容 |
+|------|------|
+| 6 | 學生三選一風格（`assets/ppt-style-picker/index.html`）→ `report/ppt-style.json` |
+| 6b | **html2pptx** 主流程 → `專題報告.pptx`；Node 不可用時 fallback `build_capstone_ppt.py` |
+| 6c | `build_capstone_docx.py` → 三份報告驗收 |
 
 ## 產出位置
 
 在**專題專案根目錄**建立 `report/`，完成後應有：
 
 - `專題報告.md`、`專題報告.pptx`、`專題報告.docx`
+- `ppt-style.json`
 - `project-architecture.mmd`
 - `assets/server-topology.png`、`project-architecture.png`、`demo-*.png`
 - `assets/專題海報.png`（Step 7，直式 2:3 展覽海報）
@@ -50,8 +59,20 @@ Agent Studio 專題報告陪練 skill — 引導學生產出 `report/專題報�
 # mmdc（Node）
 npx -y @mermaid-js/mermaid-cli ...
 
-# Python（課堂環境擇一安裝）
-uv pip install python-pptx python-docx
+# PPT 主流程（Node + 全域 npm）
+npm install -g pptxgenjs playwright sharp
+npx playwright install chromium
+node "<skill>/scripts/build_capstone_ppt_html2pptx.js" --report-dir report --skill-root "<skill>"
+
+# Python（專題專案根 · uv add）
+uv add python-pptx python-docx
+uv run python "<skill>/scripts/build_capstone_docx.py" --report-dir report
 ```
 
 Step 7 海報：vcr-imagegen `generate-image.ps1`（見 `references/poster-prompt-template.md`）。
+
+## 維護：重新產生 PPT 風格 HTML 模板
+
+```bash
+node scripts/_generate_ppt_templates.js
+```

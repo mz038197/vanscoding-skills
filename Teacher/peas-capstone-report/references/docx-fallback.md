@@ -11,10 +11,10 @@
 ## 首選：build_capstone_docx.py
 
 ```bash
-python "<skill>/scripts/build_capstone_docx.py" --report-dir report
+uv run python "<skill>/scripts/build_capstone_docx.py" --report-dir report
 ```
 
-需 `python-docx`：`uv pip install python-docx`
+需 `python-docx`：`uv add python-docx`
 
 腳本結束時會檢查 docx 內嵌圖片數；不足則 exit 1。
 

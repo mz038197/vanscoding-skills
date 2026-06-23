@@ -12,7 +12,7 @@ try:
     from pptx import Presentation
     from pptx.util import Inches, Pt
 except ImportError:
-    print("ERROR: python-pptx required. Run: uv pip install python-pptx", file=sys.stderr)
+    print("ERROR: python-pptx required. Run: uv add python-pptx", file=sys.stderr)
     raise SystemExit(1)
 
 

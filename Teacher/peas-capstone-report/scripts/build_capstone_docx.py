@@ -14,7 +14,7 @@ try:
     from docx.enum.text import WD_ALIGN_PARAGRAPH
     from docx.shared import Cm, Pt
 except ImportError:
-    print("ERROR: python-docx required. Run: uv pip install python-docx", file=sys.stderr)
+    print("ERROR: python-docx required. Run: uv add python-docx", file=sys.stderr)
     raise SystemExit(1)
 
 

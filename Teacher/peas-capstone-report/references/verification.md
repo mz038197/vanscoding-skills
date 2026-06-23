@@ -1,12 +1,31 @@
-# 交件驗收（Step 6 + Step 7）
+# 交件驗收（Step 6b / 6c / Step 7）
 
 Agent 在標記完成前**逐項檢查**（可腳本 + 人工）。任一失敗 → 回到對應步驟。
 
 ---
 
-## Step 6 · 三份報告
+## Step 6 · 風格（6b 前）
 
-Step 6 通過後才可進 Step 7。標記「三份報告好了」前逐項檢查。
+學生選完風格、進 6b 前：
+
+- [ ] `report/ppt-style.json` 存在
+- [ ] `style` 為 `classic-blue` | `teal-coral` | `sage-terracotta` 之一
+
+---
+
+## Step 6b · PowerPoint
+
+Step 6b 完成後：
+
+| 路徑 | 必要 |
+|------|------|
+| `report/專題報告.pptx` | ✓ 非空、可開啟 |
+
+---
+
+## Step 6c · Word 與三份報告
+
+Step 6c 通過後才可進 Step 7。
 
 ### 檔案存在
 
@@ -15,6 +34,7 @@ Step 6 通過後才可進 Step 7。標記「三份報告好了」前逐項檢查
 | `report/專題報告.md` | ✓ |
 | `report/專題報告.pptx` | ✓ |
 | `report/專題報告.docx` | ✓ |
+| `report/ppt-style.json` | ✓ |
 | `report/project-architecture.mmd` | ✓ |
 | `report/assets/server-topology.png` | ✓ |
 | `report/assets/project-architecture.png` | ✓ |
@@ -31,7 +51,7 @@ Step 6 通過後才可進 Step 7。標記「三份報告好了」前逐項檢查
 執行：
 
 ```bash
-python "<skill>/scripts/build_capstone_docx.py" --report-dir report --verify-only
+uv run python "<skill>/scripts/build_capstone_docx.py" --report-dir report --verify-only
 ```
 
 或 Agent 用 python-docx 讀取 `專題報告.docx` 統計 `inline_shapes` / 圖片關係：
@@ -80,6 +100,8 @@ python "<skill>/scripts/build_capstone_docx.py" --report-dir report --verify-onl
 
 `report/.capstone-progress.md` 應含：
 
-- 自訂頁清單
+- 自訂頁清單（demo ↔ 頁名表）
 - demo 需求張數
 - 已完成 step_id（完成時應為 `7`）
+
+專案根 `.capstone-companion-check.json` 記錄 companion／Node／Python 環境（見 `companion-skills.md`）。

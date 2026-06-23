@@ -43,6 +43,12 @@
 
 **agent_must_not**：不得代寫整段作文；不得跳 Step 2
 
+**agent_action（首次觸發本 skill 時 · CompanionPreflight）**：
+
+1. 依 `references/companion-skills.md` 跑完整 preflight（npx skills、Node、**uv add**、VCR key）
+2. 寫入專案根 `.capstone-companion-check.json`
+3. 再輸出下方學生可見模板（安裝細節不對學生展開；若 `install_failed` 模板末尾加備援一句）
+
 **學生可見模板**：
 
 ```
@@ -197,6 +203,20 @@
 3. 建立 `report/assets/`（若尚無）
 4. 複製 skill `assets/server-topology.png` → `report/assets/server-topology.png`
 5. 寫入 `report/.capstone-progress.md`（step、自訂頁清單、demo 需求張數）
+6. 讀 `.capstone-companion-check.json`；companion／Node 若 `install_failed` → 依 `companion-skills.md` 重試一次
+
+**`.capstone-progress.md` 建議格式**（含自訂頁 ↔ demo 對照）：
+
+```markdown
+step_id: 0
+demo_required: 2
+
+## 自訂頁
+| demo | 檔名 | 頁名 |
+|------|------|------|
+| 01 | 4_order.py | 點餐頁 |
+| 02 | 5_stats.py | 統計頁 |
+```
 
 **completion_phrases**：preflight 好了｜清單對｜可以畫架構圖
 
@@ -332,40 +352,121 @@
 
 ## Step 6 · step_id: 6
 
-**title**：PPT、Word 與交件驗收
+**title**：PPT 風格三選一
 
-**purpose**：產 `專題報告.pptx`、`專題報告.docx`；**docx 必須嵌入全部 PNG**；依 verification § Step 6 檢查；通過後進 Step 7。
+**purpose**：學生選定 html2pptx 風格；Agent 寫入 `report/ppt-style.json` 後進 Step 6b。
+
+**student_action**：開啟 skill 內 `assets/ppt-style-picker/index.html`（見 `references/ppt-style-guide.md`）；三選一回覆 A/B/C 或代號。
+
+**agent_action**：
+
+1. 提供 picker 的 `file:///` 或檔案總管路徑
+2. 學生回覆後驗證 style ∈ `classic-blue` | `teal-coral` | `sage-terracotta`
+3. 寫入 `report/ppt-style.json`（含 `selected_at`）
+
+**completion_phrases**：風格選好了｜我選 A｜我選 B｜我選 C｜我選 classic-blue｜我選 teal-coral｜我選 sage-terracotta
+
+**if_stuck**：
+
+- **A 代號不明** → 請重選 A/B/C
+- **B 從 v1.1.0 續做、缺 ppt-style.json** → 插入本步再 6b/6c
+
+**agent_must_not**：不得跳過風格選擇（除非學生已選且 json 有效）
+
+**學生可見模板**：
+
+```
+步驟 6 · 選擇 PPT 風格
+
+請打開風格選擇頁（路徑如下），三選一後告訴我 A、B、C 或代號：
+（Agent 貼 index.html 路徑）
+
+完成後跟我說：「風格選好了」
+```
+
+---
+
+## Step 6b · step_id: 6b
+
+**title**：產生 PowerPoint
+
+**purpose**：依 `ppt-style.json` 與 `專題報告.md` 產出 `report/專題報告.pptx`。
+
+**agent_action**：
+
+1. 讀 `.capstone-companion-check.json`
+2. Node + pptx skill 皆 `ok` → 依 `references/ppt-build-guide.md`：
+
+```bash
+node "<skill>/scripts/build_capstone_ppt_html2pptx.js" --report-dir report --skill-root "<skill>"
+```
+
+3. 否則 fallback：
+
+```bash
+uv run python "<skill>/scripts/build_capstone_ppt.py" --report-dir report
+```
+
+4. 依 `references/verification.md` § Step 6b 檢查
+
+**student_action**：（通常 Agent 代跑）確認 `專題報告.pptx` 可開啟。
+
+**completion_phrases**：PPT 好了｜ppt 好了｜簡報好了
+
+**if_stuck**：
+
+- **A html2pptx 失敗** → fallback `build_capstone_ppt.py`；告知可能為簡易版式
+- **B 缺 Node** → 依 `companion-skills.md` 重試安裝一次
+
+**agent_must_not**：不得跳過 pptx 產出
+
+**學生可見模板**：
+
+```
+步驟 6b · 產生 PowerPoint
+
+我已產生 report/專題報告.pptx（依你選的風格）。
+
+你要做的事：打開 PPT 快速看一下版面。
+
+完成後跟我說：「PPT 好了」（下一步會產 Word）
+```
+
+---
+
+## Step 6c · step_id: 6c
+
+**title**：Word 與交件驗收
+
+**purpose**：產 `專題報告.docx`（**須嵌入全部 PNG**）；依 verification § Step 6c；通過後進 Step 7。
 
 **agent_action**：
 
 ```bash
-python <skill>/scripts/build_capstone_ppt.py --report-dir report
-python <skill>/scripts/build_capstone_docx.py --report-dir report
+uv run python "<skill>/scripts/build_capstone_docx.py" --report-dir report
 ```
 
-依 `references/verification.md` § Step 6 檢查；失敗則 `docx-fallback.md`。
+依 `references/verification.md` § Step 6c；失敗則 `docx-fallback.md`。
 
-**student_action**：確認三份檔案可開啟；Word 內看得到圖。
+**student_action**：確認 md / pptx / docx 可開啟；Word 內看得到圖。
 
 **completion_phrases**：三份報告好了｜交件完成｜md ppt docx 都有了
 
 **if_stuck**：
 
-- **A docx 沒圖** → 重跑 docx 腳本或 fallback；**不得**進 Step 7
-- **B ppt 失敗** → 檢查 python-pptx；或依 slide-map 手動調整
+- **A docx 沒圖** → 重跑 docx 或 fallback；**不得**進 Step 7
+- **B 缺 python-docx** → `uv add python-docx`
 
-**agent_must_not**：Step 6 驗收未通過不得進 Step 7；不得在此步標記「全部完成」
+**agent_must_not**：Step 6c 驗收未通過不得進 Step 7
 
 **學生可見模板**：
 
 ```
-步驟 6 · PPT、Word 與交件
+步驟 6c · Word 與交件
 
-我已產生：
-- report/專題報告.pptx
-- report/專題報告.docx（已嵌入 server、架構、全部 demo 圖）
+我已產生 report/專題報告.docx（已嵌入 server、架構、全部 demo 圖）。
 
-你要做的事：各開一次，確認 Word 裡看得到圖。
+你要做的事：打開 Word，確認看得到圖；並確認 md / pptx / docx 三份都在。
 
 完成後跟我說：「三份報告好了」（下一步會做專題海報）
 ```
@@ -380,7 +481,7 @@ python <skill>/scripts/build_capstone_docx.py --report-dir report
 
 **agent_action**：
 
-1. 確認 Step 6 依 `references/verification.md` § Step 6 全數通過
+1. 確認 Step 6c 依 `references/verification.md` § Step 6c 全數通過
 2. 讀 `report/專題報告.md`（或 Step 3c 對齊條列）
 3. 依 `references/poster-prompt-template.md` 寫入 `report/poster-prompt.txt`
 4. 組 `-ReferencePaths`：server-topology、project-architecture、全部 demo-*.png（超 16 張時依 template 截斷）
@@ -430,5 +531,9 @@ python <skill>/scripts/build_capstone_docx.py --report-dir report
 | 6 | 4 | Agent | 4b |
 | 7 | 4b | 學生 | 5 |
 | 8 | 5 | Agent | 6 |
-| 9 | 6 | Agent | 7 |
-| 10 | 7 | Agent | （完成） |
+| 9 | 6 | 學生 | 6b |
+| 10 | 6b | Agent | 6c |
+| 11 | 6c | Agent+學生 | 7 |
+| 12 | 7 | Agent | （完成） |
+
+CompanionPreflight 在 Step 1 首次觸發前執行（不佔 step_id）。

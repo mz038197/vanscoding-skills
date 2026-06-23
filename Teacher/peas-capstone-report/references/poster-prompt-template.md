@@ -53,10 +53,14 @@ GPT-5.4 Image 2 參考圖上限約 **16 張**。若 demo 過多：必保留 1、
 
 ## vcr-imagegen 指令
 
-在**學生專案根目錄**執行（Agent 先讀 vcr-imagegen skill）：
+在**學生專案根目錄**執行。Agent 先讀 vcr-imagegen skill；腳本路徑依序：
+
+1. `{project}/.agents/skills/vcr-imagegen/scripts/generate-image.ps1`
+2. `%USERPROFILE%\.agents\skills\vcr-imagegen\scripts\generate-image.ps1`
+3. `%USERPROFILE%\.cursor\skills\vcr-imagegen\scripts\generate-image.ps1`
 
 ```powershell
-$gen = Join-Path $env:USERPROFILE '.cursor/skills/vcr-imagegen/scripts/generate-image.ps1'
+$gen = "<上述第一個存在的 generate-image.ps1>"
 & $gen `
   -PromptFile "report/poster-prompt.txt" `
   -Preset ui_mockup `
