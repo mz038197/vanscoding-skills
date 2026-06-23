@@ -14,7 +14,7 @@ npx skills add mz038197/vanscoding-skills/Media/vcr-imagegen -y --all
 
 | 變數 | 說明 |
 |------|------|
-| `VCR_API_KEY` | Portal 取得的 `vcr_sk_...`（首選） |
+| `VSROUTER_API_KEY` | Portal 取得的 `vcr_sk_...`（首選） |
 | `OPENAI_API_KEY` | 同上，BYOK 常用名稱 |
 | `VCR_BASE_URL` | 預設 `https://ai.vanscoding.com/v1` |
 | `OPENAI_BASE_URL` | 同上 fallback |

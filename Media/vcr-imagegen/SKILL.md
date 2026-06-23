@@ -1,6 +1,6 @@
 ---
 name: vcr-imagegen
-version: "1.0.0"
+version: "1.0.1"
 updated: "2026-06-23"
 description: Use when the user asks to generate or edit images via Vans Coding Router (VCR), OpenRouter image models, Portal session keys, or needs PNG/JPEG under assets/generated with input_references for reference-based editing.
 disable-model-invocation: false
@@ -29,7 +29,7 @@ Copilot 全域：`$env:USERPROFILE\.copilot\skills\vcr-imagegen\scripts\generate
 
 ## 何時使用
 
-- 使用者要落地圖檔，且環境有 **VCR Portal key**（`VCR_API_KEY` 或 `OPENAI_API_KEY` = `vcr_sk_...`）
+- 使用者要落地圖檔，且環境有 **VCR Portal key**（`VSROUTER_API_KEY` 或 `OPENAI_API_KEY` = `vcr_sk_...`）
 - 固定輸出如 `assets/generated/...`
 - 參考圖再改（`-ReferencePath` → `input_references`）
 - 課堂 preset：icon／ui_mockup／photo
@@ -39,7 +39,7 @@ Copilot 全域：`$env:USERPROFILE\.copilot\skills\vcr-imagegen\scripts\generate
 ## 前置條件
 
 1. 安裝 skill（見 `references/setup.md`）
-2. 環境變數：`VCR_API_KEY` 或 `OPENAI_API_KEY`；可選 `VCR_BASE_URL`（預設 production）
+2. 環境變數：`VSROUTER_API_KEY` 或 `OPENAI_API_KEY`；可選 `VCR_BASE_URL`（預設 production）
 3. Python 3.10+（腳本 stdlib only）
 4. 可選：專案 `.vans/image.json`（複製 `assets/image.config.example.json`）
 
@@ -111,7 +111,7 @@ $gen = Join-Path $env:USERPROFILE '.cursor/skills/vcr-imagegen/scripts/generate-
 
 | 狀況 | 處理 |
 |------|------|
-| Missing API key | 設 `VCR_API_KEY` 或 `OPENAI_API_KEY` |
+| Missing API key | 設 `VSROUTER_API_KEY` 或 `OPENAI_API_KEY` |
 | HTTP 403 | Portal 課堂生圖開關；見 setup.md |
 | HTTP 401 | key 無效或過期 |
 | Reference 找不到 | 路徑相對 `-Cwd` |

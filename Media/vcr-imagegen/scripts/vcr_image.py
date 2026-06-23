@@ -68,12 +68,12 @@ def _resolve_base_url(config: dict[str, Any]) -> str:
 
 
 def _resolve_api_key() -> str:
-    for key in ("VCR_API_KEY", "OPENAI_API_KEY"):
+    for key in ("VSROUTER_API_KEY", "OPENAI_API_KEY"):
         value = os.environ.get(key, "").strip()
         if value:
             return value
     raise ValueError(
-        "Missing API key. Set VCR_API_KEY or OPENAI_API_KEY (vcr_sk_... from Portal)."
+        "Missing API key. Set VSROUTER_API_KEY or OPENAI_API_KEY (vcr_sk_... from Portal)."
     )
 
 

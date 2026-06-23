@@ -59,4 +59,4 @@ v1 只支援**本機檔案**路徑，不支援 HTTP URL 參考。
 |------|------|
 | Reference 檔不存在 | 確認路徑相對專案根 |
 | 403 | Portal 課堂生圖開關 |
-| 401 | 檢查 `VCR_API_KEY` / `OPENAI_API_KEY` |
+| 401 | 檢查 `VSROUTER_API_KEY` / `OPENAI_API_KEY` |
