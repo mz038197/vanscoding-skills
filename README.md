@@ -10,7 +10,7 @@
 
 ### 簡介
 
-**Vanscoding Skills** 是一個專業的 AI 技能庫，涵蓋文檔處理、Microsoft MarkItDown 轉 Markdown、Obsidian 整合、進階技能工程化、瀏覽器與網頁自動化（含 Webwright code-as-action、Playwright CLI）、網路搜尋與查證（Felo CLI）、媒體創作（含 VCR／Codex／Gemini 生圖）、電腦視覺與人臉辨識、教學課務流程（含凡思 PEAS 陪練／教練／VTuber MVP 陪練／LLM Wiki 建置陪練／Agent Studio 專題報告／Workshop Bridge **WG-13～22**）、Agent 設定與記憶、開發與 Git 工作流程、Readmoo 階段一匯出、前端設計與生產力工具。本 monorepo 包含 37 個可獨立安裝的技能模組。
+**Vanscoding Skills** 是一個專業的 AI 技能庫，涵蓋文檔處理、Microsoft MarkItDown 轉 Markdown、Obsidian 整合、進階技能工程化、瀏覽器與網頁自動化（含 Webwright code-as-action、Playwright CLI）、網路搜尋與查證（Felo CLI）、媒體創作（含 VCR／Codex／Gemini 生圖）、電腦視覺與人臉辨識、教學課務流程（含凡思 PEAS 陪練／教練／VTuber MVP 陪練／LLM Wiki 建置陪練／Agent Studio 專題報告／Workshop Bridge **WG-13～22**）、Agent 設定與記憶、開發與 Git 工作流程、Readmoo 階段一匯出、前端設計與生產力工具。本 monorepo 包含 38 個可獨立安裝的技能模組。
 
 ### 專案架構
 
@@ -70,7 +70,8 @@ vanscoding-skills/                     # Monorepo 根目錄
 │   ├── peas-llm-wiki-coach/           # 凡思 LLM Wiki 陪練（專案根 raw/ + wiki/、Karpathy 模式、Step 5 右欄 ingest）
 │   ├── peas-vtuber-coach/             # 凡思 VTuber 陪練（Agent Studio PNGtuber 四狀態 GIF + TTS MVP）
 │   ├── peas-capstone-report/          # 凡思 Agent Studio 專題報告（MD／PPT／Word、架構圖、server 拓撲）
-│   └── peas-workshop-advanced-coach/  # 凡思 Workshop Bridge 教練（WG-13～22 路由、bridge 卡、WG-22 拆檔）
+│   ├── peas-workshop-advanced-coach/  # 凡思 Workshop Bridge 教練（WG-13～22 路由、bridge 卡、WG-22 拆檔）
+│   └── fadou-ai-exam-coach/           # 法鬥超人｜AI 素養認證備考（網頁 50 題模擬考、複習、專項）
 │
 └── Productivity/                      # 🚀 生產力工具整合
     ├── google-email/                  # Gmail 電子郵件管理
@@ -90,7 +91,7 @@ vanscoding-skills/                     # Monorepo 根目錄
 - **Media/** - 媒體生成、音樂與 CLI 生圖（4 個技能）
 - **Vision/** - 電腦視覺與人臉辨識（1 個技能）
 - **Search/** - 搜尋、查證與即時資訊（1 個技能）
-- **Teacher/** - 教學與課務流程（7 個技能）
+- **Teacher/** - 教學與課務流程（8 個技能）
 - **Productivity/** - 雲端工具、Readmoo 與前端設計（4 個技能）
 
 **每個技能的標準結構：**
@@ -100,7 +101,7 @@ vanscoding-skills/                     # Monorepo 根目錄
 - `LICENSE.txt` - 授權條款（如適用）
 - 其他文件 - 參考資料、指南、架構定義等
 
-**共計：** 37 個可獨立安裝的技能模組
+**共計：** 38 個可獨立安裝的技能模組
 
 ### 技能概覽
 
@@ -191,6 +192,7 @@ vanscoding-skills/                     # Monorepo 根目錄
 | **peas-vtuber-coach**        | 凡思 VTuber 陪練 | Agent Studio 右欄 **PNGtuber MVP**（idle／thinking／talking 四狀態 GIF + 模板內建 TTS）；依 `references/step-scripts.md` 一次一步、完成句前進；生圖用 ChatGPT／Gemini 網頁；Prompt A 改 `studio_shell/agent_panel.py` |
 | **peas-capstone-report**     | 凡思專題報告陪練 | Agent Studio 專題繳交 **MD／PPTX／DOCX**；學生主筆 §1–3，Agent 產平易近人架構 Mermaid、全班 server 拓撲圖、demo 截圖與三份交付物；Word **必須嵌入**全部 PNG |
 | **peas-workshop-advanced-coach** | 凡思 Workshop Bridge 教練 | **WG-13～22** 路由／狀態機：依 `references/bridge/` 逐關卡 handoff；WG-13～21 可選直接實作或引導釐清；**WG-22** 契約優先拆檔 `agent_core.py` + `main.py` |
+| **fadou-ai-exam-coach** | 法鬥超人｜AI 素養認證備考 | 資策會 III 複習、專項練習、**50 題網頁模擬考**（`build_mock_exam.py --open`）、錯題解析；上傳版題庫、反套題 |
 
 
 #### 🤖 Nanobot 整合（Agents）
@@ -292,6 +294,7 @@ npx skills add mz038197/vanscoding-skills/Teacher/peas-llm-wiki-coach
 npx skills add mz038197/vanscoding-skills/Teacher/peas-vtuber-coach
 npx skills add mz038197/vanscoding-skills/Teacher/peas-capstone-report
 npx skills add mz038197/vanscoding-skills/Teacher/peas-workshop-advanced-coach
+npx skills add mz038197/vanscoding-skills/Teacher/fadou-ai-exam-coach
 ```
 
 **生產力工具（Productivity）：**
@@ -484,7 +487,7 @@ git tag v2.0.0  # 重大更新
 
 ### Introduction
 
-**Vanscoding Skills** is a comprehensive AI skill library for document processing, Microsoft MarkItDown-to-Markdown workflows, Obsidian integration, advanced skill engineering, browser automation (including Webwright code-as-action and Playwright CLI), web search and fact-finding (Felo CLI), media creation (including VCR/Codex/Gemini CLI image generation), computer vision and face recognition, teaching workflows (including Fansi PEAS coaches, LLM Wiki setup coaching, VTuber MVP coaching, Agent Studio capstone report coaching, and Workshop Bridge WG-13–22), agent configuration and memory, development and Git workflows, Readmoo stage-1 export workflows, frontend design guidance, and productivity tools. This monorepo contains 37 skill modules that can be installed and used independently.
+**Vanscoding Skills** is a comprehensive AI skill library for document processing, Microsoft MarkItDown-to-Markdown workflows, Obsidian integration, advanced skill engineering, browser automation (including Webwright code-as-action and Playwright CLI), web search and fact-finding (Felo CLI), media creation (including VCR/Codex/Gemini CLI image generation), computer vision and face recognition, teaching workflows (including Fansi PEAS coaches, LLM Wiki setup coaching, VTuber MVP coaching, Agent Studio capstone report coaching, and Workshop Bridge WG-13–22), agent configuration and memory, development and Git workflows, Readmoo stage-1 export workflows, frontend design guidance, and productivity tools. This monorepo contains 38 skill modules that can be installed and used independently.
 
 ### Project Structure
 
@@ -511,7 +514,7 @@ The repository is organized into nine categories:
   - facenet-cli: facenet-pytorch CLI (`fnet`) for embeddings, face DB, 1:1 / 1:N matching, optional JSON
 - **Search/** - Search, lookup, and current information (1 module)
   - felo-cli: Prefer `@willh/felo-cli --json`, SDK, or `FELO_API_KEY` + Felo OpenAPI for search and fact-finding
-- **Teacher/** - Teaching and class operations (7 modules)
+- **Teacher/** - Teaching and class operations (8 modules)
   - orangeapple-class-report: Orange Apple post-class parent report workflow (Chrome DevTools + Obsidian)
   - peas-example-coach: Fansi checklist coaching — required items only, PEAS splash, thinking grid, `session-records/`, Understanding Assessment Summary (five axes + Sigmoid)
   - peas-challenge-coach: Fansi challenge coach after checklist — `challenges.md`, aligned specs, six-column prompts, program then understanding acceptance (`uv run`), shared scoring format
@@ -519,6 +522,7 @@ The repository is organized into nine categories:
   - peas-vtuber-coach: Fansi VTuber MVP coach — Agent Studio right-panel PNGtuber (idle/thinking/talking GIF + built-in TTS); step-scripts, one step at a time, ChatGPT/Gemini for assets, Prompt A/B via coding agent
   - peas-capstone-report: Fansi Agent Studio capstone MD/PPT/DOCX deliverables with architecture diagrams
   - peas-workshop-advanced-coach: Fansi Workshop Bridge coach — WG-13–22 router/state machine via `references/bridge/` cards; WG-22 contract-first split of `agent_core.py` + `main.py`
+  - fadou-ai-exam-coach: Fadou AI literacy exam coach — III certification review, drill practice, 50-question web mock exam (`build_mock_exam.py --open`), wrong-answer review
 - **Productivity/** - Productivity tools (4 modules)
   - google-email, google-calendar, readmoo-capture, frontend-design
 
@@ -613,6 +617,7 @@ Each skill is self-contained with its own SKILL.md, scripts (where applicable), 
 | **peas-vtuber-coach**        | Fansi VTuber coach        | Agent Studio right-panel **PNGtuber MVP** — four-state GIF (idle/thinking/talking) + built-in TTS; `references/step-scripts.md`, one step at a time; ChatGPT/Gemini for assets; Prompt A updates `studio_shell/agent_panel.py` |
 | **peas-capstone-report**     | Fansi capstone report coach | Agent Studio capstone deliverables **MD / PPTX / DOCX**; student-authored §1–3, agent builds friendly Mermaid architecture, shared server topology, demo screenshots; Word **must embed** all PNGs |
 | **peas-workshop-advanced-coach** | Fansi Workshop Bridge coach | **WG-13–22** — progress scan via `wg_milestone_checklist.md`, route to one `references/bridge/` card; WG-22 contract-first split of `agent_core.py` + `main.py` |
+| **fadou-ai-exam-coach** | Fadou AI literacy exam coach | III certification review, drill practice, **50-question web mock exam** with auto-open browser; upload-safe question banks, anti-leak rules |
 
 
 #### 🚀 Productivity Tools
@@ -681,6 +686,7 @@ npx skills add mz038197/vanscoding-skills/Teacher/peas-llm-wiki-coach
 npx skills add mz038197/vanscoding-skills/Teacher/peas-vtuber-coach
 npx skills add mz038197/vanscoding-skills/Teacher/peas-capstone-report
 npx skills add mz038197/vanscoding-skills/Teacher/peas-workshop-advanced-coach
+npx skills add mz038197/vanscoding-skills/Teacher/fadou-ai-exam-coach
 
 # Productivity
 npx skills add mz038197/vanscoding-skills/Productivity/google-email

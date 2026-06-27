@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>法鬥超人｜AI 素養認證模擬考</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="header">
+    <h1>法鬥超人｜人工智慧工程素養認證模擬考</h1>
+    <p class="subtitle">50 題單選 · 滿分 100 · 70 分及格 · 答錯不倒扣</p>
+    <div class="progress-bar">
+      <span id="progress-text">已作答 0 / 50</span>
+      <div class="progress-track"><div id="progress-fill" class="progress-fill"></div></div>
+    </div>
+  </header>
+
+  <main id="exam-form" class="exam-form"></main>
+
+  <footer class="footer">
+    <button type="button" id="submit-btn" class="btn-primary">交卷</button>
+  </footer>
+
+  <section id="results" class="results hidden" aria-live="polite"></section>
+
+  <script id="exam-data" type="application/json">__EXAM_DATA__</script>
+  <script src="exam.js"></script>
+</body>
+</html>
