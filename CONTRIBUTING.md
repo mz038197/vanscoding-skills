@@ -54,7 +54,7 @@
 
 1. **建立資料夾**
    ```
-   Documents/ 或 Productivity/
+   Documents/、Teacher/ 或 Productivity/
    └── your-skill-name/
        ├── SKILL.md
        ├── scripts/

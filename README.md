@@ -10,7 +10,7 @@
 
 ### 簡介
 
-**Vanscoding Skills** 是一個專業的 AI 技能庫，涵蓋文檔處理、Microsoft MarkItDown 轉 Markdown、Obsidian 整合、進階技能工程化、瀏覽器與網頁自動化（含 Webwright code-as-action、Playwright CLI）、網路搜尋與查證（Felo CLI）、媒體創作（含 VCR／Codex／Gemini 生圖）、電腦視覺與人臉辨識、教學課務流程（含凡思 PEAS 陪練／教練／VTuber MVP 陪練／LLM Wiki 建置陪練／Agent Studio 專題報告／Workshop Bridge **WG-13～22**）、Agent 設定與記憶、開發與 Git 工作流程、Readmoo 階段一匯出、前端設計與生產力工具。本 monorepo 包含 38 個可獨立安裝的技能模組。
+**Vanscoding Skills** 是一個專業的 AI 技能庫，涵蓋文檔處理、Microsoft MarkItDown 轉 Markdown、Obsidian 整合、進階技能工程化、瀏覽器與網頁自動化（含 Webwright code-as-action、Playwright CLI）、網路搜尋與查證（Felo CLI）、媒體創作（含 VCR／Codex／Gemini 生圖）、電腦視覺與人臉辨識、教學課務流程（含凡思 PEAS 陪練／教練／VTuber MVP 陪練／LLM Wiki 建置陪練／Agent Studio 專題報告／Workshop Bridge **WG-13～22**／課堂 Netlify 發佈）、Agent 設定與記憶、開發與 Git 工作流程、Readmoo 階段一匯出、前端設計與生產力工具。本 monorepo 包含 39 個可獨立安裝的技能模組。
 
 ### 專案架構
 
@@ -71,7 +71,8 @@ vanscoding-skills/                     # Monorepo 根目錄
 │   ├── peas-vtuber-coach/             # 凡思 VTuber 陪練（Agent Studio PNGtuber 四狀態 GIF + TTS MVP）
 │   ├── peas-capstone-report/          # 凡思 Agent Studio 專題報告（MD／PPT／Word、架構圖、server 拓撲）
 │   ├── peas-workshop-advanced-coach/  # 凡思 Workshop Bridge 教練（WG-13～22 路由、bridge 卡、WG-22 拆檔）
-│   └── fadou-ai-exam-coach/           # 法鬥超人｜AI 素養認證備考（網頁 50 題模擬考、複習、專項）
+│   ├── fadou-ai-exam-coach/           # 法鬥超人｜AI 素養認證備考（網頁 50 題模擬考、複習、專項）
+│   └── netlify-publish/               # 課堂靜態檔發佈到 Netlify（ticket login、一律 prod）
 │
 └── Productivity/                      # 🚀 生產力工具整合
     ├── google-email/                  # Gmail 電子郵件管理
@@ -91,7 +92,7 @@ vanscoding-skills/                     # Monorepo 根目錄
 - **Media/** - 媒體生成、音樂與 CLI 生圖（4 個技能）
 - **Vision/** - 電腦視覺與人臉辨識（1 個技能）
 - **Search/** - 搜尋、查證與即時資訊（1 個技能）
-- **Teacher/** - 教學與課務流程（8 個技能）
+- **Teacher/** - 教學與課務流程（9 個技能）
 - **Productivity/** - 雲端工具、Readmoo 與前端設計（4 個技能）
 
 **每個技能的標準結構：**
@@ -101,7 +102,7 @@ vanscoding-skills/                     # Monorepo 根目錄
 - `LICENSE.txt` - 授權條款（如適用）
 - 其他文件 - 參考資料、指南、架構定義等
 
-**共計：** 38 個可獨立安裝的技能模組
+**共計：** 39 個可獨立安裝的技能模組
 
 ### 技能概覽
 
@@ -193,6 +194,7 @@ vanscoding-skills/                     # Monorepo 根目錄
 | **peas-capstone-report**     | 凡思專題報告陪練 | Agent Studio 專題繳交 **MD／PPTX／DOCX**；學生主筆 §1–3，Agent 產平易近人架構 Mermaid、全班 server 拓撲圖、demo 截圖與三份交付物；Word **必須嵌入**全部 PNG |
 | **peas-workshop-advanced-coach** | 凡思 Workshop Bridge 教練 | **WG-13～22** 路由／狀態機：依 `references/bridge/` 逐關卡 handoff；WG-13～21 可選直接實作或引導釐清；**WG-22** 契約優先拆檔 `agent_core.py` + `main.py` |
 | **fadou-ai-exam-coach** | 法鬥超人｜AI 素養認證備考 | 資策會 III 複習、專項練習、**50 題網頁模擬考**（`build_mock_exam.py --open`）、錯題解析；上傳版題庫、反套題 |
+| **netlify-publish** | 課堂 Netlify 發佈 | 本機靜態檔／`dist` 上傳；學生只在瀏覽器授權；一律 `--prod`；缺 `index.html` 時複製首頁檔 |
 
 
 #### 🤖 Nanobot 整合（Agents）
@@ -295,6 +297,7 @@ npx skills add mz038197/vanscoding-skills/Teacher/peas-vtuber-coach
 npx skills add mz038197/vanscoding-skills/Teacher/peas-capstone-report
 npx skills add mz038197/vanscoding-skills/Teacher/peas-workshop-advanced-coach
 npx skills add mz038197/vanscoding-skills/Teacher/fadou-ai-exam-coach
+npx skills add mz038197/vanscoding-skills/Teacher/netlify-publish
 ```
 
 **生產力工具（Productivity）：**
@@ -358,6 +361,7 @@ npx skills add mz038197/vanscoding-skills/Productivity/frontend-design
 - 凡思 LLM Wiki 陪練：專案根 `raw/` + `wiki/` Karpathy 模式；Step 5 右欄 llm-wiki ingest；劇本與 `peas-agent-core` 內建 `llm-wiki-coach` 同等
 - 凡思 VTuber 陪練：Agent Studio 右欄 PNGtuber 四狀態 GIF MVP；`step-scripts.md` 劇本、一次一步、完成句前進；生圖 ChatGPT／Gemini、Prompt A／B 交 coding agent
 - 凡思 Workshop Bridge 教練：掃描 `wg_milestone_checklist.md` 決定 `next_wg`，依 `references/bridge/` 單卡 handoff；WG-22 走契約優先拆檔流程
+- 課堂 Netlify 發佈：`npx netlify-cli` 上傳靜態檔；學生瀏覽器授權、agent 不代填帳密；同一作業沿用同一 URL
 
 🤖 **Nanobot 整合**
 
@@ -487,7 +491,7 @@ git tag v2.0.0  # 重大更新
 
 ### Introduction
 
-**Vanscoding Skills** is a comprehensive AI skill library for document processing, Microsoft MarkItDown-to-Markdown workflows, Obsidian integration, advanced skill engineering, browser automation (including Webwright code-as-action and Playwright CLI), web search and fact-finding (Felo CLI), media creation (including VCR/Codex/Gemini CLI image generation), computer vision and face recognition, teaching workflows (including Fansi PEAS coaches, LLM Wiki setup coaching, VTuber MVP coaching, Agent Studio capstone report coaching, and Workshop Bridge WG-13–22), agent configuration and memory, development and Git workflows, Readmoo stage-1 export workflows, frontend design guidance, and productivity tools. This monorepo contains 38 skill modules that can be installed and used independently.
+**Vanscoding Skills** is a comprehensive AI skill library for document processing, Microsoft MarkItDown-to-Markdown workflows, Obsidian integration, advanced skill engineering, browser automation (including Webwright code-as-action and Playwright CLI), web search and fact-finding (Felo CLI), media creation (including VCR/Codex/Gemini CLI image generation), computer vision and face recognition, teaching workflows (including Fansi PEAS coaches, LLM Wiki setup coaching, VTuber MVP coaching, Agent Studio capstone report coaching, Workshop Bridge WG-13–22, and classroom Netlify publish), agent configuration and memory, development and Git workflows, Readmoo stage-1 export workflows, frontend design guidance, and productivity tools. This monorepo contains 39 skill modules that can be installed and used independently.
 
 ### Project Structure
 
@@ -514,7 +518,7 @@ The repository is organized into nine categories:
   - facenet-cli: facenet-pytorch CLI (`fnet`) for embeddings, face DB, 1:1 / 1:N matching, optional JSON
 - **Search/** - Search, lookup, and current information (1 module)
   - felo-cli: Prefer `@willh/felo-cli --json`, SDK, or `FELO_API_KEY` + Felo OpenAPI for search and fact-finding
-- **Teacher/** - Teaching and class operations (8 modules)
+- **Teacher/** - Teaching and class operations (9 modules)
   - orangeapple-class-report: Orange Apple post-class parent report workflow (Chrome DevTools + Obsidian)
   - peas-example-coach: Fansi checklist coaching — required items only, PEAS splash, thinking grid, `session-records/`, Understanding Assessment Summary (five axes + Sigmoid)
   - peas-challenge-coach: Fansi challenge coach after checklist — `challenges.md`, aligned specs, six-column prompts, program then understanding acceptance (`uv run`), shared scoring format
@@ -523,6 +527,7 @@ The repository is organized into nine categories:
   - peas-capstone-report: Fansi Agent Studio capstone MD/PPT/DOCX deliverables with architecture diagrams
   - peas-workshop-advanced-coach: Fansi Workshop Bridge coach — WG-13–22 router/state machine via `references/bridge/` cards; WG-22 contract-first split of `agent_core.py` + `main.py`
   - fadou-ai-exam-coach: Fadou AI literacy exam coach — III certification review, drill practice, 50-question web mock exam (`build_mock_exam.py --open`), wrong-answer review
+  - netlify-publish: Classroom static-file publish to Netlify — ticket login in the student's browser, always `--prod`, copy homepage to `index.html` when missing
 - **Productivity/** - Productivity tools (4 modules)
   - google-email, google-calendar, readmoo-capture, frontend-design
 
@@ -618,6 +623,7 @@ Each skill is self-contained with its own SKILL.md, scripts (where applicable), 
 | **peas-capstone-report**     | Fansi capstone report coach | Agent Studio capstone deliverables **MD / PPTX / DOCX**; student-authored §1–3, agent builds friendly Mermaid architecture, shared server topology, demo screenshots; Word **must embed** all PNGs |
 | **peas-workshop-advanced-coach** | Fansi Workshop Bridge coach | **WG-13–22** — progress scan via `wg_milestone_checklist.md`, route to one `references/bridge/` card; WG-22 contract-first split of `agent_core.py` + `main.py` |
 | **fadou-ai-exam-coach** | Fadou AI literacy exam coach | III certification review, drill practice, **50-question web mock exam** with auto-open browser; upload-safe question banks, anti-leak rules |
+| **netlify-publish** | Classroom Netlify publish | Upload local static files / `dist`; student authorizes in their own browser; always `--prod`; copy homepage to `index.html` if missing |
 
 
 #### 🚀 Productivity Tools
@@ -687,6 +693,7 @@ npx skills add mz038197/vanscoding-skills/Teacher/peas-vtuber-coach
 npx skills add mz038197/vanscoding-skills/Teacher/peas-capstone-report
 npx skills add mz038197/vanscoding-skills/Teacher/peas-workshop-advanced-coach
 npx skills add mz038197/vanscoding-skills/Teacher/fadou-ai-exam-coach
+npx skills add mz038197/vanscoding-skills/Teacher/netlify-publish
 
 # Productivity
 npx skills add mz038197/vanscoding-skills/Productivity/google-email
@@ -709,7 +716,7 @@ Individual skills may have their own license terms. Check the LICENSE.txt file i
 🎵 **Media & Creation** - ACE Music; Codex CLI and Gemini CLI image generation  
 👁️ **Vision** - facenet-cli (`fnet`) for face embeddings, matching, optional JSON output  
 🔍 **Search** - felo-cli for web search, lookup, and current information (CLI, SDK, API)  
-📚 **Teacher** - Orange Apple reports; **Fansi PEAS teaching skills** (example → challenge → Workshop Bridge `peas-workshop-advanced-coach` for WG-13–22) with shared `session-records/` and aligned scoring where applicable; **LLM Wiki coach** (`peas-llm-wiki-coach`) for Karpathy-mode project wiki setup; **VTuber MVP coach** (`peas-vtuber-coach`) for Agent Studio PNGtuber GIF + TTS workflow; **Capstone report coach** (`peas-capstone-report`) for MD/PPT/DOCX deliverables with architecture and server diagrams  
+📚 **Teacher** - Orange Apple reports; **Fansi PEAS teaching skills** (example → challenge → Workshop Bridge `peas-workshop-advanced-coach` for WG-13–22) with shared `session-records/` and aligned scoring where applicable; **LLM Wiki coach** (`peas-llm-wiki-coach`) for Karpathy-mode project wiki setup; **VTuber MVP coach** (`peas-vtuber-coach`) for Agent Studio PNGtuber GIF + TTS workflow; **Capstone report coach** (`peas-capstone-report`) for MD/PPT/DOCX deliverables with architecture and server diagrams; **Netlify publish** (`netlify-publish`) for classroom static sites  
 🤖 **Agents** - SOUL.md personality design, AGENTS.md construction, Agent Memory, nanobot LINE channel setup  
 🔧 **Rich Toolset** - Python / JavaScript scripts, API references  
 ☁️ **Cloud Integration** - Google (Gmail, Calendar, Sheets), OAuth; Readmoo web reader stage-1 capture workflow  
