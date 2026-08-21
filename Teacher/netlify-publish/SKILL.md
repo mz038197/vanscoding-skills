@@ -2,10 +2,11 @@
 name: netlify-publish
 description: >-
   Publishes a finished local folder (dist, build, out, HTML) to Netlify with
-  `netlify deploy --dir --no-build --prod`. Use when the user asks to 發佈,
+  `netlify deploy --dir --prod`. Use when the user asks to 發佈,
   deploy, publish, upload, drop files or a static site to Netlify, or 發佈作業.
   Skip for Fly.io, Vercel, Git continuous deployment, or custom-domain DNS.
-version: "1.0.0"
+version: "1.1.0"
+updated: "2026-08-21"
 ---
 
 # Netlify publish
@@ -22,11 +23,15 @@ version: "1.0.0"
 npx --yes netlify-cli
 ```
 
-下文 `netlify` 代表這個 binary。每個 `deploy` 都帶 `--no-build --prod --json`。讀 JSON 欄位，不要刮 stdout 橫幅。不要優先用本機舊版 `netlify`：缺 `--request`／`--check` 時登入會失敗。
+每個 `deploy` 都帶 `--prod --json`。讀 JSON 欄位，不要刮 stdout 橫幅。不要優先用本機舊版 `netlify`：缺 `--request`／`--check` 時登入會失敗。
 
 第一次 `npx` 會下載套件，要有網路，可能等半分鐘。之後同一台會走快取。
 
+> ⚠ 新版 CLI 已移除 `--no-build`（預設不 build）。直接跑下面 deploy 指令即可。
+
 `npx` 也沒有（`node` / `npm` 不存在）→ 停下，請使用者安裝 Node.js LTS（https://nodejs.org），裝完開新終端機再發佈。不要改用瀏覽器幫他登入來繞過 CLI。
+
+第一次部署的完整流程在 [deploy-cheatsheet.md](references/deploy-cheatsheet.md)。
 
 ## 步驟
 
@@ -55,7 +60,7 @@ npx --yes netlify-cli
 **完成**：指令 exit 0，JSON 裡有 URL。每次都加 `--prod`，公開網址走 JSON 的 `url`（沒有就退 `deploy_url`）。
 
 ```powershell
-netlify deploy --dir=<artifact> --no-build --prod --json
+netlify deploy --dir=<artifact> --prod --json
 ```
 
 站台未 link、但已知 site ID／name 時加 `--site <id-or-name>`。

@@ -99,7 +99,7 @@ netlify sites:create --name <slug> --account-slug <team-slug> --json
 也可在第一次 deploy 同時建：
 
 ```powershell
-netlify deploy --site-name <slug> --team <team-slug> --dir=<artifact> --no-build --prod --json
+netlify deploy --site-name <slug> --team <team-slug> --dir=<artifact> --prod --json
 ```
 
 ## Anonymous（丟一次網址）
@@ -107,7 +107,7 @@ netlify deploy --site-name <slug> --team <team-slug> --dir=<artifact> --no-build
 沒有帳號、只要暫時可開的 URL，而且使用者同意用完即丟：
 
 ```powershell
-netlify deploy --dir=<artifact> --no-build --allow-anonymous --json
+netlify deploy --dir=<artifact> --allow-anonymous --json
 ```
 
 站台一小時內要有人認領，否則刪除。課堂要留著改、要同一條 URL 更新：走 ticket login + 具名站台，不要走這條。
